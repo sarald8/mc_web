@@ -26,3 +26,9 @@ __pycache__/
 
 # Fotos temporales para subir a Cloudflare R2
 fotos_para_subir/
+
+# Dependencias de Node (si instalas wrangler/npm localmente)
+node_modules/
+
+# Cache/estado local de Wrangler
+.wrangler/

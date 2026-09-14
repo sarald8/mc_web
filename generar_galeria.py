@@ -8,19 +8,29 @@ BUCKET_R2 = "monocromatics-fotos"
 RUTA_R2 = "imagenes/fiestas"
 EXTENSIONES = (".jpg", ".jpeg", ".png", ".webp")
 
-def subir_a_r2(carpeta_local, carpeta_r2):
-    origen = os.path.join(carpeta_local, "")
-    destino = f"r2:{BUCKET_R2}/{carpeta_r2}/"
-    print(f"Subiendo: {origen} -> {destino}")
+# URL pública del bucket R2 (dashboard -> R2 -> monocromatics-fotos -> Public access)
+R2_PUBLIC_URL = "https://pub-196ffc8ef6544a1a83073be29e5a331f.r2.dev"
 
-    resultado = subprocess.run(
-        ["rclone", "copy", origen, destino, "--progress"],
-        check=False
-    )
 
-    if resultado.returncode != 0:
-        print("ERROR: no se pudieron subir las fotos a R2.")
-        sys.exit(1)
+def subir_a_r2(carpeta_local, carpeta_r2, fotos):
+    """Sube cada foto individualmente a R2 usando wrangler (no rclone)."""
+    for foto in fotos:
+        origen = os.path.join(carpeta_local, foto)
+        destino = f"{BUCKET_R2}/{carpeta_r2}/{foto}"
+        print(f"Subiendo: {origen} -> {destino}")
+
+        comando = f'npx wrangler r2 object put "{destino}" --file="{origen}" --remote'
+
+        resultado = subprocess.run(
+            comando,
+            check=False,
+            shell=True  # en Windows, shell=True necesita un string, no una lista
+        )
+
+        if resultado.returncode != 0:
+            print(f"ERROR: no se pudo subir {foto} a R2.")
+            sys.exit(1)
+
 
 fiestas = []
 
@@ -45,7 +55,11 @@ for carpeta in sorted(os.listdir(CARPETA_FOTOS)):
     nombre = carpeta.replace("-", " ").upper()
     ruta_r2 = f"{RUTA_R2}/{carpeta}"
 
-    subir_a_r2(ruta, ruta_r2)
+    # TEMPORAL: subida automática desactivada por el problema de PATH con npx/wrangler.
+    # Sube las fotos a mano en el dashboard de R2 (crea la carpeta imagenes/fiestas/<carpeta>
+    # y arrastra los archivos) y luego corre este script solo para regenerar galeria.js.
+    # Cuando esté resuelto lo de wrangler, descomenta la línea de abajo:
+    # subir_a_r2(ruta, ruta_r2, fotos)
 
     fiesta = {
         "nombre": nombre,
@@ -56,7 +70,9 @@ for carpeta in sorted(os.listdir(CARPETA_FOTOS)):
 
     fiestas.append(fiesta)
 
-contenido = """const fiestas = [
+contenido = f"""const R2_PUBLIC_URL = "{R2_PUBLIC_URL}";
+
+const fiestas = [
 
 """
 
@@ -93,7 +109,7 @@ fiestas.forEach(fiesta => {
     fiesta.fotos.forEach(foto => {
         const img = document.createElement("img");
 
-        img.src = `/imagenes/fiestas/${fiesta.carpeta}/${foto}`;
+        img.src = `${R2_PUBLIC_URL}/imagenes/fiestas/${fiesta.carpeta}/${foto}`;
         img.alt = `Monocromatics ${fiesta.nombre}`;
         img.loading = "lazy";
 
