@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monocromatics</title>
+    <meta name="description" content="Monocromatics: fiesta de música urbana y underground en Galicia. Descubre las próximas fechas, artistas que pasaron por nuestra fiesta, sesiones de nuestros DJs y la galería de fotos.">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+<header>
+    <div class="logo">
+        <img src="imagenes/logos/logo_morado_oscuro.jpg" alt="Monocromatics">
+    </div>
+
+
+    <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <nav class="mobile-nav">
+        <a href="#inicio">Inicio</a>
+        <a href="#proxima">Próxima</a>
+        <a href="#fechas">Fechas</a>
+        <a href="#fiestas">Fiestas</a>
+        <a href="#galeria">Galería</a>
+        <a href="paginas/contacto.html">Contacto</a>
+    </nav>
+</header>
+
+<main>
+
+    <!-- INICIO -->
+    <section id="inicio" class="hero">
+        <div class="hero-content">
+            <p class="small-title">MONOCROMATICS</p>
+            <h1>Toda tu música<br>favorita en un<br>mismo espacio</h1>
+            <p class="hero-description">Una nueva noche cada mes</p>
+            <a href="#proxima" class="button">DESCUBRIR</a>
+        </div>
+    </section>
+
+    <!-- PRÓXIMA FIESTA -->
+    <section id="proxima" class="proxima-fiesta">
+        <div class="proxima-fiesta-contenido">
+
+            <div class="proxima-fiesta-info">
+                <p>PRÓXIMA FIESTA</p>
+                <h2 id="proxima-mes"></h2>
+                <h3 id="proxima-artista"></h3>
+
+                <div class="party-info">
+                    <div>
+                        <span>FECHA</span>
+                        <strong id="proxima-fecha"></strong>
+                    </div>
+
+                    <div>
+                        <span>CIUDAD</span>
+                        <strong id="proxima-ciudad"></strong>
+                    </div>
+
+                    <div>
+                        <span>HORA</span>
+                        <strong id="proxima-hora"></strong>
+                    </div>
+                </div>
+
+                <div class="countdown">
+                    <p>FALTAN</p>
+
+                    <div class="countdown-values">
+                        <div>
+                            <strong id="days">00</strong>
+                            <span>DÍAS</span>
+                        </div>
+
+                        <div>
+                            <strong id="hours">00</strong>
+                            <span>HORAS</span>
+                        </div>
+
+                        <div>
+                            <strong id="minutes">00</strong>
+                            <span>MIN</span>
+                        </div>
+
+                        <div>
+                            <strong id="seconds">00</strong>
+                            <span>SEG</span>
+                        </div>
+                    </div>
+                </div>
+
+                <a id="proxima-entradas" href="#" class="button">COMPRAR ENTRADAS</a>
+            </div>
+
+            <div class="proxima-fiesta-poster">
+                <img id="proxima-cartel" src="" alt="Cartel de la próxima fiesta">
+            </div>
+
+        </div>
+    </section>
+
+    <!-- PRÓXIMAS FECHAS -->
+    <section id="fechas" class="dates">
+        <p>GUARDA LA FECHA</p>
+        <h2>PRÓXIMAS<br>FIESTAS</h2>
+        <div class="dates-list" id="dates-list"></div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="about">
+        <div class="about-content">
+            <p class="about-label">QUÉ ES MONOCROMATICS</p>
+            <h2>UNA NOCHE.<br>UN ESPACIO.<br>MUCHA MÚSICA.</h2>
+            <p class="about-text">
+                Blablablabla; Qué es Monocromatics. Qué estilo de música tiene.
+                Qué busca la fiesta. Un poco de historia y origen.
+            </p>
+        </div>
+    </section>
+
+    <!-- DJs RESIDENTES -->
+    <section class="residents">
+        <p>DJs RESIDENTES</p>
+        <h2>QUIÉNES ESTÁN<br>DETRÁS DE LA MÚSICA</h2>
+
+        <div class="artist-grid">
+            <article class="artist-card">
+                <div class="artist-image">
+                    <img src="imagenes/kehr.jpg" alt="KEHR, DJ residente de Monocromatics">
+                </div>
+
+                <div class="artist-card-content">
+                    <h3>KEHR</h3>
+                    <a href="https://www.instagram.com/13kehr/" target="_blank" rel="noopener">@13kehr ↗</a>
+                    <a href="paginas/sesiones.html#kehr" class="card-button">ESCUCHAR SESIONES →</a>
+                </div>
+            </article>
+
+            <article class="artist-card">
+                <div class="artist-image">
+                    <img src="imagenes/kehr.jpg" alt="J ROMARIS, DJ residente de Monocromatics">
+                </div>
+                <div class="artist-card-content">
+                    <h3>J ROMARIS</h3>
+                    <a href="https://www.instagram.com/j.romaris/" target="_blank" rel="noopener">@j.romaris ↗</a>
+                    <a href="paginas/sesiones.html#j-romaris" class="card-button">ESCUCHAR SESIONES →</a>
+                </div>
+            </article>
+
+        </div>
+    </section>
+
+    <!-- ARTISTAS QUE PASARON POR MONOCROMATICS -->
+    <section class="past-artists">
+        <p>ARTISTAS INVITADOS</p>
+        <h2>ARTISTAS QUE PASARON<br>POR MONOCROMATICS</h2>
+
+        <div class="artist-grid" id="past-artists-list"></div>
+    </section>
+
+    <!-- FIESTAS ANTERIORES -->
+    <section id="fiestas" class="parties">
+        <p>ASÍ LO HEMOS VIVIDO</p>
+        <h2>FIESTAS ANTERIORES</h2>
+
+        <div class="parties-carousel">
+            <button class="carousel-arrow carousel-prev" aria-label="Fiesta anterior">←</button>
+
+            <div class="party-grid" id="past-parties-list"></div>
+
+            <button class="carousel-arrow carousel-next" aria-label="Siguiente fiesta">→</button>
+        </div>
+    </section>
+
+    <!-- GALERÍA -->
+    <section id="galeria" class="gallery">
+        <p>NUESTRO PÚBLICO</p>
+        <h2>GALERÍA</h2>
+
+        <div class="gallery-grid">
+            <img src="imagenes/fiestas/blinblin/BLIBLINXMONOCROMO80.JPEG" alt="Monocromatics">
+            <img src="imagenes/fiestas/blinblin/BLIBLINXMONOCROMO63.JPEG" alt="Monocromatics">
+            <img src="imagenes/fiestas/blinblin/BLIBLINXMONOCROMO73.JPEG" alt="Monocromatics">
+            <img src="imagenes/fiestas/variadas/IMG_1324.jpg" alt="Monocromatics">
+            <img src="imagenes/fiestas/variadas/IMG_1320.jpg" alt="Monocromatics">
+            <img src="imagenes/fiestas/variadas/IMG_0470.jpg" alt="Monocromatics">
+        </div>
+
+        <a href="paginas/galeria.html" class="button">VER TODAS LAS FOTOS</a>
+    </section>
+
+    <!-- UBICACIONES SALAS -->
+    <section class="ubicaciones">
+        <div class="ubicaciones-content">
+            <p class="ubicaciones-label">NUESTRAS UBICACIONES</p>
+            <h2>¿EN QUÉ SALA<br>NOS VISTE?</h2>
+            <p class="ubicaciones-text">
+                Descubre las salas y ciudades por las que ha pasado Monocromatics.
+            </p>
+
+            <div class="mapa-container">
+                <img src="imagenes/mapa_galicia.png" alt="Mapa de Galicia con las salas donde se celebraron fiestas Monocromatics">
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-logo">
+        <img src="imagenes/logos/logo_morado_oscuro.jpg" alt="Monocromatics">
+    </div>
+
+    <div class="footer-links">
+        <a href="https://x.com/monocromatics1">X / Twitter</a>
+        <a href="https://www.instagram.com/monocromatics1/">Instagram</a>
+        <a href="https://www.tiktok.com/@monocromatics1">TikTok</a>
+    </div>
+
+    <p>GALICIA UNDER ZONE</p>
+    <p>© 2026 MONOCROMATICS</p>
+</footer>
+
+<script src="js/main.js"></script>
+<script src="js/proxima_fiesta.js"></script>
+<script src="js/proximas_fechas.js"></script>
+<script src="js/artistas.js"></script>
+<script src="js/fiestas_anteriores.js"></script>
+
+</body>
+</html>

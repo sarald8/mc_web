@@ -1,0 +1,767 @@
+/* ==========================================================
+   SEPARADORES DE LA HOME
+========================================================== */
+
+.proxima-fiesta,
+.dates,
+.about,
+.residents,
+.past-artists,
+.parties,
+.gallery,
+.ubicaciones {
+    position: relative;
+}
+
+.proxima-fiesta::before,
+.dates::before,
+.about::before,
+.residents::before,
+.past-artists::before,
+.parties::before,
+.gallery::before,
+.ubicaciones::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 8%;
+    width: 84%;
+    height: 1px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(201, 140, 255, 0.45),
+        #9b4dca,
+        rgba(201, 140, 255, 0.45),
+        transparent
+    );
+    box-shadow:
+        0 0 7px rgba(155, 77, 202, 0.75),
+        0 0 16px rgba(201, 140, 255, 0.25);
+    z-index: 3;
+}
+
+/* ==========================================================
+   HERO
+========================================================== */
+
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 120px 20px 80px;
+    background:
+        radial-gradient(circle at 50% 40%, rgba(142, 58, 220, 0.35), transparent 35%),
+        radial-gradient(circle at 20% 80%, rgba(91, 37, 145, 0.25), transparent 30%),
+        #0b0710;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+.small-title {
+    color: #c98cff;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 5px;
+    margin-bottom: 25px;
+}
+
+.hero h1 {
+    font-size: clamp(42px, 7vw, 95px);
+    line-height: 1.05;
+    letter-spacing: 1px;
+    text-shadow:
+        0 0 3px #ffffff,
+        0 0 8px #c98cff,
+        0 0 20px rgba(201, 140, 255, 0.7);
+}
+
+.hero-description {
+    margin-top: 30px;
+    color: #cfc7d6;
+    font-size: 15px;
+}
+
+/* ==========================================================
+   PRÓXIMA FIESTA
+========================================================== */
+
+.proxima-fiesta {
+    padding: 120px 8%;
+    background: #f1e3ff;
+    color: #0b0710;
+}
+
+.proxima-fiesta-contenido {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 0.8fr;
+    gap: 70px;
+    align-items: center;
+}
+
+.proxima-fiesta-info {
+    text-align: left;
+}
+
+.proxima-fiesta-info > p,
+.dates > p,
+.parties > p,
+.gallery > p,
+.residents > p,
+.past-artists > p {
+    color: #9b4dca;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    margin-bottom: 20px;
+}
+
+.proxima-fiesta h2,
+.dates h2,
+.parties h2,
+.gallery h2,
+.residents h2,
+.past-artists h2 {
+    font-size: clamp(40px, 6vw, 80px);
+    line-height: 1;
+    letter-spacing: 1px;
+}
+
+.proxima-fiesta h3 {
+    margin-top: 18px;
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(20px, 3vw, 32px);
+    font-weight: 400;
+    color: #9b4dca;
+}
+
+.party-info {
+    max-width: 800px;
+    margin: 50px 0 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+}
+
+.party-info div {
+    padding: 25px 15px;
+    border-right: 1px solid #ddd;
+}
+
+.party-info div:last-child {
+    border-right: none;
+}
+
+.party-info span {
+    display: block;
+    color: #777;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+}
+
+.party-info strong {
+    font-size: 13px;
+}
+
+.proxima-fiesta-poster {
+    width: 100%;
+    max-width: 480px;
+    margin-left: auto;
+}
+
+.proxima-fiesta-poster img {
+    width: 100%;
+    display: block;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+}
+
+.proxima-fiesta .button {
+    background: #9b4dca;
+}
+
+.proxima-fiesta .button:hover {
+    background: #7d3fa6;
+    box-shadow: 0 8px 25px rgba(155, 77, 202, 0.3);
+}
+
+/* ==========================================================
+   CONTADOR
+========================================================== */
+
+.countdown {
+    margin-top: 45px;
+}
+
+.countdown > p {
+    color: #777;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    margin-bottom: 15px;
+}
+
+.countdown-values {
+    display: flex;
+    gap: 30px;
+}
+
+.countdown-values div {
+    display: flex;
+    flex-direction: column;
+}
+
+.countdown-values strong {
+    font-size: 32px;
+    font-weight: 800;
+    line-height: 1;
+}
+
+.countdown-values span {
+    margin-top: 7px;
+    color: #777;
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+/* ==========================================================
+   PRÓXIMAS FECHAS
+========================================================== */
+
+.dates {
+    padding: 120px 8%;
+    background: #110b19;
+}
+
+.dates h2 {
+    color: #ffffff;
+}
+
+.dates-list {
+    margin-top: 60px;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.date-item {
+    min-height: 120px;
+    display: grid;
+    grid-template-columns: 80px 70px 1fr auto;
+    align-items: center;
+    gap: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.date-number {
+    font-size: 42px;
+    font-weight: 800;
+}
+
+.date-month {
+    color: #c98cff;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.date-info h3 {
+    font-size: 18px;
+}
+
+.date-info p {
+    margin-top: 6px;
+    color: #9f94a8;
+    font-size: 12px;
+}
+
+/* ==========================================================
+   BOTÓN ENTRADAS
+========================================================== */
+
+.date-button {
+    position: relative;
+    isolation: isolate;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 11px 20px;
+    color: #ffffff;
+    background: transparent;
+    border: 1px solid #9b4dca;
+    text-decoration: none;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    overflow: hidden;
+    border-radius: 16px;
+    transition:
+        border-color 0.3s ease,
+        box-shadow 0.3s ease,
+        transform 0.3s ease;
+}
+
+.date-button::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: #9b4dca;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s ease;
+}
+
+.date-button::after {
+    content: "→";
+    position: relative;
+    margin-left: 8px;
+    z-index: 2;
+}
+
+.date-button:hover::before {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+.date-button:hover {
+    border-color: #c98cff;
+    box-shadow: 0 5px 18px rgba(155, 77, 202, 0.25);
+}
+
+/* ==========================================================
+   DJS RESIDENTES
+========================================================== */
+
+.residents {
+    padding: 120px 8%;
+    background: #0b0710;
+}
+
+.residents h2 {
+    color: #ffffff;
+}
+
+.artist-grid {
+    margin-top: 60px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.artist-card {
+    background: #110b19;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    transition:
+        transform 0.3s ease,
+        border-color 0.3s ease;
+}
+
+.artist-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(201, 140, 255, 0.5);
+}
+
+.artist-image {
+    width: 100%;
+    height: 360px;
+    overflow: hidden;
+}
+
+.artist-image img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.artist-card:hover .artist-image img {
+    transform: scale(1.05);
+}
+
+.artist-card-content {
+    padding: 22px;
+}
+
+.artist-card-content h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.artist-card-content p {
+    margin-top: 8px;
+    color: #a99eaf;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+}
+
+.card-button {
+    display: inline-block;
+    margin-top: 16px;
+    padding: 9px 16px;
+    background: rgba(155, 77, 202, 0.12);
+    border: 1px solid rgba(155, 77, 202, 0.7);
+    border-radius: 16px;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    transition: all 0.3s ease;
+}
+
+.card-button:hover {
+    background: #9b4dca;
+    border-color: #c98cff;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(155, 77, 202, 0.35);
+}
+
+/* ==========================================================
+   ARTISTAS INVITADOS
+========================================================== */
+
+.past-artists {
+    padding: 120px 8%;
+    background: #f1e3ff;
+    color: #0b0710;
+}
+
+.past-artists h2 {
+    color: #0b0710;
+}
+
+.past-artists .artist-card {
+    background: #e5bfff;
+    border: 1px solid rgba(155, 77, 202, 0.25);
+    border-radius: 8px;
+    box-shadow:
+        0 10px 30px rgba(91, 37, 145, 0.18),
+        0 0 18px rgba(155, 77, 202, 0.08);
+    overflow: hidden;
+    transition:
+        transform 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.past-artists .artist-card:hover {
+    transform: translateY(-7px);
+    border-color: rgba(155, 77, 202, 0.55);
+    box-shadow:
+        0 15px 35px rgba(91, 37, 145, 0.25),
+        0 0 25px rgba(155, 77, 202, 0.15);
+}
+
+.past-artists .artist-card-content h3 {
+    color: #0b0710;
+}
+
+.past-artists .artist-image {
+    height: 330px;
+}
+
+/* ==========================================================
+   FIESTAS ANTERIORES
+========================================================== */
+
+.parties {
+    padding: 120px 8%;
+    background: #0b0710;
+}
+
+.parties-carousel {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    margin-top: 60px;
+}
+
+.party-grid {
+    display: flex;
+    gap: 25px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    flex: 1;
+    padding: 10px 4px 25px;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+}
+
+.party-grid::-webkit-scrollbar {
+    display: none;
+}
+
+.party-card {
+    flex: 0 0 calc(50% - 13px);
+    background: #110b19;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    scroll-snap-align: start;
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.25),
+        0 0 18px rgba(155, 77, 202, 0.06);
+    transition:
+        transform 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.party-image {
+    width: 100%;
+    height: 380px;
+    overflow: hidden;
+}
+
+.party-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+.party-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(201, 140, 255, 0.55);
+    box-shadow:
+        0 15px 35px rgba(0, 0, 0, 0.35),
+        0 0 25px rgba(155, 77, 202, 0.16);
+}
+
+.party-card-content {
+    padding: 30px;
+}
+
+.party-date {
+    color: #c98cff;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.party-card h3 {
+    margin-top: 10px;
+    font-family: 'DM Serif Display', serif;
+    font-size: 28px;
+    font-weight: 400;
+}
+
+.party-card-content > p:not(.party-date) {
+    margin-top: 15px;
+    color: #a99eaf;
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+.text-link {
+    display: inline-block;
+    margin-top: 25px;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    transition: color 0.3s ease;
+}
+
+.text-link:hover {
+    color: #c98cff;
+}
+
+/* ==========================================================
+   FLECHAS DEL CARRUSEL
+========================================================== */
+
+.carousel-arrow {
+    flex: 0 0 48px;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(155, 77, 202, 0.12);
+    color: #ffffff;
+    border: 1px solid rgba(201, 140, 255, 0.45);
+    border-radius: 50%;
+    font-size: 20px;
+    cursor: pointer;
+    transition:
+        background 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease,
+        transform 0.3s ease;
+    z-index: 3;
+}
+
+.carousel-arrow:hover {
+    background: #9b4dca;
+    border-color: #c98cff;
+    box-shadow:
+        0 0 12px rgba(155, 77, 202, 0.4),
+        0 0 25px rgba(201, 140, 255, 0.15);
+}
+
+.carousel-prev:hover {
+    transform: translateX(-3px);
+}
+
+.carousel-next:hover {
+    transform: translateX(3px);
+}
+
+/* ==========================================================
+   GALERÍA PRINCIPAL
+========================================================== */
+
+.gallery {
+    padding: 120px 8%;
+    text-align: center;
+    background: #f1e3ff;
+    color: #0b0710;
+}
+
+.gallery h2 {
+    color: #0b0710;
+}
+
+.gallery-grid {
+    margin-top: 60px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+}
+
+.gallery-grid img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+}
+
+.gallery-grid img:hover {
+    transform: scale(1.02);
+}
+
+.gallery .button {
+    background: #9b4dca;
+}
+
+/* ==========================================================
+   SOBRE MONOCROMATICS
+========================================================== */
+
+.about {
+    padding: 150px 8%;
+    background:
+        radial-gradient(circle at 80% 50%, rgba(155, 77, 202, 0.28), transparent 35%),
+        #f1e3ff;
+    color: #0b0710;
+    overflow: hidden;
+}
+
+.about-content {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.about-label {
+    color: #9b4dca;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    margin-bottom: 25px;
+}
+
+.about h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(45px, 7vw, 90px);
+    font-weight: 400;
+    line-height: 0.98;
+    letter-spacing: 1px;
+    color: #0b0710;
+}
+
+.about-text {
+    max-width: 700px;
+    margin-top: 45px;
+    color: #4f4655;
+    font-size: 15px;
+    line-height: 1.8;
+}
+
+/* ==========================================================
+   UBICACIONES
+========================================================== */
+
+.ubicaciones {
+    padding: 120px 8%;
+    background: #0b0710;
+    color: #ffffff;
+    overflow: hidden;
+}
+
+.ubicaciones-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.ubicaciones-label {
+    color: #c98cff;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    margin-bottom: 20px;
+}
+
+.ubicaciones h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(42px, 6vw, 80px);
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: 1px;
+}
+
+.ubicaciones-text {
+    max-width: 600px;
+    margin-top: 30px;
+    color: #a99eaf;
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+.mapa-container {
+    position: relative;
+    max-width: 1000px;
+    margin: 65px auto 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mapa-container img {
+    width: 100%;
+    max-width: 1000px;
+    height: auto;
+    display: block;
+    object-fit: contain;
+}

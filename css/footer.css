@@ -1,0 +1,38 @@
+/* ==========================================================
+   FOOTER
+========================================================== */
+
+footer {
+    padding: 50px 8%;
+    background: #070509;
+    text-align: center;
+}
+
+.footer-logo img {
+    width: 65px;
+    margin-bottom: 25px;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    margin-bottom: 25px;
+}
+
+.footer-links a {
+    color: #cfc7d6;
+    text-decoration: none;
+    font-size: 11px;
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: #c98cff;
+}
+
+footer > p {
+    color: #666;
+    font-size: 10px;
+    margin-top: 8px;
+}

@@ -1,0 +1,392 @@
+/* ==========================================================
+   PORTADA DE LA GALERÍA
+========================================================== */
+
+.galeria-apartados {
+    position: relative;
+    min-height: 70vh;
+    padding: 110px 8% 130px;
+    background:
+        radial-gradient(circle at 85% 15%, rgba(155, 77, 202, 0.22), transparent 30%),
+        radial-gradient(circle at 10% 85%, rgba(91, 37, 145, 0.16), transparent 32%),
+        linear-gradient(135deg, #130c1c 0%, #110b19 50%, #0e0915 100%);
+    color: #ffffff;
+    overflow: hidden;
+}
+
+.galeria-apartados::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 8%;
+    width: 84%;
+    height: 1px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(201, 140, 255, 0.7),
+        #9b4dca,
+        rgba(201, 140, 255, 0.7),
+        transparent
+    );
+    box-shadow: 0 0 12px rgba(201, 140, 255, 0.5);
+}
+
+.galeria-apartados::after {
+    content: "";
+    position: absolute;
+    width: 420px;
+    height: 420px;
+    right: -180px;
+    bottom: -220px;
+    background: radial-gradient(
+        circle,
+        rgba(155, 77, 202, 0.14),
+        transparent 68%
+    );
+    pointer-events: none;
+}
+
+.galeria-apartados h2 {
+    position: relative;
+    display: inline-block;
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(45px, 6vw, 78px);
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: 1px;
+    margin-bottom: 65px;
+    text-shadow:
+        0 0 18px rgba(201, 140, 255, 0.12),
+        0 0 45px rgba(155, 77, 202, 0.08);
+}
+
+.galeria-apartados h2::after {
+    content: "";
+    display: block;
+    width: 70px;
+    height: 2px;
+    margin-top: 20px;
+    background: linear-gradient(90deg, #9b4dca, #c98cff);
+    box-shadow:
+        0 0 6px rgba(155, 77, 202, 0.8),
+        0 0 15px rgba(201, 140, 255, 0.35);
+}
+
+/* ==========================================================
+   TARJETAS DE APARTADOS
+========================================================== */
+
+.galeria-menu {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.galeria-card {
+    position: relative;
+    min-height: 210px;
+    padding: 35px 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    text-decoration: none;
+    color: #ffffff;
+    background:
+        linear-gradient(
+            145deg,
+            rgba(155, 77, 202, 0.14),
+            rgba(17, 11, 25, 0.88)
+        );
+    border: 1px solid rgba(201, 140, 255, 0.18);
+    border-radius: 8px;
+    overflow: hidden;
+    transition:
+        transform 0.35s ease,
+        border-color 0.35s ease,
+        box-shadow 0.35s ease,
+        background 0.35s ease;
+}
+
+.galeria-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        #9b4dca,
+        #c98cff,
+        transparent
+    );
+    opacity: 0.7;
+}
+
+.galeria-card::after {
+    content: "→";
+    position: absolute;
+    top: 27px;
+    right: 30px;
+    font-size: 24px;
+    color: #c98cff;
+    opacity: 0.7;
+    transition:
+        transform 0.35s ease,
+        opacity 0.35s ease;
+}
+
+.galeria-card:hover {
+    transform: translateY(-7px);
+    border-color: rgba(201, 140, 255, 0.55);
+    background:
+        linear-gradient(
+            145deg,
+            rgba(155, 77, 202, 0.24),
+            rgba(17, 11, 25, 0.92)
+        );
+    box-shadow:
+        0 18px 45px rgba(0, 0, 0, 0.4),
+        0 0 25px rgba(155, 77, 202, 0.16);
+}
+
+.galeria-card:hover::after {
+    transform: translateX(6px);
+    opacity: 1;
+}
+
+.galeria-card h3 {
+    margin: 0 0 10px;
+    font-family: 'DM Serif Display', serif;
+    font-size: 32px;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+}
+
+.galeria-card p {
+    margin: 0;
+    color: #c98cff;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+/* ==========================================================
+   GALERÍA DE FOTOS
+========================================================== */
+
+.galeria-fiesta {
+    position: relative;
+    padding: 115px 8% 125px;
+    background:
+        radial-gradient(circle at 90% 10%, rgba(155, 77, 202, 0.22), transparent 28%),
+        radial-gradient(circle at 5% 90%, rgba(91, 37, 145, 0.16), transparent 30%),
+        linear-gradient(135deg, #130c1c 0%, #110b19 50%, #0e0915 100%);
+    color: #ffffff;
+    border-bottom: 1px solid rgba(201, 140, 255, 0.12);
+    overflow: hidden;
+}
+
+.galeria-fiesta::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 8%;
+    width: 84%;
+    height: 1px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(201, 140, 255, 0.7),
+        #9b4dca,
+        rgba(201, 140, 255, 0.7),
+        transparent
+    );
+    box-shadow: 0 0 12px rgba(201, 140, 255, 0.5);
+}
+
+.galeria-fiesta h2 {
+    position: relative;
+    display: inline-block;
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(40px, 5vw, 68px);
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+    text-shadow: 0 0 18px rgba(201, 140, 255, 0.12);
+}
+
+.galeria-fiesta h2::after {
+    content: "";
+    display: block;
+    width: 55px;
+    height: 2px;
+    margin-top: 18px;
+    background: linear-gradient(90deg, #9b4dca, #c98cff);
+    box-shadow:
+        0 0 6px rgba(155, 77, 202, 0.8),
+        0 0 15px rgba(201, 140, 255, 0.35);
+}
+
+.galeria-fiesta > p {
+    color: #c98cff;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    margin-bottom: 45px;
+}
+
+/* ==========================================================
+   CUADRÍCULA DE FOTOS
+========================================================== */
+
+.galeria-fiesta .gallery-grid {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-top: 0;
+}
+
+.galeria-fiesta .gallery-grid::before {
+    content: "";
+    position: absolute;
+    inset: -20px;
+    background: radial-gradient(
+        circle at center,
+        rgba(155, 77, 202, 0.08),
+        transparent 65%
+    );
+    pointer-events: none;
+}
+
+.galeria-fiesta .gallery-grid img {
+    position: relative;
+    width: 100%;
+    height: 235px;
+    object-fit: cover;
+    display: block;
+    cursor: pointer;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 6px;
+    opacity: 0.9;
+    filter: saturate(0.92);
+    transition:
+        transform 0.35s ease,
+        opacity 0.35s ease,
+        border-color 0.35s ease,
+        box-shadow 0.35s ease,
+        filter 0.35s ease;
+}
+
+.galeria-fiesta .gallery-grid img:hover {
+    transform: translateY(-4px) scale(1.025);
+    opacity: 1;
+    filter: saturate(1.08);
+    border-color: rgba(201, 140, 255, 0.7);
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.45),
+        0 0 18px rgba(155, 77, 202, 0.2);
+    z-index: 2;
+}
+
+/* ==========================================================
+   VISOR DE FOTO
+========================================================== */
+
+.visor-foto {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    background:
+        radial-gradient(circle at center, rgba(155, 77, 202, 0.14), transparent 42%),
+        rgba(7, 5, 9, 0.97);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+.visor-foto img {
+    max-width: 88%;
+    max-height: 78vh;
+    object-fit: contain;
+    border: 1px solid rgba(201, 140, 255, 0.35);
+    box-shadow:
+        0 20px 70px rgba(0, 0, 0, 0.7),
+        0 0 35px rgba(155, 77, 202, 0.12);
+}
+
+/* ==========================================================
+   CERRAR VISOR
+========================================================== */
+
+.cerrar-visor {
+    position: absolute;
+    top: 22px;
+    right: 30px;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(155, 77, 202, 0.12);
+    border: 1px solid rgba(201, 140, 255, 0.45);
+    border-radius: 50%;
+    color: #ffffff;
+    font-size: 28px;
+    cursor: pointer;
+    transition:
+        background 0.3s ease,
+        border-color 0.3s ease,
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.cerrar-visor:hover {
+    background: #9b4dca;
+    border-color: #c98cff;
+    transform: rotate(90deg);
+    box-shadow: 0 0 20px rgba(155, 77, 202, 0.35);
+}
+
+/* ==========================================================
+   BOTÓN DESCARGAR
+========================================================== */
+
+.descargar-foto {
+    position: absolute;
+    bottom: 28px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 13px 25px;
+    background: #9b4dca;
+    border: 1px solid #c98cff;
+    border-radius: 16px;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    transition:
+        background 0.3s ease,
+        color 0.3s ease,
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+    box-shadow: 0 8px 25px rgba(155, 77, 202, 0.3);
+}
+
+.descargar-foto:hover {
+    background: #c98cff;
+    color: #0b0710;
+    transform: translateX(-50%) translateY(-3px);
+    box-shadow: 0 10px 30px rgba(201, 140, 255, 0.3);
+}

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto · Monocromatics</title>
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/contacto.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <a href="../index.html">
+                <img src="../imagenes/logos/logo_morado_oscuro.jpg" alt="Monocromatics">
+            </a>
+        </div>
+
+        <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <nav class="mobile-nav">
+            <a href="../index.html#inicio">Inicio</a>
+            <a href="../index.html#proxima">Próxima</a>
+            <a href="../index.html#fechas">Fechas</a>
+            <a href="../index.html#fiestas">Fiestas</a>
+            <a href="../index.html#galeria">Galería</a>
+        </nav>
+    </header>
+
+    <main>
+
+        <section class="contacto">
+            <div class="contacto-content">
+
+                <div class="contacto-info">
+                    <p class="contacto-label">CONTACTO</p>
+                    <h1>HABLEMOS</h1>
+                    <p>¿Quieres contactar con Monocromatics? Escríbenos para colaboraciones, eventos, artistas o cualquier otra consulta.</p>
+
+                    <a class="contacto-email">Clica aquí debajo para enviarnos un correo ↓</a>
+                    <br>
+                    <a href="mailto:monocromaticss@gmail.com" class="contacto-email">monocromaticss@gmail.com</a>
+                    <br>
+                    <a class="contacto-email">O contáctanos por el formulario directamente</a>
+                </div>
+
+                <div class="contacto-formulario" id="formulario-contacto">
+
+                    <form action="https://formspree.io/f/mzebnepl" method="POST">
+                        <input type="hidden" name="_subject" value="Nuevo mensaje de contacto - Monocromatics">
+                        <input type="hidden" name="_next" value="http://localhost:8000/paginas/gracias.html">
+                        <input type="text" name="_gotcha" style="display:none">
+
+                        <div class="form-group">
+                            <label for="nombre">NOMBRE</label>
+                            <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">CORREO ELECTRÓNICO</label>
+                            <input type="email" id="email" name="email" placeholder="tu@email.com" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="motivo">MOTIVO</label>
+                            <select id="motivo" name="motivo" required>
+                                <option value="" disabled selected>Selecciona una opción</option>
+                                <option value="colaboracion">Colaboración</option>
+                                <option value="evento">Evento</option>
+                                <option value="artista">Artista / DJ</option>
+                                <option value="prensa">Prensa</option>
+                                <option value="otro">Otro</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="mensaje">MENSAJE</label>
+                            <textarea id="mensaje" name="mensaje" rows="6" placeholder="Cuéntanos..." required></textarea>
+                        </div>
+
+                        <button type="submit" class="button">
+                            ENVIAR MENSAJE →
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="footer-logo">
+            <a href="../index.html">
+                <img src="../imagenes/logos/logo_morado_oscuro.jpg" alt="Monocromatics">
+            </a>
+        </div>
+
+        <div class="footer-links">
+            <a href="https://x.com/monocromatics1" target="_blank" rel="noopener">X / Twitter</a>
+            <a href="https://www.instagram.com/monocromatics1/" target="_blank" rel="noopener">Instagram</a>
+            <a href="https://www.tiktok.com/@monocromatics1" target="_blank" rel="noopener">TikTok</a>
+        </div>
+
+        <p>GALICIA UNDER ZONE</p>
+        <p>© 2026 MONOCROMATICS</p>
+    </footer>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>

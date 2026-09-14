@@ -1,0 +1,24 @@
+# Fotos de fiestas (viven en Cloudflare R2, no en el repo)
+imagenes/fiestas/
+
+# Archivos del sistema / editor
+.DS_Store
+Thumbs.db
+.vscode/*
+desktop.ini
+!.vscode/extensions.json
+
+# Por si en algún momento metes un .env con credenciales de R2/API
+.env
+.env.*
+!.env.example
+
+# caches de python
+__pycache__/
+*.py[cod]
+*$py.class
+
+#temporales
+*.tmp
+*.temp
+*.log
