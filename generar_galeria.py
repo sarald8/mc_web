@@ -59,7 +59,7 @@ for carpeta in sorted(os.listdir(CARPETA_FOTOS)):
     # Sube las fotos a mano en el dashboard de R2 (crea la carpeta imagenes/fiestas/<carpeta>
     # y arrastra los archivos) y luego corre este script solo para regenerar galeria.js.
     # Cuando esté resuelto lo de wrangler, descomenta la línea de abajo:
-    # subir_a_r2(ruta, ruta_r2, fotos)
+    subir_a_r2(ruta, ruta_r2, fotos)
 
     fiesta = {
         "nombre": nombre,
