@@ -1,5 +1,5 @@
 # Fotos de fiestas (viven en Cloudflare R2, no en el repo)
-imagenes/fiestas/
+#imagenes/fiestas/
 
 # Archivos del sistema / editor
 .DS_Store
