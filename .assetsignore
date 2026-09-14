@@ -1,0 +1,8 @@
+.git/
+.wrangler/
+.vscode/
+estructuraweb.md
+generar_galeria.py
+.gitignore
+.assetsignore
+wrangler.jsonc
