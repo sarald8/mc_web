@@ -4,7 +4,7 @@ const fiestas = [
 
     {
         nombre: "BLINBLIN",
-        lugar: "",
+        lugar: "Santiago",
         carpeta: "blinblin",
         fotos: [
             "BLIBLINXMONOCROMO73.JPEG",
@@ -14,7 +14,7 @@ const fiestas = [
     },
     {
         nombre: "VARIADAS",
-        lugar: "",
+        lugar: "Vigo",
         carpeta: "variadas",
         fotos: [
             "IMG_0470.jpg",
