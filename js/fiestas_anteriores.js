@@ -4,7 +4,7 @@ const fiestasAnteriores = [
         ciudad: "VIGO",
         artista: "ARTISTA X",
         descripcion: "descripción",
-        imagen: "imagenes/fiestas/variadas/IMG_0470.jpg",
+        imagen: "https://pub-196ffc8ef6544a1a83073be29e5a331f.r2.dev/imagenes/fiestas/blinblin/IMG_0470.jpg",
         enlace: "#"
     },
     {
@@ -12,7 +12,7 @@ const fiestasAnteriores = [
         ciudad: "CORUÑA",
         artista: "ARTISTA X",
         descripcion: "descripción",
-        imagen: "imagenes/fiestas/variadas/IMG_0470.jpg",
+        imagen: "https://pub-196ffc8ef6544a1a83073be29e5a331f.r2.dev/imagenes/fiestas/blinblin/IMG_0470.jpg",
         enlace: "#"
     },
     {
@@ -20,7 +20,7 @@ const fiestasAnteriores = [
         ciudad: "SANTIAGO",
         artista: "ARTISTA X",
         descripcion: "descripción",
-        imagen: "imagenes/fiestas/blinblin/BLIBLINXMONOCROMO86.JPEG",
+        imagen: "https://pub-196ffc8ef6544a1a83073be29e5a331f.r2.dev/imagenes/fiestas/blinblin/BLIBLINXMONOCROMO86.JPEG",
         enlace: "#"
     }
 ];
