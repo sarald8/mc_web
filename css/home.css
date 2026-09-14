@@ -635,8 +635,11 @@
 .gallery {
     padding: 120px 8%;
     text-align: center;
-    background: #f1e3ff;
+    background:
+        radial-gradient(circle at 50% 45%, rgba(102, 38, 141, 0.3), transparent 65%),
+        #f1e3ff;
     color: #0b0710;
+    overflow: hidden;
 }
 
 .gallery h2 {
