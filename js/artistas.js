@@ -50,3 +50,21 @@ artistas.forEach(artista => {
 
     artistasContainer.appendChild(tarjeta);
 });
+
+const prevBtn = document.querySelector(".past-artists .carousel-prev");
+const nextBtn = document.querySelector(".past-artists .carousel-next");
+
+if (prevBtn && nextBtn && artistasContainer) {
+    const scrollAmount = () => {
+        const card = artistasContainer.querySelector(".artist-card");
+        return card ? card.offsetWidth + 25 : 300;
+    };
+
+    prevBtn.addEventListener("click", () => {
+        artistasContainer.scrollBy({ left: -scrollAmount(), behavior: "smooth" });
+    });
+
+    nextBtn.addEventListener("click", () => {
+        artistasContainer.scrollBy({ left: scrollAmount(), behavior: "smooth" });
+    });
+}

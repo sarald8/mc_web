@@ -284,9 +284,13 @@
     /* ARTISTAS */
 
     .artist-grid {
-        grid-template-columns: 1fr;
-        gap: 20px;
-        margin-top: 40px;
+    gap: 15px;
+    margin-top: 40px;
+    padding: 5px 2px 20px;
+    }
+
+    .artist-card {
+        flex: 0 0 100%;
     }
 
     .artist-image,
