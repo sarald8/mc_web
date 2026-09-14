@@ -1,13 +1,35 @@
 import os
+import subprocess
+import sys
 
-CARPETA_FIESTAS = "imagenes/fiestas"
+CARPETA_FOTOS = "fotos_para_subir"
 ARCHIVO_JS = "js/galeria.js"
+BUCKET_R2 = "monocromatics-fotos"
+RUTA_R2 = "imagenes/fiestas"
 EXTENSIONES = (".jpg", ".jpeg", ".png", ".webp")
+
+def subir_a_r2(carpeta_local, carpeta_r2):
+    origen = os.path.join(carpeta_local, "")
+    destino = f"r2:{BUCKET_R2}/{carpeta_r2}/"
+    print(f"Subiendo: {origen} -> {destino}")
+
+    resultado = subprocess.run(
+        ["rclone", "copy", origen, destino, "--progress"],
+        check=False
+    )
+
+    if resultado.returncode != 0:
+        print("ERROR: no se pudieron subir las fotos a R2.")
+        sys.exit(1)
 
 fiestas = []
 
-for carpeta in sorted(os.listdir(CARPETA_FIESTAS)):
-    ruta = os.path.join(CARPETA_FIESTAS, carpeta)
+if not os.path.isdir(CARPETA_FOTOS):
+    print(f"No existe la carpeta: {CARPETA_FOTOS}")
+    sys.exit(1)
+
+for carpeta in sorted(os.listdir(CARPETA_FOTOS)):
+    ruta = os.path.join(CARPETA_FOTOS, carpeta)
 
     if not os.path.isdir(ruta):
         continue
@@ -21,6 +43,9 @@ for carpeta in sorted(os.listdir(CARPETA_FIESTAS)):
         continue
 
     nombre = carpeta.replace("-", " ").upper()
+    ruta_r2 = f"{RUTA_R2}/{carpeta}"
+
+    subir_a_r2(ruta, ruta_r2)
 
     fiesta = {
         "nombre": nombre,
@@ -32,6 +57,7 @@ for carpeta in sorted(os.listdir(CARPETA_FIESTAS)):
     fiestas.append(fiesta)
 
 contenido = """const fiestas = [
+
 """
 
 for fiesta in fiestas:
@@ -66,7 +92,8 @@ fiestas.forEach(fiesta => {
 
     fiesta.fotos.forEach(foto => {
         const img = document.createElement("img");
-        img.src = `../imagenes/fiestas/${fiesta.carpeta}/${foto}`;
+
+        img.src = `/imagenes/fiestas/${fiesta.carpeta}/${foto}`;
         img.alt = `Monocromatics ${fiesta.nombre}`;
         img.loading = "lazy";
 
@@ -99,7 +126,9 @@ function abrirFoto(src) {
     }
 
     function cerrarConEscape(e) {
-        if (e.key === "Escape") cerrarVisor();
+        if (e.key === "Escape") {
+            cerrarVisor();
+        }
     }
 
     document.addEventListener("keydown", cerrarConEscape);
@@ -107,14 +136,18 @@ function abrirFoto(src) {
     visor.querySelector(".cerrar-visor").addEventListener("click", cerrarVisor);
 
     visor.addEventListener("click", e => {
-        if (e.target === visor) cerrarVisor();
+        if (e.target === visor) {
+            cerrarVisor();
+        }
     });
 }
+
 """
 
 with open(ARCHIVO_JS, "w", encoding="utf-8") as archivo:
     archivo.write(contenido)
 
+print()
 print(f"Galería generada correctamente: {len(fiestas)} fiestas encontradas.")
 
 for fiesta in fiestas:
