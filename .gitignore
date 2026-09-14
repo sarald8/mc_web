@@ -7,6 +7,7 @@ Thumbs.db
 .vscode/*
 desktop.ini
 !.vscode/extensions.json
+estructuraweb.md
 
 # Por si en algún momento metes un .env con credenciales de R2/API
 .env
