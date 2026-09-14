@@ -440,6 +440,21 @@
         transform: scale(1.015);
     }
 
+    .galeria-menu {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .galeria-card {
+        min-height: 170px;
+        padding: 28px 25px;
+    }
+
+    .galeria-card h3 {
+        font-size: 26px;
+    }
+
+
     /* VISOR */
 
     .visor-foto {
@@ -612,6 +627,11 @@
     .sesion-image {
         height: 220px;
         min-height: 220px;
+    }
+
+    .galeria-card {
+    min-height: 150px;
+    padding: 24px 20px;
     }
 }
 
