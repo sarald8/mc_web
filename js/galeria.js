@@ -59,8 +59,13 @@ const fiestas = [
 ];
 
 const contenedor = document.getElementById("fiestas-galeria");
+const carpetaObjetivo = contenedor.dataset.carpeta;
 
-fiestas.forEach(fiesta => {
+const fiestasAMostrar = carpetaObjetivo
+    ? fiestas.filter(f => f.carpeta === carpetaObjetivo)
+    : fiestas;
+
+fiestasAMostrar.forEach(fiesta => {
     const seccion = document.createElement("section");
     seccion.className = "galeria-fiesta";
 
@@ -124,4 +129,3 @@ function abrirFoto(src) {
         }
     });
 }
-
