@@ -54,7 +54,6 @@ textarea {
 .hero h1,
 .proxima-fiesta h2,
 .dates h2,
-.parties h2,
 .gallery h2,
 .residents h2,
 .past-artists h2 {
@@ -71,7 +70,6 @@ textarea {
 .about,
 .residents,
 .past-artists,
-.parties,
 .gallery,
 .ubicaciones {
     position: relative;
@@ -82,7 +80,6 @@ textarea {
 .about::before,
 .residents::before,
 .past-artists::before,
-.parties::before,
 .gallery::before,
 .ubicaciones::before {
     content: "";

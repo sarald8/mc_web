@@ -7,7 +7,6 @@
 .about,
 .residents,
 .past-artists,
-.parties,
 .gallery {
     position: relative;
 }
@@ -17,7 +16,6 @@
 .about::before,
 .residents::before,
 .past-artists::before,
-.parties::before,
 .gallery::before {
     content: "";
     position: absolute;
@@ -112,7 +110,6 @@
 
 .proxima-fiesta-info > p,
 .dates > p,
-.parties > p,
 .gallery > p,
 .residents > p,
 .past-artists > p {
@@ -125,7 +122,6 @@
 
 .proxima-fiesta h2,
 .dates h2,
-.parties h2,
 .gallery h2,
 .residents h2,
 .past-artists h2 {

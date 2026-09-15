@@ -5,5 +5,3 @@ estructuraweb.md
 generar_galeria.py
 .gitignore
 .assetsignore
-wrangler.jsonc
-worker.js

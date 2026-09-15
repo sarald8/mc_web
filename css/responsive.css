@@ -113,7 +113,6 @@
     .about::before,
     .residents::before,
     .past-artists::before,
-    .parties::before,
     .gallery::before,
     .ubicaciones::before {
         left: 6%;
@@ -165,7 +164,6 @@
 
     .proxima-fiesta-info > p,
     .dates > p,
-    .parties > p,
     .gallery > p,
     .residents > p,
     .past-artists > p {
@@ -236,7 +234,6 @@
     .dates,
     .residents,
     .past-artists,
-    .parties,
     .gallery,
     .ubicaciones {
         padding: 90px 6%;
@@ -300,40 +297,6 @@
 
     .artist-card-content {
         padding: 20px;
-    }
-
-    /* FIESTAS ANTERIORES */
-
-    .parties-carousel {
-        gap: 8px;
-        margin-top: 40px;
-    }
-
-    .party-grid {
-        gap: 15px;
-        padding: 5px 2px 20px;
-        scroll-snap-type: x mandatory;
-    }
-
-    .party-card {
-        flex: 0 0 100%;
-        scroll-snap-align: center;
-    }
-
-    .party-image {
-        height: 300px;
-    }
-
-    .party-card-content {
-        padding: 23px;
-    }
-
-    .party-card h3 {
-        font-size: 25px;
-    }
-
-    .party-card-content > p:not(.party-date) {
-        font-size: 12px;
     }
 
     .carousel-arrow {
@@ -610,10 +573,6 @@
     .artist-image,
     .past-artists .artist-image {
         height: 330px;
-    }
-
-    .party-image {
-        height: 260px;
     }
 
     .gallery-grid img {
