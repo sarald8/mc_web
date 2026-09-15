@@ -49,16 +49,16 @@ function inicializarUbicaciones() {
             id: "malavida",
             name: "Sala Malavida",
             city: "A Coruña",
-            lat: 43.3656156,
-            lng: -8.4123614,
+            lat: 43.36561511250832,
+            lng: -8.412384198700602,
             url: "https://maps.google.com/?cid=4083833265726215060"
         },
         {
             id: "pantalan",
             name: "Pantalán Rest Club",
             city: "A Coruña",
-            lat: 43.366,
-            lng: -8.389,
+            lat: 43.34842969033329,
+            lng: -8.385803574145834,
             url: "https://www.google.com/maps/search/?api=1&query=Pantalán+Rest+Club,+Lugar,+Playa+de+Oza,+1,+15006+A+Coruña"
         },
         {
@@ -71,7 +71,7 @@ function inicializarUbicaciones() {
         },
         {
             id: "vanitas",
-            name: "Vanitas",
+            name: "Discoteca Vanitas",
             city: "Santiago de Compostela",
             lat: 42.8745061,
             lng: -8.5504516,
@@ -79,7 +79,7 @@ function inicializarUbicaciones() {
         },
         {
             id: "rem",
-            name: "Rem Forbiden",
+            name: "Sala Rem",
             city: "Santiago de Compostela",
             lat: 42.8743593,
             lng: -8.5511835,
@@ -95,7 +95,7 @@ function inicializarUbicaciones() {
         },
         {
             id: "doppler",
-            name: "Doppler",
+            name: "Sala Doppler",
             city: "Vigo",
             lat: 42.2351211,
             lng: -8.716598,
@@ -105,13 +105,13 @@ function inicializarUbicaciones() {
             id: "molotov",
             name: "Sala Molotov",
             city: "Vigo",
-            lat: 42.240,
-            lng: -8.724,
+            lat: 42.23667375835122,
+            lng: -8.718267109632189,
             url: "https://www.google.com/maps/search/?api=1&query=Sala+Molotov,+Travesía+Santiago+de+Vigo,+1,+36201+Vigo"
         },
         {
             id: "kingston",
-            name: "Sala Kingston",
+            name: "Kingston",
             city: "Vigo",
             lat: 42.2287,
             lng: -8.7166,
