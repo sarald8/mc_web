@@ -108,6 +108,14 @@ function inicializarUbicaciones() {
             lat: 42.240,
             lng: -8.724,
             url: "https://www.google.com/maps/search/?api=1&query=Sala+Molotov,+Travesía+Santiago+de+Vigo,+1,+36201+Vigo"
+        },
+        {
+            id: "kingston",
+            name: "Sala Kingston",
+            city: "Vigo",
+            lat: 42.2287,
+            lng: -8.7166,
+            url: "https://www.google.com/maps/search/?api=1&query=Sala+Kingston,+Rúa+Rogelio+Abalde,+18,+36201+Vigo"
         }
     ];
 
