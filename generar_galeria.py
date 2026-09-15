@@ -1,4 +1,6 @@
+import json
 import os
+import shutil
 import subprocess
 import sys
 
@@ -11,6 +13,10 @@ EXTENSIONES = (".jpg", ".jpeg", ".png", ".webp")
 # URL pública del bucket R2 (dashboard -> R2 -> monocromatics-fotos -> Public access)
 R2_PUBLIC_URL = "https://pub-196ffc8ef6544a1a83073be29e5a331f.r2.dev"
 
+# En Windows npx es npx.cmd; shutil.which resuelve la ruta real dentro del PATH
+# para poder invocarlo con shell=False (lista de argumentos).
+NPX = shutil.which("npx") or "npx"
+
 
 def subir_a_r2(carpeta_local, carpeta_r2, fotos):
     """Sube cada foto individualmente a R2 usando wrangler (no rclone)."""
@@ -19,12 +25,19 @@ def subir_a_r2(carpeta_local, carpeta_r2, fotos):
         destino = f"{BUCKET_R2}/{carpeta_r2}/{foto}"
         print(f"Subiendo: {origen} -> {destino}")
 
-        comando = f'npx wrangler r2 object put "{destino}" --file="{origen}" --remote'
+        # Lista de argumentos con shell=False: evita que nombres de archivo
+        # con caracteres especiales se interpreten como comandos del shell.
+        comando = [
+            NPX, "wrangler", "r2", "object", "put",
+            destino,
+            f"--file={origen}",
+            "--remote"
+        ]
 
         resultado = subprocess.run(
             comando,
             check=False,
-            shell=True  # en Windows, shell=True necesita un string, no una lista
+            shell=False
         )
 
         if resultado.returncode != 0:
@@ -74,13 +87,13 @@ const fiestas = [
 
 for fiesta in fiestas:
     contenido += "    {\n"
-    contenido += f'        nombre: "{fiesta["nombre"]}",\n'
-    contenido += f'        lugar: "{fiesta["lugar"]}",\n'
-    contenido += f'        carpeta: "{fiesta["carpeta"]}",\n'
+    contenido += f'        nombre: {json.dumps(fiesta["nombre"])},\n'
+    contenido += f'        lugar: {json.dumps(fiesta["lugar"])},\n'
+    contenido += f'        carpeta: {json.dumps(fiesta["carpeta"])},\n'
     contenido += "        fotos: [\n"
 
     for foto in fiesta["fotos"]:
-        contenido += f'            "{foto}",\n'
+        contenido += f'            {json.dumps(foto)},\n'
 
     contenido += "        ]\n"
     contenido += "    },\n"
@@ -124,11 +137,24 @@ function abrirFoto(src) {
     const visor = document.createElement("div");
     visor.className = "visor-foto";
 
-    visor.innerHTML = `
-        <button type="button" class="cerrar-visor">×</button>
-        <img src="${src}" alt="Foto Monocromatics">
-        <a href="${src}" download class="descargar-foto">DESCARGAR</a>
-    `;
+    const botonCerrar = document.createElement("button");
+    botonCerrar.type = "button";
+    botonCerrar.className = "cerrar-visor";
+    botonCerrar.textContent = "×";
+
+    const imagen = document.createElement("img");
+    imagen.src = src;
+    imagen.alt = "Foto Monocromatics";
+
+    const descargar = document.createElement("a");
+    descargar.href = src;
+    descargar.download = "";
+    descargar.className = "descargar-foto";
+    descargar.textContent = "DESCARGAR";
+
+    visor.appendChild(botonCerrar);
+    visor.appendChild(imagen);
+    visor.appendChild(descargar);
 
     document.body.appendChild(visor);
 

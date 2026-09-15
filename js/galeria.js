@@ -105,11 +105,24 @@ function abrirFoto(src) {
     const visor = document.createElement("div");
     visor.className = "visor-foto";
 
-    visor.innerHTML = `
-        <button type="button" class="cerrar-visor">×</button>
-        <img src="${src}" alt="Foto Monocromatics">
-        <a href="${src}" download class="descargar-foto">DESCARGAR</a>
-    `;
+    const botonCerrar = document.createElement("button");
+    botonCerrar.type = "button";
+    botonCerrar.className = "cerrar-visor";
+    botonCerrar.textContent = "×";
+
+    const imagen = document.createElement("img");
+    imagen.src = src;
+    imagen.alt = "Foto Monocromatics";
+
+    const descargar = document.createElement("a");
+    descargar.href = src;
+    descargar.download = "";
+    descargar.className = "descargar-foto";
+    descargar.textContent = "DESCARGAR";
+
+    visor.appendChild(botonCerrar);
+    visor.appendChild(imagen);
+    visor.appendChild(descargar);
 
     document.body.appendChild(visor);
 
