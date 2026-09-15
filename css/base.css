@@ -56,7 +56,8 @@ textarea {
 .dates h2,
 .gallery h2,
 .residents h2,
-.past-artists h2 {
+.past-artists h2,
+.rookies h2 {
     font-family: 'DM Serif Display', serif;
     font-weight: 400;
 }
@@ -70,6 +71,7 @@ textarea {
 .about,
 .residents,
 .past-artists,
+.rookies,
 .gallery,
 .ubicaciones {
     position: relative;
@@ -80,6 +82,7 @@ textarea {
 .about::before,
 .residents::before,
 .past-artists::before,
+.rookies::before,
 .gallery::before,
 .ubicaciones::before {
     content: "";

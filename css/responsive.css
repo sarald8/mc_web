@@ -113,6 +113,7 @@
     .about::before,
     .residents::before,
     .past-artists::before,
+    .rookies::before,
     .gallery::before,
     .ubicaciones::before {
         left: 6%;
