@@ -35,21 +35,34 @@ const artistas = [
 
 const artistasContainer = document.getElementById("past-artists-list");
 
-artistas.forEach(artista => {
-    const tarjeta = document.createElement("article");
-    tarjeta.className = "artist-card";
+if (artistasContainer) {
+    artistas.forEach(artista => {
+        const tarjeta = document.createElement("article");
+        tarjeta.className = "artist-card";
 
-    tarjeta.innerHTML = `
-        <div class="artist-image">
-            <img src="${artista.imagen}" alt="${artista.nombre} - Monocromatics">
-        </div>
-        <div class="artist-card-content">
-            <h3>${artista.nombre}</h3>
-        </div>
-    `;
+        const imageWrap = document.createElement("div");
+        imageWrap.className = "artist-image";
 
-    artistasContainer.appendChild(tarjeta);
-});
+        const img = document.createElement("img");
+        img.src = artista.imagen;
+        img.alt = `${artista.nombre} - Monocromatics`;
+
+        imageWrap.appendChild(img);
+
+        const contentWrap = document.createElement("div");
+        contentWrap.className = "artist-card-content";
+
+        const titulo = document.createElement("h3");
+        titulo.textContent = artista.nombre;
+
+        contentWrap.appendChild(titulo);
+
+        tarjeta.appendChild(imageWrap);
+        tarjeta.appendChild(contentWrap);
+
+        artistasContainer.appendChild(tarjeta);
+    });
+}
 
 const prevBtn = document.querySelector(".past-artists .carousel-prev");
 const nextBtn = document.querySelector(".past-artists .carousel-next");

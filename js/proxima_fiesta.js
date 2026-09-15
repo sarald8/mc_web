@@ -18,15 +18,27 @@ const proximaFiesta = {
 // MOSTRAR DATOS DE LA PRÓXIMA FIESTA
 // ==========================================
 
-document.getElementById("proxima-mes").textContent = proximaFiesta.mes;
-document.getElementById("proxima-artista").textContent = proximaFiesta.artista;
-document.getElementById("proxima-fecha").textContent = proximaFiesta.fecha;
-document.getElementById("proxima-ciudad").textContent = proximaFiesta.ciudad;
-document.getElementById("proxima-hora").textContent = proximaFiesta.hora;
+const setTexto = (id, valor) => {
+    const el = document.getElementById(id);
+    if (el) el.textContent = valor;
+};
 
-document.getElementById("proxima-cartel").src = proximaFiesta.cartel;
-document.getElementById("proxima-cartel").alt = proximaFiesta.cartelAlt;
-document.getElementById("proxima-entradas").href = proximaFiesta.entradas;
+setTexto("proxima-mes", proximaFiesta.mes);
+setTexto("proxima-artista", proximaFiesta.artista);
+setTexto("proxima-fecha", proximaFiesta.fecha);
+setTexto("proxima-ciudad", proximaFiesta.ciudad);
+setTexto("proxima-hora", proximaFiesta.hora);
+
+const cartel = document.getElementById("proxima-cartel");
+if (cartel) {
+    cartel.src = proximaFiesta.cartel;
+    cartel.alt = proximaFiesta.cartelAlt;
+}
+
+const enlaceEntradas = document.getElementById("proxima-entradas");
+if (enlaceEntradas) {
+    enlaceEntradas.href = proximaFiesta.entradas;
+}
 
 // ==========================================
 // CONTADOR PRÓXIMA FIESTA
@@ -39,10 +51,10 @@ function actualizarContador() {
     const diferencia = fechaFiesta - ahora;
 
     if (diferencia <= 0) {
-        document.getElementById("days").textContent = "00";
-        document.getElementById("hours").textContent = "00";
-        document.getElementById("minutes").textContent = "00";
-        document.getElementById("seconds").textContent = "00";
+        setTexto("days", "00");
+        setTexto("hours", "00");
+        setTexto("minutes", "00");
+        setTexto("seconds", "00");
         return;
     }
 
@@ -51,11 +63,14 @@ function actualizarContador() {
     const minutos = Math.floor((diferencia / (1000 * 60)) % 60);
     const segundos = Math.floor((diferencia / 1000) % 60);
 
-    document.getElementById("days").textContent = String(dias).padStart(2, "0");
-    document.getElementById("hours").textContent = String(horas).padStart(2, "0");
-    document.getElementById("minutes").textContent = String(minutos).padStart(2, "0");
-    document.getElementById("seconds").textContent = String(segundos).padStart(2, "0");
+    setTexto("days", String(dias).padStart(2, "0"));
+    setTexto("hours", String(horas).padStart(2, "0"));
+    setTexto("minutes", String(minutos).padStart(2, "0"));
+    setTexto("seconds", String(segundos).padStart(2, "0"));
 }
 
-actualizarContador();
-setInterval(actualizarContador, 1000);
+// Solo arranca el contador si existe el bloque en la página actual.
+if (document.getElementById("days")) {
+    actualizarContador();
+    setInterval(actualizarContador, 1000);
+}

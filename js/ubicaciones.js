@@ -156,13 +156,28 @@ function inicializarUbicaciones() {
             { icon }
         ).addTo(mapaMonocromatics);
 
-        marker.bindPopup(`
-            <p class="popup-name">${venue.name}</p>
-            <p class="popup-city">${venue.city}</p>
-            <a class="popup-link" href="${venue.url}" target="_blank" rel="noopener">
-                Cómo llegar →
-            </a>
-        `);
+        const popup = document.createElement("div");
+
+        const popupName = document.createElement("p");
+        popupName.className = "popup-name";
+        popupName.textContent = venue.name;
+
+        const popupCity = document.createElement("p");
+        popupCity.className = "popup-city";
+        popupCity.textContent = venue.city;
+
+        const popupLink = document.createElement("a");
+        popupLink.className = "popup-link";
+        popupLink.href = venue.url;
+        popupLink.target = "_blank";
+        popupLink.rel = "noopener";
+        popupLink.textContent = "Cómo llegar →";
+
+        popup.appendChild(popupName);
+        popup.appendChild(popupCity);
+        popup.appendChild(popupLink);
+
+        marker.bindPopup(popup);
 
         markers[venue.id] = marker;
         markerGroup.push(marker);
@@ -188,10 +203,16 @@ function inicializarUbicaciones() {
             button.className = "mapa-venue-item";
             button.dataset.city = venue.city;
 
-            button.innerHTML = `
-                <span class="name">${venue.name}</span>
-                <span class="city">${venue.city}</span>
-            `;
+            const nameSpan = document.createElement("span");
+            nameSpan.className = "name";
+            nameSpan.textContent = venue.name;
+
+            const citySpan = document.createElement("span");
+            citySpan.className = "city";
+            citySpan.textContent = venue.city;
+
+            button.appendChild(nameSpan);
+            button.appendChild(citySpan);
 
             button.addEventListener("click", () => {
                 document

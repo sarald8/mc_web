@@ -59,13 +59,18 @@ const fiestas = [
 ];
 
 const contenedor = document.getElementById("fiestas-galeria");
-const carpetaObjetivo = contenedor.dataset.carpeta;
+
+if (!contenedor) {
+    console.warn("No se encontró #fiestas-galeria en esta página.");
+}
+
+const carpetaObjetivo = contenedor ? contenedor.dataset.carpeta : null;
 
 const fiestasAMostrar = carpetaObjetivo
     ? fiestas.filter(f => f.carpeta === carpetaObjetivo)
     : fiestas;
 
-fiestasAMostrar.forEach(fiesta => {
+if (contenedor) fiestasAMostrar.forEach(fiesta => {
     const seccion = document.createElement("section");
     seccion.className = "galeria-fiesta";
 

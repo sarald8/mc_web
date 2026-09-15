@@ -55,10 +55,6 @@ for carpeta in sorted(os.listdir(CARPETA_FOTOS)):
     nombre = carpeta.replace("-", " ").upper()
     ruta_r2 = f"{RUTA_R2}/{carpeta}"
 
-    # TEMPORAL: subida automática desactivada por el problema de PATH con npx/wrangler.
-    # Sube las fotos a mano en el dashboard de R2 (crea la carpeta imagenes/fiestas/<carpeta>
-    # y arrastra los archivos) y luego corre este script solo para regenerar galeria.js.
-    # Cuando esté resuelto lo de wrangler, descomenta la línea de abajo:
     subir_a_r2(ruta, ruta_r2, fotos)
 
     fiesta = {
