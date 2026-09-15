@@ -111,10 +111,10 @@ function inicializarUbicaciones() {
         },
         {
             id: "kingston",
-            name: "Kingston",
+            name: "Kingston Club",
             city: "Vigo",
-            lat: 42.2287,
-            lng: -8.7166,
+            lat: 42.23533604235674,
+            lng: -8.717817960117959,
             url: "https://www.google.com/maps/search/?api=1&query=Sala+Kingston,+Rúa+Rogelio+Abalde,+18,+36201+Vigo"
         }
     ];
