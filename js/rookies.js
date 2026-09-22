@@ -2,20 +2,19 @@ const rookies = [
     { nombre: "Adan", imagen: "imagenes/rookies/adan.jpg" },
     { nombre: "Rookah", imagen: "imagenes/rookies/rookah.jpg" },
     { nombre: "Komojo", imagen: "imagenes/rookies/komojo.jpg" },
-    { nombre: "Eighteen", imagen: "imagenes/rookies/eighteen.jpg" },
+    { nombre: "Eighteen", imagen: "imagenes/rookies/eighteen.jpeg" },
     { nombre: "Candi", imagen: "imagenes/rookies/candi.jpg" },
     { nombre: "Rdriguez00", imagen: "imagenes/rookies/Rdriguez00.jpg" },
-    { nombre: "1Xenay", imagen: "imagenes/rookies/1xenay.jpg" },
+    { nombre: "1Xenay", imagen: "imagenes/rookies/1xenay.png" },
     { nombre: "Ken2Asga", imagen: "imagenes/rookies/Ken2Asga.jpg" },
-    { nombre: "Gransamael", imagen: "imagenes/rookies/gransamael.png" },
     { nombre: "DieYoungBreffo", imagen: "imagenes/rookies/dieyoungbreffo.png" },
     { nombre: "1006ramos", imagen: "imagenes/rookies/1006ramos.jpg" },
-    { nombre: "8taven", imagen: "imagenes/rookies/8taven.jpg" },
+    //{ nombre: "8taven", imagen: "imagenes/rookies/8taven.jpg" },
     { nombre: "6glock", imagen: "imagenes/rookies/6glock.png" },
     { nombre: "Lanasa2000", imagen: "imagenes/rookies/lanasa2000.png" },
     { nombre: "Pradda", imagen: "imagenes/rookies/pradda.jpg" },
     { nombre: "Queiru", imagen: "imagenes/rookies/queiru.jpg" },
-    { nombre: "Luvive", imagen: "imagenes/rookies/luvive.jpg" }
+    { nombre: "Luvive", imagen: "imagenes/rookies/luvive.png" }
 ];
 
 const rookiesContainer = document.getElementById("rookies-list");
