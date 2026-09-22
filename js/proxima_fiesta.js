@@ -11,7 +11,7 @@ const proximaFiesta = {
     hora: "23:59",
     cartel: "imagenes/cartel_por_desvelar.PNG",
     cartelAlt: "Cartel de Monocromatics halloween 2026",
-    entradas: "https://enlace-a-las-entradas.com",
+    entradas: "https://www.enterticket.es/",
     fechaContador: "2026-10-31T23:59:00"
 };
 

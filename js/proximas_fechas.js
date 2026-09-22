@@ -1,24 +1,24 @@
 const proximasFechas = [
     {
-        dia: "26",
-        mes: "SEP",
-        ciudad: "Santiago de Compostela",
-        hora: "23:00",
-        entradas: "poner_enlace_entradas"
-    },
-    {
-        dia: "XX",
+        dia: "31",
         mes: "OCT",
-        ciudad: "Vigo",
-        hora: "23:00",
-        entradas: "poner_enlace_entradas"
+        ciudad: "Santiago",
+        hora: "23:59",
+        entradas: "https://www.enterticket.es/"
     },
     {
         dia: "XX",
         mes: "NOV",
-        ciudad: "A Coruña",
-        hora: "23:00",
-        entradas: "poner_enlace_entradas"
+        ciudad: "XXX",
+        hora: "23:59",
+        entradas: "https://www.enterticket.es/"
+    },
+    {
+        dia: "XX",
+        mes: "DIC",
+        ciudad: "XXX",
+        hora: "23:59",
+        entradas: "https://www.enterticket.es/"
     }
 ];
 
@@ -40,13 +40,13 @@ if (datesList) {
         const info = document.createElement("div");
         info.className = "date-info";
 
-        const titulo = document.createElement("h3");
-        titulo.textContent = "MONOCROMATICS";
+//        const titulo = document.createElement("h3");
+//        titulo.textContent = "MONOCROMATICS";
 
-        const detalle = document.createElement("p");
+        const detalle = document.createElement("h3");
         detalle.textContent = `${fecha.ciudad} · ${fecha.hora}`;
 
-        info.appendChild(titulo);
+//        info.appendChild(titulo);
         info.appendChild(detalle);
 
         const enlace = document.createElement("a");
