@@ -9,7 +9,7 @@ const proximaFiesta = {
     fecha: "31.10.2026",
     ciudad: "SANTIAGO, SALA MYCLUB",
     hora: "23:59",
-    cartel: "imagenes/cartel_por_desvelar.png",
+    cartel: "imagenes/cartel_por_desvelar.PNG",
     cartelAlt: "Cartel de Monocromatics halloween 2026",
     entradas: "https://enlace-a-las-entradas.com",
     fechaContador: "2026-10-31T23:59:00"
