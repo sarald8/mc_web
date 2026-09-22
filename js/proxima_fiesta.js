@@ -3,15 +3,16 @@
 // ==========================================
 
 const proximaFiesta = {
-    mes: "SEPTIEMBRE",
-    artista: "Pedro LaDroga",
-    fecha: "11.09.2026",
-    ciudad: "SANTIAGO, SALA REM",
+    mes: "OCTUBRE",
+    info: "Especial Halloween",
+    artista: "XX XXXX",
+    fecha: "31.10.2026",
+    ciudad: "SANTIAGO, SALA MYCLUB",
     hora: "23:59",
-    cartel: "imagenes/cartel_pedro.jpg",
-    cartelAlt: "Cartel de Monocromatics septiembre 2026",
+    cartel: "imagenes/cartel_por_desvelar.png",
+    cartelAlt: "Cartel de Monocromatics halloween 2026",
     entradas: "https://enlace-a-las-entradas.com",
-    fechaContador: "2026-09-11T23:59:00"
+    fechaContador: "2026-10-31T23:59:00"
 };
 
 // ==========================================
@@ -24,6 +25,7 @@ const setTexto = (id, valor) => {
 };
 
 setTexto("proxima-mes", proximaFiesta.mes);
+setTexto("proxima-info", proximaFiesta.info);
 setTexto("proxima-artista", proximaFiesta.artista);
 setTexto("proxima-fecha", proximaFiesta.fecha);
 setTexto("proxima-ciudad", proximaFiesta.ciudad);
