@@ -645,7 +645,7 @@
 ========================================================== */
 
 .about {
-    padding: 150px 8%;
+    padding: 150px 8% 30px;
     background:
         radial-gradient(circle at 80% 50%, rgba(155, 77, 202, 0.28), transparent 35%),
         #f1e3ff;
