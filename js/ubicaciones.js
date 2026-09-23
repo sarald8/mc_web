@@ -297,6 +297,4 @@ function inicializarUbicaciones() {
             filterElement.appendChild(button);
         });
     }
-
-    console.log("Ubicaciones inicializadas correctamente.");
 }

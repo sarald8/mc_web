@@ -124,11 +124,8 @@ textarea {
     font-weight: 700;
     letter-spacing: 2px;
     overflow: hidden;
-    transition: all 0.3s ease;
-}
-
-.button {
     margin-top: 35px;
+    transition: all 0.3s ease;
 }
 
 .button::before {

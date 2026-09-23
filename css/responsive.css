@@ -486,45 +486,6 @@
     .contacto-formulario form {
         gap: 20px;
     }
-
-    /* SESIONES */
-
-    .sesiones {
-        min-height: auto;
-        padding: 110px 6% 80px;
-    }
-
-    .sesiones h1 {
-        font-size: clamp(48px, 14vw, 70px);
-    }
-
-    .sesiones-description {
-        font-size: 13px;
-        line-height: 1.7;
-    }
-
-    .sesiones-grid {
-        grid-template-columns: 1fr;
-        gap: 20px;
-        margin-top: 45px;
-    }
-
-    .sesion-card {
-        grid-template-columns: 1fr;
-    }
-
-    .sesion-image {
-        min-height: 250px;
-        height: 250px;
-    }
-
-    .sesion-content {
-        padding: 25px;
-    }
-
-    .sesion-content h2 {
-        font-size: 28px;
-    }
 }
 
 /* ==========================================================
@@ -597,11 +558,6 @@
 
     .contacto-formulario {
         padding: 22px 16px;
-    }
-
-    .sesion-image {
-        height: 220px;
-        min-height: 220px;
     }
 
     .galeria-card {
