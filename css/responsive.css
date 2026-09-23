@@ -285,15 +285,19 @@
         gap: 15px;
         margin-top: 40px;
         padding: 5px 2px 20px;
-        /* Un solo card por vista: el snap es más tolerante y el padding
-           no descoloca el botón de flecha. */
-        scroll-snap-type: x proximity;
+        /* Un solo card por vista: el snap debe ser obligatorio para que,
+           tras deslizar con el dedo, una card quede siempre bien encuadrada. */
+        scroll-snap-type: x mandatory;
         scroll-padding-left: 2px;
     }
 
     .artist-card {
         flex: 0 0 100%;
         scroll-snap-align: start;
+        /* El snap se calcula sobre la caja de margen, así que compensamos
+           el padding lateral del grid con scroll-margin: sin esto, cada
+           salto encadenaba el desfase del gesto y las cards quedaban cortadas. */
+        scroll-margin-left: 2px;
     }
 
     /* Residentes en móvil: una card debajo de otra, sin deslizar */
