@@ -8,7 +8,9 @@ Thumbs.db
 desktop.ini
 !.vscode/extensions.json
 estructuraweb.md
+
 generar_galeria copy.py
+js\galeria copy.js
 
 # Por si en algún momento metes un .env con credenciales de R2/API
 .env
