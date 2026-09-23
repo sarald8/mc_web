@@ -598,7 +598,19 @@ const fiestas = [
 
 const contenedor = document.getElementById("fiestas-galeria");
 
-fiestas.forEach(fiesta => {
+// Si el contenedor tiene data-carpeta, solo mostramos esa fiesta.
+// Si no lo tiene, mostramos todas.
+const carpetaSolicitada = contenedor?.dataset.carpeta;
+
+const fiestasAMostrar = carpetaSolicitada
+    ? fiestas.filter(f => f.nombre.trim().toLowerCase() === carpetaSolicitada.trim().toLowerCase())
+    : fiestas;
+
+if (carpetaSolicitada && fiestasAMostrar.length === 0) {
+    console.warn(`No se encontró ninguna fiesta con nombre "${carpetaSolicitada}" en galeria.js`);
+}
+
+fiestasAMostrar.forEach(fiesta => {
     const seccion = document.createElement("section");
     seccion.className = "galeria-fiesta";
 
