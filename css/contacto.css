@@ -179,3 +179,11 @@
 .gracias-content .button {
     margin-top: 40px;
 }
+
+#form-estado {
+    margin-top: 1rem;
+    min-height: 1.5em;
+    color: #c98cff;
+}
+#form-estado.ok    { color: #c98cff; font-weight: 600; }
+#form-estado.error { color: #ff7a7a; }

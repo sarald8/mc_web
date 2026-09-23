@@ -61,14 +61,14 @@
 
                 <div class="contacto-formulario" id="formulario-contacto">
 
-                    <form action="https://formspree.io/f/mzebnepl" method="POST">
-                        <input type="hidden" name="_subject" value="Nuevo mensaje de contacto - Monocromatics">
-                        <input type="hidden" name="_next" value="http://localhost:8000/paginas/gracias.html">
-                        <input type="text" name="_gotcha" style="display:none">
+                    <form id="form-contacto" action="https://api.web3forms.com/submit" method="POST">
+                        <input type="hidden" name="access_key" value="fd1cee53-7603-45a6-bdf7-6fe80c56e205">
+                        <input type="hidden" name="subject" value="Nuevo mensaje de contacto - Monocromatics">
+                        <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
 
                         <div class="form-group">
                             <label for="nombre">NOMBRE</label>
-                            <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required>
+                            <input type="text" id="nombre" name="name" placeholder="Tu nombre" required>
                         </div>
 
                         <div class="form-group">
@@ -96,6 +96,8 @@
                         <button type="submit" class="button">
                             ENVIAR MENSAJE →
                         </button>
+
+                        <p id="form-estado" role="status" aria-live="polite"></p>
                     </form>
                 </div>
             </div>
@@ -120,6 +122,38 @@
         <p>© 2026 MONOCROMATICS</p>
     </footer>
 
+    <script>
+        const form = document.getElementById('form-contacto');
+        const estado = document.getElementById('form-estado');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const boton = form.querySelector('button[type="submit"]');
+            boton.disabled = true;
+            estado.className = '';
+            estado.textContent = 'Enviando…';
+
+            try {
+                const res = await fetch(form.action, {
+                    method: 'POST',
+                    body: new FormData(form),
+                    headers: { 'Accept': 'application/json' }
+                });
+                const data = await res.json();
+
+                if (res.ok && data.success) {
+                    window.location.href = 'gracias.html';
+                } else {
+                    throw new Error(data.message || 'Error del servidor');
+                }
+            } catch (err) {
+                console.error('Fallo al enviar:', err);
+                estado.textContent = 'Algo ha fallado :(. Inténtalo de nuevo o escríbenos a monocromaticss@gmail.com';
+                estado.classList.add('error');
+                boton.disabled = false;
+            }
+        });
+    </script>
     <script src="../js/main.js"></script>
 </body>
 </html>
