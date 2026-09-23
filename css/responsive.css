@@ -291,6 +291,12 @@
         flex: 0 0 100%;
     }
 
+    /* Residentes en móvil: una card debajo de otra, sin deslizar */
+    .residents .artist-grid {
+        grid-template-columns: 1fr;
+        overflow-x: visible;
+    }
+
     .artist-image,
     .past-artists .artist-image {
         height: 380px;

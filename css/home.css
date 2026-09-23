@@ -349,6 +349,19 @@
     color: #ffffff;
 }
 
+/* Grid de residentes: estático, sin carrusel ni scroll horizontal */
+.residents .artist-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    overflow-x: visible;
+    scroll-snap-type: none;
+}
+
+.residents .artist-card {
+    flex: none;
+    scroll-snap-align: none;
+}
+
 .artists-carousel {
     position: relative;
     display: flex;
