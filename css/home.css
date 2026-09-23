@@ -87,6 +87,52 @@
     font-size: 15px;
 }
 
+.hero-social {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 14px;
+    margin-top: 28px;
+}
+
+.hero-social a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    color: #c98cff;
+    background: #110b19;
+    border: 1px solid rgba(155, 77, 202, 0.45);
+    transition: transform 0.25s ease, color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.hero-social svg {
+    width: 20px;
+    height: 20px;
+}
+
+.hero-social a:hover,
+.hero-social a:focus-visible {
+    color: #fff;
+    border-color: #9b4dca;
+    box-shadow: 0 0 16px rgba(155, 77, 202, 0.55);
+    transform: translateY(-3px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hero-social a {
+        transition: none;
+    }
+    .hero-social a:hover,
+    .hero-social a:focus-visible {
+        transform: none;
+    }
+}
+
+
+
 /* ==========================================================
    PRÓXIMA FIESTA
 ========================================================== */
@@ -645,7 +691,7 @@
 ========================================================== */
 
 .about {
-    padding: 150px 8% 30px;
+    padding: 130px 8% 100px;
     background:
         radial-gradient(circle at 80% 50%, rgba(155, 77, 202, 0.28), transparent 35%),
         #f1e3ff;
