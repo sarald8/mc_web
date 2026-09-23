@@ -68,16 +68,37 @@ const prevBtn = document.querySelector(".past-artists .carousel-prev");
 const nextBtn = document.querySelector(".past-artists .carousel-next");
 
 if (prevBtn && nextBtn && artistasContainer) {
-    const scrollAmount = () => {
-        const card = artistasContainer.querySelector(".artist-card");
-        return card ? card.offsetWidth + 25 : 300;
+    // Devuelve el índice de la card visible más cercana al borde izquierdo.
+    const currentIndex = () => {
+        const cards = Array.from(artistasContainer.querySelectorAll(".artist-card"));
+        const scrollLeft = artistasContainer.scrollLeft;
+        let index = 0;
+        let min = Infinity;
+        cards.forEach((card, i) => {
+            const distance = Math.abs(card.offsetLeft - scrollLeft);
+            if (distance < min) {
+                min = distance;
+                index = i;
+            }
+        });
+        return index;
+    };
+
+    // Desplaza a la posición exacta de una card (coincide con el snap).
+    const scrollToIndex = (index) => {
+        const cards = artistasContainer.querySelectorAll(".artist-card");
+        const clamped = Math.max(0, Math.min(index, cards.length - 1));
+        const card = cards[clamped];
+        if (card) {
+            artistasContainer.scrollTo({ left: card.offsetLeft, behavior: "smooth" });
+        }
     };
 
     prevBtn.addEventListener("click", () => {
-        artistasContainer.scrollBy({ left: -scrollAmount(), behavior: "smooth" });
+        scrollToIndex(currentIndex() - 1);
     });
 
     nextBtn.addEventListener("click", () => {
-        artistasContainer.scrollBy({ left: scrollAmount(), behavior: "smooth" });
+        scrollToIndex(currentIndex() + 1);
     });
 }

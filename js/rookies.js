@@ -52,16 +52,37 @@ const rookiesPrevBtn = document.querySelector(".rookies .carousel-prev");
 const rookiesNextBtn = document.querySelector(".rookies .carousel-next");
 
 if (rookiesPrevBtn && rookiesNextBtn && rookiesContainer) {
-    const scrollAmount = () => {
-        const card = rookiesContainer.querySelector(".artist-card");
-        return card ? card.offsetWidth + 25 : 300;
+    // Devuelve el índice de la card visible más cercana al borde izquierdo.
+    const rookiesCurrentIndex = () => {
+        const cards = Array.from(rookiesContainer.querySelectorAll(".artist-card"));
+        const scrollLeft = rookiesContainer.scrollLeft;
+        let index = 0;
+        let min = Infinity;
+        cards.forEach((card, i) => {
+            const distance = Math.abs(card.offsetLeft - scrollLeft);
+            if (distance < min) {
+                min = distance;
+                index = i;
+            }
+        });
+        return index;
+    };
+
+    // Desplaza a la posición exacta de una card (coincide con el snap).
+    const rookiesScrollToIndex = (index) => {
+        const cards = rookiesContainer.querySelectorAll(".artist-card");
+        const clamped = Math.max(0, Math.min(index, cards.length - 1));
+        const card = cards[clamped];
+        if (card) {
+            rookiesContainer.scrollTo({ left: card.offsetLeft, behavior: "smooth" });
+        }
     };
 
     rookiesPrevBtn.addEventListener("click", () => {
-        rookiesContainer.scrollBy({ left: -scrollAmount(), behavior: "smooth" });
+        rookiesScrollToIndex(rookiesCurrentIndex() - 1);
     });
 
     rookiesNextBtn.addEventListener("click", () => {
-        rookiesContainer.scrollBy({ left: scrollAmount(), behavior: "smooth" });
+        rookiesScrollToIndex(rookiesCurrentIndex() + 1);
     });
 }
