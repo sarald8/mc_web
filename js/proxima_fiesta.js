@@ -33,6 +33,7 @@ setTexto("proxima-hora", proximaFiesta.hora);
 // Ticker: muestra el nombre de la próxima fiesta en las dos copias.
 setTexto("ticker-artista", proximaFiesta.artista);
 setTexto("ticker-artista-2", proximaFiesta.artista);
+setTexto("ticker-artista-3", proximaFiesta.artista);
 
 const cartel = document.getElementById("proxima-cartel");
 if (cartel) {
