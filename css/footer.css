@@ -31,6 +31,32 @@ footer {
     color: #c98cff;
 }
 
+/* ==========================================================
+   ENLACES LEGALES
+========================================================== */
+
+.footer-legal {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px 20px;
+    margin-bottom: 25px;
+    padding-top: 22px;
+    border-top: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.footer-legal a {
+    color: #7d7484;
+    text-decoration: none;
+    font-size: 10px;
+    letter-spacing: 1px;
+    transition: color 0.3s ease;
+}
+
+.footer-legal a:hover {
+    color: #c98cff;
+}
+
 footer > p {
     color: #666;
     font-size: 10px;

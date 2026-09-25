@@ -1,0 +1,266 @@
+/* ==========================================================
+   PÁGINAS LEGALES
+   (Aviso legal, Política de privacidad, Aviso de cookies)
+========================================================== */
+
+.legal {
+    position: relative;
+    padding: calc(var(--header-height) + 60px) 8% 120px;
+    background:
+        radial-gradient(circle at 80% 10%, rgba(155, 77, 202, 0.20), transparent 32%),
+        radial-gradient(circle at 8% 85%, rgba(91, 37, 145, 0.14), transparent 34%),
+        #0b0710;
+    color: #ffffff;
+    overflow: hidden;
+}
+
+.legal::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 8%;
+    width: 84%;
+    height: 1px;
+    background: linear-gradient(90deg,
+            transparent,
+            rgba(201, 140, 255, 0.45),
+            #9b4dca,
+            rgba(201, 140, 255, 0.45),
+            transparent);
+    box-shadow:
+        0 0 7px rgba(155, 77, 202, 0.75),
+        0 0 16px rgba(201, 140, 255, 0.25);
+}
+
+/* ==========================================================
+   CABECERA DEL DOCUMENTO
+========================================================== */
+
+.legal-content {
+    max-width: 860px;
+    margin: 0 auto;
+}
+
+.legal-label {
+    color: #c98cff;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    margin-bottom: 25px;
+}
+
+.legal-content>h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(32px, 4.2vw, 50px);
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: 1px;
+    text-shadow:
+        0 0 5px rgba(255, 255, 255, 0.6),
+        0 0 18px rgba(201, 140, 255, 0.45);
+}
+
+.legal-fecha {
+    margin-top: 22px;
+    color: #847a8b;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+/* ==========================================================
+   TEXTO
+========================================================== */
+
+.legal-content>p {
+    max-width: 700px;
+    margin-top: 30px;
+    color: #a99eaf;
+    font-size: 14px;
+    line-height: 1.85;
+}
+
+.legal-content h2 {
+    margin-top: 55px;
+    padding-top: 28px;
+    border-top: 1px solid rgba(201, 140, 255, 0.14);
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(19px, 2.2vw, 24px);
+    font-weight: 400;
+    line-height: 1.25;
+    letter-spacing: 0.5px;
+}
+
+.legal-content h3 {
+    margin-top: 35px;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.legal-content p,
+.legal-content li {
+    color: #a99eaf;
+    font-size: 13px;
+    line-height: 1.85;
+}
+
+.legal-content h2+p {
+    margin-top: 20px;
+}
+
+.legal-content h3+p,
+.legal-content h3+ul {
+    margin-top: 14px;
+}
+
+.legal-content ul {
+    margin-top: 20px;
+    padding-left: 20px;
+}
+
+.legal-content li {
+    margin-bottom: 10px;
+}
+
+.legal-content li::marker {
+    color: #9b4dca;
+}
+
+.legal-content strong {
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.legal-content a {
+    color: #c98cff;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(201, 140, 255, 0.35);
+    transition:
+        color 0.3s ease,
+        border-color 0.3s ease,
+        text-shadow 0.3s ease;
+}
+
+.legal-content a:hover {
+    color: #ffffff;
+    border-color: #ffffff;
+    text-shadow: 0 0 12px rgba(201, 140, 255, 0.8);
+}
+
+/* ==========================================================
+   TABLA (COOKIES)
+========================================================== */
+
+.legal-tabla-wrapper {
+    margin-top: 30px;
+    overflow-x: auto;
+    border: 1px solid rgba(201, 140, 255, 0.18);
+    border-radius: 8px;
+    background: rgba(17, 11, 25, 0.6);
+}
+
+.legal-tabla {
+    width: 100%;
+    min-width: 540px;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.legal-tabla th,
+.legal-tabla td {
+    padding: 15px 18px;
+    font-size: 12px;
+    line-height: 1.6;
+    vertical-align: top;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.legal-tabla th {
+    color: #c98cff;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    background: rgba(155, 77, 202, 0.08);
+    white-space: nowrap;
+}
+
+.legal-tabla td {
+    color: #a99eaf;
+}
+
+.legal-tabla tbody tr:last-child th,
+.legal-tabla tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* ==========================================================
+   PIE DE DOCUMENTO
+========================================================== */
+
+.legal-pie {
+    max-width: 860px;
+    margin: 80px auto 0;
+    padding-top: 35px;
+    border-top: 1px solid rgba(201, 140, 255, 0.14);
+}
+
+.legal-pie p {
+    color: #847a8b;
+    font-size: 11px;
+    line-height: 1.8;
+}
+
+.legal-enlaces {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 28px;
+    margin-top: 25px;
+}
+
+.legal-enlaces a {
+    color: #cfc7d6;
+    text-decoration: none;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    transition: color 0.3s ease;
+}
+
+.legal-enlaces a:hover {
+    color: #c98cff;
+}
+
+/* ==========================================================
+   RESPONSIVE
+========================================================== */
+
+@media (max-width: 768px) {
+
+    .legal {
+        padding: 110px 6% 85px;
+    }
+
+    .legal-content>p {
+        font-size: 13px;
+        line-height: 1.8;
+    }
+
+    .legal-content h2 {
+        margin-top: 45px;
+        padding-top: 22px;
+        font-size: 19px;
+    }
+
+    .legal-content p,
+    .legal-content li {
+        font-size: 12.5px;
+    }
+
+    .legal-pie {
+        margin-top: 60px;
+    }
+}
