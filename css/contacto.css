@@ -5,7 +5,8 @@
 .contacto {
     position: relative;
     min-height: calc(100vh - 200px);
-    padding: 150px 8% 120px;
+    /* Hueco para el header fijo (no está en el flujo) */
+    padding: calc(var(--header-height) + 30px) 8% 140px;
     background:
         radial-gradient(circle at 75% 40%, rgba(155, 77, 202, 0.28), transparent 35%),
         #0b0710;

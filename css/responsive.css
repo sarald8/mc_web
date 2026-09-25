@@ -15,6 +15,25 @@
         --header-height: 65px;
     }
 
+    /* HEADER SIMPLE EN MÓVIL */
+
+    .header-simple {
+        min-height: 58px;
+        padding: 9px 6%;
+    }
+
+    .header-simple .button {
+        left: 6%;
+        padding: 7px 14px;
+        font-size: 8px;
+        letter-spacing: 1.4px;
+    }
+
+    .header-simple h1 {
+        font-size: clamp(20px, 6vw, 26px);
+        letter-spacing: 1.5px;
+    }
+
     .logo img {
         width: 50px;
         height: 50px;
@@ -467,6 +486,12 @@
     .contacto {
         min-height: auto;
         padding: 110px 6% 80px;
+    }
+
+    /* GRACIAS (header fijo + section que no reservaba hueco) */
+
+    .contacto--gracias {
+        padding-top: 130px;
     }
 
     .contacto-content {

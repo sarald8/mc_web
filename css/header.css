@@ -20,6 +20,73 @@ header {
 }
 
 /* ==========================================================
+   HEADER SIMPLE (PÁGINAS INTERNAS Y GALERÍA)
+========================================================== */
+
+/* Header estático: no tapa el contenido de la página y deja aire
+   suficiente para que el botón nunca toque el borde inferior. */
+.header-simple {
+    position: static;
+    height: auto;
+    min-height: 66px;
+    padding: 12px 8%;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    /* Borde degradado en vez de línea plana: no corta el botón ni el título */
+    border-bottom: none;
+}
+
+.header-simple::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 8%;
+    width: 84%;
+    height: 1px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(201, 140, 255, 0.45),
+        #9b4dca,
+        rgba(201, 140, 255, 0.45),
+        transparent
+    );
+    box-shadow:
+        0 0 7px rgba(155, 77, 202, 0.5),
+        0 0 16px rgba(201, 140, 255, 0.18);
+}
+
+/* El botón general lleva margin-top: 35px y overflow: hidden;
+   aquí se neutraliza para que quede centrado y sin recortes. */
+.header-simple .button {
+    position: absolute;
+    left: 8%;
+    top: 50%;
+    margin: 0;
+    transform: translateY(-50%);
+    padding: 8px 18px;
+    border-radius: 11px;
+    font-size: 9px;
+    letter-spacing: 1.8px;
+    z-index: 1;
+}
+
+.header-simple .button:hover {
+    transform: translateY(-50%);
+}
+
+.header-simple h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(23px, 3vw, 33px);
+    font-weight: 400;
+    line-height: 1.1;
+    letter-spacing: 2px;
+    text-align: center;
+    text-shadow: 0 0 20px rgba(201, 140, 255, 0.18);
+}
+
+/* ==========================================================
    LOGO
 ========================================================== */
 
