@@ -30,10 +30,16 @@ setTexto("proxima-artista", proximaFiesta.artista);
 setTexto("proxima-fecha", proximaFiesta.fecha);
 setTexto("proxima-ciudad", proximaFiesta.ciudad);
 setTexto("proxima-hora", proximaFiesta.hora);
+
 // Ticker: muestra el nombre de la próxima fiesta en las dos copias.
 setTexto("ticker-artista", proximaFiesta.artista);
 setTexto("ticker-artista-2", proximaFiesta.artista);
 setTexto("ticker-artista-3", proximaFiesta.artista);
+setTexto("ticker-artista-4", proximaFiesta.artista);
+setTexto("ticker-artista-5", proximaFiesta.artista);
+setTexto("ticker-artista-6", proximaFiesta.artista);
+setTexto("ticker-artista-7", proximaFiesta.artista);
+setTexto("ticker-artista-8", proximaFiesta.artista);
 
 const cartel = document.getElementById("proxima-cartel");
 if (cartel) {

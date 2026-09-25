@@ -732,7 +732,9 @@
 .about-text p {
     margin-bottom: 1.2em;
     line-height: 1.6;
-}/* ==========================================================
+}
+
+/* ==========================================================
    TICKER / MARQUESINA
    Franja con texto en bucle infinito (estética rave/underground)
 ========================================================== */
@@ -748,11 +750,9 @@
         inset 0 1px 12px rgba(155, 77, 202, 0.12),
         inset 0 -1px 12px rgba(155, 77, 202, 0.12);
     overflow: hidden;
-    /* Evita que el navegador intente seleccionar el texto al arrastrar */
     user-select: none;
 }
 
-/* Desvanecido en los bordes para que el texto no corte de golpe */
 .ticker::before,
 .ticker::after {
     content: "";
@@ -777,8 +777,8 @@
 .ticker-track {
     display: flex;
     width: max-content;
-    /* Dos copias idénticas: al desplazar exactamente el 50% el bucle es perfecto */
     animation: ticker-scroll 38s linear infinite;
+    will-change: transform;
 }
 
 .ticker-grupo {
@@ -813,20 +813,8 @@
     from {
         transform: translateX(0);
     }
+
     to {
         transform: translateX(-50%);
-    }
-}
-
-/* ==========================================================
-   COUNTDOWN
-   (sin animación: los números cambian directos)
-========================================================== */
-
-/* Sin animación para quien haya pedido reducir movimiento:
-   el número cambia igual, solo que sin el giro. */
-@media (prefers-reduced-motion: reduce) {
-    .ticker-track {
-        animation: none;
     }
 }
