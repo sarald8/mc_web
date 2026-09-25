@@ -38,8 +38,8 @@ setTexto("ticker-artista-3", proximaFiesta.artista);
 setTexto("ticker-artista-4", proximaFiesta.artista);
 setTexto("ticker-artista-5", proximaFiesta.artista);
 setTexto("ticker-artista-6", proximaFiesta.artista);
-setTexto("ticker-artista-7", proximaFiesta.artista);
-setTexto("ticker-artista-8", proximaFiesta.artista);
+//setTexto("ticker-artista-7", proximaFiesta.artista);
+//setTexto("ticker-artista-8", proximaFiesta.artista);
 
 const cartel = document.getElementById("proxima-cartel");
 if (cartel) {
