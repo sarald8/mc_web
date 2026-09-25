@@ -25,6 +25,42 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 
     <link rel="icon" type="image/png" href="https://pub-196ffc8ef6544a1a83073be29e5a331f.r2.dev/imagenes/logos/logo_morado_oscuro.jpg">
+
+    <!-- Datos estructurados: Google entiende "Monocromatics = organización musical en Galicia"
+         y asocia las redes oficiales. Probar en: https://search.google.com/test/rich-results -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Monocromatics",
+      "alternateName": "Monocromatics Galicia",
+      "url": "https://monocromatics.com/",
+      "logo": "https://pub-196ffc8ef6544a1a83073be29e5a331f.r2.dev/imagenes/logos/logo_blanco.png",
+      "description": "Fiesta de música urbana y underground en Galicia. Próximas fechas, artistas invitados y galería de fotos.",
+      "email": "monocromaticss@gmail.com",
+      "foundingDate": "2024-01-01",
+      "areaServed": {
+        "@type": "AdministrativeArea",
+        "name": "Galicia, España"
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "addressRegion": "Galicia",
+        "addressCountry": "ES"
+      },
+      "sameAs": [
+        "https://www.instagram.com/monocromatics1/",
+        "https://www.tiktok.com/@monocromatics1",
+        "https://x.com/monocromatics1"
+      ],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "email": "monocromaticss@gmail.com",
+        "contactType": "customer support",
+        "availableLanguage": ["es", "gl"]
+      }
+    }
+    </script>
 </head>
 
 <body>
@@ -86,6 +122,31 @@
         </div>
     </section>
 
+
+
+    <!-- TICKER / MARQUESINA -->
+    <!-- El texto de la primera parte lo rellena proxima_fiesta.js con el artista
+         de la próxima fiesta (#ticker-artista). El resto es fijo y se repite. -->
+    <div class="ticker" aria-hidden="true">
+        <div class="ticker-track">
+            <span class="ticker-grupo">
+              <span class="ticker-item">COMPRA YA TUS ENTRADAS PARA <strong id="ticker-artista"></strong></span>
+                <span class="ticker-sep">✦</span>
+                <span class="ticker-item">MONOCROMATICS</span>
+                <span class="ticker-sep">✦</span>
+                <!--<span class="ticker-item">GALICIA UNDER ZONE</span>
+                <span class="ticker-sep">✦</span>-->
+            </span>
+            <span class="ticker-grupo">
+                <span class="ticker-item">COMPRA YA TUS ENTRADAS PARA <strong id="ticker-artista-2"></strong></span>
+                <span class="ticker-sep">✦</span>
+                <span class="ticker-item">MONOCROMATICS</span>
+                <span class="ticker-sep">✦</span>
+                <!--<span class="ticker-item">GALICIA UNDER ZONE</span>
+                <span class="ticker-sep">✦</span>-->
+            </span>
+        </div>
+    </div>
 
 
     <!-- PRÓXIMA FIESTA -->

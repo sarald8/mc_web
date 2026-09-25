@@ -30,6 +30,9 @@ setTexto("proxima-artista", proximaFiesta.artista);
 setTexto("proxima-fecha", proximaFiesta.fecha);
 setTexto("proxima-ciudad", proximaFiesta.ciudad);
 setTexto("proxima-hora", proximaFiesta.hora);
+// Ticker: muestra el nombre de la próxima fiesta en las dos copias.
+setTexto("ticker-artista", proximaFiesta.artista);
+setTexto("ticker-artista-2", proximaFiesta.artista);
 
 const cartel = document.getElementById("proxima-cartel");
 if (cartel) {
@@ -48,6 +51,8 @@ if (enlaceEntradas) {
 
 const fechaFiesta = new Date(proximaFiesta.fechaContador).getTime();
 
+let timerContador = null;
+
 function actualizarContador() {
     const ahora = new Date().getTime();
     const diferencia = fechaFiesta - ahora;
@@ -57,6 +62,12 @@ function actualizarContador() {
         setTexto("hours", "00");
         setTexto("minutes", "00");
         setTexto("seconds", "00");
+
+        // La fiesta ya ha empezado: no tiene sentido seguir con el temporizador.
+        if (timerContador !== null) {
+            clearInterval(timerContador);
+            timerContador = null;
+        }
         return;
     }
 
@@ -74,5 +85,5 @@ function actualizarContador() {
 // Solo arranca el contador si existe el bloque en la página actual.
 if (document.getElementById("days")) {
     actualizarContador();
-    setInterval(actualizarContador, 1000);
+    timerContador = setInterval(actualizarContador, 1000);
 }
