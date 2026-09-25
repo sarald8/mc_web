@@ -1,0 +1,182 @@
+/* ==========================================================
+   PÁGINA 404
+========================================================== */
+
+/* Reset mínimo propio: esta página debe verse bien aunque base.css tarde
+   en aplicarse (su @import de Google Fonts bloquea el parseo) o falle. */
+.error404,
+.error404 * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* El padding de los botones lo pone base.css; como el reset de arriba lo
+   anula, se repone aquí para que mantengan su tamaño. */
+.error404 .button {
+    margin-top: 0;
+    padding: 14px 28px;
+}
+
+.error404 {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    /* El reset de arriba anula el padding: se repone aquí, después. */
+    padding: 70px 8% 90px;
+    /* Ocupa el hueco restante del viewport, pero deja sitio al footer:
+       con 100vh el footer quedaba empujado fuera y aparecía una franja vacía. */
+    min-height: calc(100vh - 66px - 250px);
+    background:
+        radial-gradient(circle at 50% 45%, rgba(142, 58, 220, 0.30), transparent 38%),
+        radial-gradient(circle at 15% 88%, rgba(91, 37, 145, 0.20), transparent 32%),
+        #0b0710;
+    overflow: hidden;
+    font-family: 'Montserrat', sans-serif;
+    color: #ffffff;
+}
+
+.error404-content {
+    position: relative;
+    z-index: 2;
+    max-width: 620px;
+}
+
+/* ==========================================================
+   CIFRA 404 DE FONDO
+========================================================== */
+
+.error404-code {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(90px, 17vw, 170px);
+    font-weight: 400;
+    line-height: 0.85;
+    letter-spacing: 6px;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(201, 140, 255, 0.35);
+    text-shadow:
+        0 0 40px rgba(155, 77, 202, 0.35),
+        0 0 90px rgba(201, 140, 255, 0.15);
+    margin-bottom: 6px;
+    user-select: none;
+}
+
+.error404-content>h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(30px, 4.6vw, 52px);
+    font-weight: 400;
+    line-height: 1.05;
+    letter-spacing: 1px;
+    text-shadow:
+        0 0 3px #ffffff,
+        0 0 8px #c98cff,
+        0 0 20px rgba(201, 140, 255, 0.6);
+}
+
+.error404-text {
+    max-width: 480px;
+    margin: 24px auto 0;
+    color: #a99eaf;
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+/* ==========================================================
+   ACCIONES
+========================================================== */
+
+.error404-acciones {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 35px;
+}
+
+.error404-acciones .button {
+    margin-top: 0;
+    white-space: nowrap;
+}
+
+.button--secundario {
+    background: transparent;
+    border-color: rgba(201, 140, 255, 0.4);
+    color: #cfc7d6;
+}
+
+.button--secundario:hover {
+    background: rgba(155, 77, 202, 0.18);
+    border-color: #c98cff;
+    color: #ffffff;
+}
+
+/* ==========================================================
+   ENLACES SECUNDARIOS
+========================================================== */
+
+.error404-enlaces {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px 28px;
+    margin-top: 38px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(201, 140, 255, 0.14);
+}
+
+.error404-enlaces a {
+    color: #cfc7d6;
+    text-decoration: none;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.error404-enlaces a:hover {
+    color: #c98cff;
+    text-shadow: 0 0 12px rgba(201, 140, 255, 0.7);
+}
+
+/* ==========================================================
+   RESPONSIVE
+========================================================== */
+
+@media (max-width: 768px) {
+
+    .error404 {
+        min-height: auto;
+        padding: 45px 6% 60px;
+    }
+
+    .error404-code {
+        letter-spacing: 4px;
+        margin-bottom: 20px;
+    }
+
+    .error404-text {
+        font-size: 13px;
+        line-height: 1.75;
+        margin-top: 20px;
+    }
+
+    .error404-acciones {
+        flex-direction: column;
+        align-items: center;
+        margin-top: 30px;
+    }
+
+    .error404-acciones .button {
+        width: fit-content;
+    }
+
+    .error404-enlaces {
+        gap: 15px 20px;
+        margin-top: 32px;
+        padding-top: 22px;
+    }
+}

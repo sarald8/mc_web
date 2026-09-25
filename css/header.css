@@ -29,6 +29,11 @@ header {
     position: static;
     height: auto;
     min-height: 66px;
+    /* El header base tiene width:100% y padding 0 5%. Los % de padding se
+       calculan sobre el ancho del contenedor: si se dejan ambos, se suman
+       (5% + 8% = 13% por lado) y el header se desborda a lo ancho.
+       Por eso aquí se fija width:auto y se anula el padding del base. */
+    width: auto;
     padding: 12px 8%;
     justify-content: center;
     align-items: center;

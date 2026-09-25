@@ -12,6 +12,7 @@ estructuraweb.md
 generar_galeria copy.py
 js\galeria copy.js
 
+.captura-404-final.png
 # Por si en algún momento metes un .env con credenciales de R2/API
 .env
 .env.*
