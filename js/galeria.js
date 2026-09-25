@@ -408,7 +408,6 @@ const fiestas = [
             "IMG_2712.jpg",
             "IMG_2713.jpg",
             "IMG_2716.jpg",
-            "IMG_2719.jpg",
             "IMG_2724.jpg",
             "IMG_2725.jpg",
             "IMG_2726.jpg",

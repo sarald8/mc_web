@@ -21,7 +21,7 @@ const artistas = [
     },
     {
         nombre: "MAIN COSTA",
-        imagen: "imagenes/artistas/maincosta.jpg"
+        imagen: "imagenes/artistas/maincosta2.jpg"
     },
     {
         nombre: "AMORYODIO",
