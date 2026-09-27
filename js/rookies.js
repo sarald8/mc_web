@@ -11,7 +11,6 @@ const rookies = [
     { nombre: "1006ramos", imagen: "imagenes/rookies/1006ramos.jpg" },
     //{ nombre: "8taven", imagen: "imagenes/rookies/8taven.jpg" },
     { nombre: "6glock", imagen: "imagenes/rookies/6glock2.jpg" },
-    { nombre: "Lanasa2000", imagen: "imagenes/rookies/lanasa2000.png" },
     { nombre: "Pradda", imagen: "imagenes/rookies/pradda.jpg" },
     { nombre: "Queiru", imagen: "imagenes/rookies/queiru.jpg" },
     { nombre: "Luvive", imagen: "imagenes/rookies/luvive.png" }
