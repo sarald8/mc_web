@@ -735,6 +735,21 @@
 }
 
 /* ==========================================================
+   FOTO DEL ABOUT
+   El <img> del HTML lleva width="600" height="400" para reservar el
+   hueco (evita saltos de layout). Esos atributos fijan las
+   proporciones por defecto del elemento, y en móvil el ancho útil es
+   menor que 600px: el navegador mantendría 400px de alto y la foto
+   (que es 3:2) saldría estirada en vertical. Con height:auto manda la
+   proporción real de la imagen y se ve como antes.
+========================================================== */
+
+.about figure img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* ==========================================================
    TICKER / MARQUESINA
    Franja con texto en bucle infinito (estética rave/underground)
 ========================================================== */
