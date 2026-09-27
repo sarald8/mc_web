@@ -31,15 +31,12 @@ setTexto("proxima-fecha", proximaFiesta.fecha);
 setTexto("proxima-ciudad", proximaFiesta.ciudad);
 setTexto("proxima-hora", proximaFiesta.hora);
 
-// Ticker: muestra el nombre de la próxima fiesta en las dos copias.
-setTexto("ticker-artista", proximaFiesta.artista);
-setTexto("ticker-artista-2", proximaFiesta.artista);
-setTexto("ticker-artista-3", proximaFiesta.artista);
-setTexto("ticker-artista-4", proximaFiesta.artista);
-setTexto("ticker-artista-5", proximaFiesta.artista);
-setTexto("ticker-artista-6", proximaFiesta.artista);
-//setTexto("ticker-artista-7", proximaFiesta.artista);
-//setTexto("ticker-artista-8", proximaFiesta.artista);
+// Ticker: muestra el nombre de la próxima fiesta en todas las copias.
+// Se usa la clase .ticker-artista para no mantener un id por repetición:
+// cualquier bloque nuevo con class="ticker-artista" se rellena solo.
+document.querySelectorAll(".ticker-artista").forEach(el => {
+    el.textContent = proximaFiesta.artista;
+});
 
 const cartel = document.getElementById("proxima-cartel");
 if (cartel) {
