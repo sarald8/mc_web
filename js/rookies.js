@@ -4,7 +4,7 @@ const rookies = [
     { nombre: "Komojo", imagen: "imagenes/rookies/komojo.jpg" },
     { nombre: "Eighteen", imagen: "imagenes/rookies/eighteen.jpeg" },
     { nombre: "Candi", imagen: "imagenes/rookies/candi2.jpg" },
-    { nombre: "Rdriguez00", imagen: "imagenes/rookies/Rdriguez00.jpg" },
+    { nombre: "Rodriguez00", imagen: "imagenes/rookies/Rodriguez00.jpg" },
     { nombre: "1Xenay", imagen: "imagenes/rookies/1xenay.png" },
     { nombre: "Ken2Asga", imagen: "imagenes/rookies/Ken2Asga.jpg" },
     { nombre: "DieYoungBreffo", imagen: "imagenes/rookies/dieyoungbreffo.png" },
