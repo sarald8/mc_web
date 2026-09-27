@@ -609,81 +609,193 @@ if (carpetaSolicitada && fiestasAMostrar.length === 0) {
     console.warn(`No se encontró ninguna fiesta con nombre "${carpetaSolicitada}" en galeria.js`);
 }
 
-fiestasAMostrar.forEach(fiesta => {
-    const seccion = document.createElement("section");
-    seccion.className = "galeria-fiesta";
+// Lista plana de todas las fotos visibles en esta página, en el mismo orden
+// en que se pintan. Es lo que usa el visor para ir a la anterior/siguiente,
+// incluso saltando de una fiesta a la siguiente.
+const fotosVisibles = [];
 
-    const titulo = document.createElement("h2");
-    titulo.textContent = fiesta.nombre;
+if (contenedor) {
+    fiestasAMostrar.forEach(fiesta => {
+        const seccion = document.createElement("section");
+        seccion.className = "galeria-fiesta";
 
-    const lugar = document.createElement("p");
-    lugar.textContent = fiesta.lugar;
+        const titulo = document.createElement("h2");
+        titulo.textContent = fiesta.nombre;
 
-    const grid = document.createElement("div");
-    grid.className = "gallery-grid";
+        const lugar = document.createElement("p");
+        lugar.textContent = fiesta.lugar;
 
-    fiesta.fotos.forEach(foto => {
-        const img = document.createElement("img");
+        const grid = document.createElement("div");
+        grid.className = "gallery-grid";
 
-        img.src = `${R2_PUBLIC_URL}/imagenes/fiestas/${fiesta.carpeta}/${foto}`;
-        img.alt = `Monocromatics ${fiesta.nombre}`;
-        img.loading = "lazy";
+        fiesta.fotos.forEach(foto => {
+            const img = document.createElement("img");
 
-        img.addEventListener("click", () => abrirFoto(img.src));
+            img.src = `${R2_PUBLIC_URL}/imagenes/fiestas/${fiesta.carpeta}/${foto}`;
+            img.alt = `Monocromatics ${fiesta.nombre}`;
+            img.loading = "lazy";
+            img.decoding = "async";
 
-        grid.appendChild(img);
+            const indice = fotosVisibles.length;
+            fotosVisibles.push(img.src);
+
+            img.addEventListener("click", () => abrirFoto(indice));
+
+            grid.appendChild(img);
+        });
+
+        seccion.appendChild(titulo);
+        seccion.appendChild(lugar);
+        seccion.appendChild(grid);
+        contenedor.appendChild(seccion);
     });
+}
 
-    seccion.appendChild(titulo);
-    seccion.appendChild(lugar);
-    seccion.appendChild(grid);
-    contenedor.appendChild(seccion);
-});
+/* ==========================================================
+   VISOR DE FOTO
+   Permite ir a la foto anterior/siguiente con las flechas de la
+   pantalla o del teclado (← →), y bloquea el scroll del fondo
+   mientras está abierto.
+========================================================== */
 
-function abrirFoto(src) {
+let visorAbierto = null;
+
+function abrirFoto(indice) {
+    if (indice < 0 || indice >= fotosVisibles.length) {
+        return;
+    }
+
+    // Si ya hay un visor abierto, lo cerramos para no apilar capas.
+    if (visorAbierto) {
+        visorAbierto.cerrar();
+    }
+
+    let indiceActual = indice;
+
     const visor = document.createElement("div");
     visor.className = "visor-foto";
+    visor.setAttribute("role", "dialog");
+    visor.setAttribute("aria-modal", "true");
+    visor.setAttribute("aria-label", "Visor de fotos");
 
     const botonCerrar = document.createElement("button");
     botonCerrar.type = "button";
     botonCerrar.className = "cerrar-visor";
     botonCerrar.textContent = "×";
+    botonCerrar.setAttribute("aria-label", "Cerrar visor");
+
+    const botonAnterior = document.createElement("button");
+    botonAnterior.type = "button";
+    botonAnterior.className = "visor-nav visor-prev";
+    botonAnterior.textContent = "←";
+    botonAnterior.setAttribute("aria-label", "Foto anterior");
+
+    const botonSiguiente = document.createElement("button");
+    botonSiguiente.type = "button";
+    botonSiguiente.className = "visor-nav visor-next";
+    botonSiguiente.textContent = "→";
+    botonSiguiente.setAttribute("aria-label", "Foto siguiente");
 
     const imagen = document.createElement("img");
-    imagen.src = src;
     imagen.alt = "Foto Monocromatics";
 
     const descargar = document.createElement("a");
-    descargar.href = src;
     descargar.download = "";
     descargar.className = "descargar-foto";
     descargar.textContent = "DESCARGAR";
 
-    visor.appendChild(botonCerrar);
-    visor.appendChild(imagen);
-    visor.appendChild(descargar);
+    const contador = document.createElement("p");
+    contador.className = "visor-contador";
 
-    document.body.appendChild(visor);
+    function pintarFoto() {
+        const src = fotosVisibles[indiceActual];
+
+        imagen.src = src;
+        descargar.href = src;
+        contador.textContent = `${indiceActual + 1} / ${fotosVisibles.length}`;
+    }
+
+    function irA(delta) {
+        // Navegación circular: de la última vuelve a la primera.
+        indiceActual = (indiceActual + delta + fotosVisibles.length) % fotosVisibles.length;
+        pintarFoto();
+    }
+
+    // Precarga discreta de las vecinas para que el cambio sea instantáneo.
+    function precargarVecinas() {
+        [-1, 1].forEach(delta => {
+            const vecino = fotosVisibles[(indiceActual + delta + fotosVisibles.length) % fotosVisibles.length];
+            if (vecino && vecino !== imagen.src) {
+                new Image().src = vecino;
+            }
+        });
+    }
 
     function cerrarVisor() {
         visor.remove();
-        document.removeEventListener("keydown", cerrarConEscape);
+        document.removeEventListener("keydown", alPulsarTecla);
+
+        // Devolvemos el scroll al body tal y como estaba antes de abrir.
+        document.body.classList.remove("visor-abierto");
+
+        visorAbierto = null;
     }
 
-    function cerrarConEscape(e) {
+    function alPulsarTecla(e) {
         if (e.key === "Escape") {
             cerrarVisor();
+        } else if (e.key === "ArrowLeft") {
+            irA(-1);
+            precargarVecinas();
+        } else if (e.key === "ArrowRight") {
+            irA(1);
+            precargarVecinas();
         }
     }
 
-    document.addEventListener("keydown", cerrarConEscape);
+    botonAnterior.addEventListener("click", e => {
+        e.stopPropagation();
+        irA(-1);
+        precargarVecinas();
+    });
 
-    visor.querySelector(".cerrar-visor").addEventListener("click", cerrarVisor);
+    botonSiguiente.addEventListener("click", e => {
+        e.stopPropagation();
+        irA(1);
+        precargarVecinas();
+    });
 
+    botonCerrar.addEventListener("click", cerrarVisor);
+
+    // Clic en el fondo (fuera de la imagen y de los botones) cierra el visor.
     visor.addEventListener("click", e => {
         if (e.target === visor) {
             cerrarVisor();
         }
     });
+
+    visor.appendChild(botonCerrar);
+    visor.appendChild(botonAnterior);
+    visor.appendChild(imagen);
+    visor.appendChild(botonSiguiente);
+    visor.appendChild(contador);
+    visor.appendChild(descargar);
+
+    document.body.appendChild(visor);
+    document.body.classList.add("visor-abierto");
+    document.addEventListener("keydown", alPulsarTecla);
+
+    pintarFoto();
+    precargarVecinas();
+
+    // Solo se muestran las flechas si hay más de una foto.
+    const hayVarias = fotosVisibles.length > 1;
+    botonAnterior.hidden = !hayVarias;
+    botonSiguiente.hidden = !hayVarias;
+    contador.hidden = !hayVarias;
+
+    botonCerrar.focus();
+
+    visorAbierto = { cerrar: cerrarVisor };
 }
 

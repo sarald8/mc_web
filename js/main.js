@@ -32,12 +32,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     /* ==========================================================
        CARGAR UBICACIONES
+       main.js se carga también en páginas internas (contacto, legales,
+       gracias) que no tienen #ubicaciones-container: allí no hay nada
+       que hacer aquí, así que salimos sin abortar lo que venga después.
     ========================================================== */
 
     const container = document.getElementById("ubicaciones-container");
 
     if (!container) {
-        console.warn("No se encontró #ubicaciones-container.");
         return;
     }
 

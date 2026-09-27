@@ -9,9 +9,13 @@
     <!-- Open Graph (vista previa al compartir en redes) -->
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Monocromatics">
+    <meta property="og:locale" content="es_ES">
     <meta property="og:title" content="Monocromatics">
     <meta property="og:description" content="Fiesta de música urbana y underground en Galicia. Próximas fechas, artistas y galería de fotos.">
     <meta property="og:image" content="https://pub-196ffc8ef6544a1a83073be29e5a331f.r2.dev/imagenes/logos/logo_moradoblanco.jpg">
+    <meta property="og:image:width" content="1439">
+    <meta property="og:image:height" content="1439">
+    <meta property="og:image:alt" content="Logo de Monocromatics">
     <meta property="og:url" content="https://monocromatics.com/">
     <meta name="twitter:card" content="summary_large_image">
 
@@ -24,7 +28,10 @@
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 
-    <link rel="icon" type="image/jpg" href="https://pub-196ffc8ef6544a1a83073be29e5a331f.r2.dev/imagenes/logos/logo_morado_oscuro.jpg">
+    <link rel="icon" type="image/png" href="https://pub-196ffc8ef6544a1a83073be29e5a331f.r2.dev/imagenes/logos/logo_morado_oscuro.jpg">
+    <link rel="apple-touch-icon" href="https://pub-196ffc8ef6544a1a83073be29e5a331f.r2.dev/imagenes/logos/logo_morado_oscuro.jpg">
+    <link rel="manifest" href="manifest.webmanifest">
+    <meta name="theme-color" content="#0b0710">
 
     <!-- Datos estructurados: Google entiende "Monocromatics = organización musical en Galicia"
          y asocia las redes oficiales. Probar en: https://search.google.com/test/rich-results -->
@@ -67,7 +74,7 @@
 
 <header>
     <div class="logo">
-        <img src="https://pub-196ffc8ef6544a1a83073be29e5a331f.r2.dev/imagenes/logos/logo_blanco.png" alt="Monocromatics">
+        <img src="https://pub-196ffc8ef6544a1a83073be29e5a331f.r2.dev/imagenes/logos/logo_blanco.png" alt="Monocromatics" width="60" height="57">
     </div>
 
     <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false">
@@ -238,11 +245,11 @@
             <p>Monocromatics es eso: una noche, un espacio y la música que nadie más se atreve a poner.</p>
         </div><br>
             <figure style="margin: 0; text-align: center;">
-                <img src="https://pub-196ffc8ef6544a1a83073be29e5a331f.r2.dev/imagenes/fiestas/DOPPLER_main_costa_13_06_26/Monocromatics Doppler0.jpg" alt="Monocromatics" width="600">
+                <img src="https://pub-196ffc8ef6544a1a83073be29e5a331f.r2.dev/imagenes/fiestas/DOPPLER_main_costa_13_06_26/Monocromatics Doppler0.jpg" alt="Monocromatics" width="600" height="400" loading="lazy" decoding="async">
                 <figcaption style="font-size: 0.8rem; text-align: center; margin-top: 0.4rem;">KEHR, Sala Doppler</figcaption>
             </figure>
 
-            <!-- PLAYLIST 
+            <!-- PLAYLIST
             <div class="about-playlist" style="max-width: 550px; margin: 2rem auto 0;">
                 <iframe
                     title="Playlist de Monocromatics en Spotify"
@@ -268,24 +275,24 @@
         <div class="artist-grid residents-grid">
             <article class="artist-card">
                 <div class="artist-image">
-                    <img src="imagenes/kehr.jpg" alt="KEHR, DJ residente de Monocromatics">
+                    <img src="imagenes/kehr.jpg" alt="KEHR, DJ residente de Monocromatics" width="1178" height="1466" loading="lazy" decoding="async">
                 </div>
 
                 <div class="artist-card-content">
                     <h3>KEHR</h3>
-                    <a href="https://www.instagram.com/13kehr/" target="_blank" rel="noopener">@13kehr ↗</a>
+                    <a href="https://www.instagram.com/13kehr/" target="_blank" rel="noopener noreferrer">@13kehr ↗</a>
                     <a href="https://soundcloud.com/ikercolehd/el-primero-de-la-city-1-monocromatics-party-sets" class="card-button">VER SESIONES</a>
                 </div>
             </article>
 
             <article class="artist-card">
                 <div class="artist-image">
-                    <img src="imagenes/jromaris.jpg" alt="J ROMARIS, DJ residente de Monocromatics">
+                    <img src="imagenes/jromaris.jpg" alt="J ROMARIS, DJ residente de Monocromatics" width="3431" height="4624" loading="lazy" decoding="async">
                 </div>
 
                 <div class="artist-card-content">
                     <h3>J ROMARIS</h3>
-                    <a href="https://www.instagram.com/j.romaris/" target="_blank" rel="noopener">@j.romaris ↗</a>
+                    <a href="https://www.instagram.com/j.romaris/" target="_blank" rel="noopener noreferrer">@j.romaris ↗</a>
                     <a href="#AQUI PONER ENLACE DE LAS SESIONES" class="card-button">VER SESIONES</a>
                 </div>
             </article>
@@ -324,12 +331,12 @@
         <h2>GALERÍA</h2>
 
         <div class="gallery-grid">
-            <img src="https://pub-196ffc8ef6544a1a83073be29e5a331f.r2.dev/imagenes/fiestas/DOPPLER_dsm_14_05_26/IMG_4233.jpeg" alt="Monocromatics">
-            <img src="https://pub-196ffc8ef6544a1a83073be29e5a331f.r2.dev/imagenes/fiestas/DOPPLER_main_costa_13_06_26/Monocromatics Doppler38.jpg" alt="Monocromatics">
-            <img src="https://pub-196ffc8ef6544a1a83073be29e5a331f.r2.dev/imagenes/fiestas/MYCLUB_blinblin_yung_brandy_13_05_26/BLIBLINXMONOCROMO56.jpg" alt="Monocromatics">
-            <img src="https://pub-196ffc8ef6544a1a83073be29e5a331f.r2.dev/imagenes/fiestas/MYCLUB_onlylocals_06_25/IMG_3460.jpg" alt="Monocromatics">
-            <img src="https://pub-196ffc8ef6544a1a83073be29e5a331f.r2.dev/imagenes/fiestas/DOPPLER_main_costa_13_06_26/Monocromatics Doppler58.jpg" alt="Monocromatics">
-            <img src="https://pub-196ffc8ef6544a1a83073be29e5a331f.r2.dev/imagenes/fiestas/VANITAS_02_10_25/IMG_3901.jpg" alt="Monocromatics">
+            <img src="https://pub-196ffc8ef6544a1a83073be29e5a331f.r2.dev/imagenes/fiestas/DOPPLER_dsm_14_05_26/IMG_4233.jpeg" alt="Monocromatics" width="6000" height="4000" loading="lazy" decoding="async">
+            <img src="https://pub-196ffc8ef6544a1a83073be29e5a331f.r2.dev/imagenes/fiestas/DOPPLER_main_costa_13_06_26/Monocromatics Doppler38.jpg" alt="Monocromatics" width="1920" height="1280" loading="lazy" decoding="async">
+            <img src="https://pub-196ffc8ef6544a1a83073be29e5a331f.r2.dev/imagenes/fiestas/MYCLUB_blinblin_yung_brandy_13_05_26/BLIBLINXMONOCROMO56.jpg" alt="Monocromatics" width="1920" height="1280" loading="lazy" decoding="async">
+            <img src="https://pub-196ffc8ef6544a1a83073be29e5a331f.r2.dev/imagenes/fiestas/MYCLUB_onlylocals_06_25/IMG_3460.jpg" alt="Monocromatics" width="5527" height="3700" loading="lazy" decoding="async">
+            <img src="https://pub-196ffc8ef6544a1a83073be29e5a331f.r2.dev/imagenes/fiestas/DOPPLER_main_costa_13_06_26/Monocromatics Doppler58.jpg" alt="Monocromatics" width="1920" height="1280" loading="lazy" decoding="async">
+            <img src="https://pub-196ffc8ef6544a1a83073be29e5a331f.r2.dev/imagenes/fiestas/VANITAS_02_10_25/IMG_3901.jpg" alt="Monocromatics" width="6024" height="4020" loading="lazy" decoding="async">
         </div>
 
         <a href="paginas/galeria.html" class="button">VER TODAS LAS FOTOS</a>
@@ -343,13 +350,13 @@
 <!-- FOOTER -->
 <footer>
     <div class="footer-logo">
-        <img src="imagenes/logos/logo_morado_oscuro.jpg" alt="Monocromatics">
+        <img src="imagenes/logos/logo_morado_oscuro.jpg" alt="Monocromatics" width="65" height="65" loading="lazy" decoding="async">
     </div>
 
     <div class="footer-links">
-        <a href="https://x.com/monocromatics1" target="_blank" rel="noopener">X / Twitter</a>
-        <a href="https://www.instagram.com/monocromatics1/" target="_blank" rel="noopener">Instagram</a>
-        <a href="https://www.tiktok.com/@monocromatics1" target="_blank" rel="noopener">TikTok</a>
+        <a href="https://x.com/monocromatics1" target="_blank" rel="noopener noreferrer">X / Twitter</a>
+        <a href="https://www.instagram.com/monocromatics1/" target="_blank" rel="noopener noreferrer">Instagram</a>
+        <a href="https://www.tiktok.com/@monocromatics1" target="_blank" rel="noopener noreferrer">TikTok</a>
     </div>
 
     <div class="footer-legal">

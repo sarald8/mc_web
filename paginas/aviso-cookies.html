@@ -10,11 +10,15 @@
         content="Aviso de cookies de Monocromatics: qué son las cookies y tecnologías similares, cuáles usa esta web, para qué sirven y cómo puedes gestionarlas o desactivarlas.">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Monocromatics">
+    <meta property="og:locale" content="es_ES">
     <meta property="og:title" content="Aviso de cookies · Monocromatics">
     <meta property="og:description"
         content="Qué cookies y tecnologías similares usa esta web, para qué sirven y cómo gestionarlas.">
     <meta property="og:image"
         content="https://pub-196ffc8ef6544a1a83073be29e5a331f.r2.dev/imagenes/logos/logo_blanco.png">
+    <meta property="og:image:width" content="714">
+    <meta property="og:image:height" content="680">
+    <meta property="og:image:alt" content="Logo de Monocromatics">
     <meta property="og:url" content="https://monocromatics.com/paginas/aviso-cookies.html">
     <meta name="twitter:card" content="summary_large_image">
     <link rel="stylesheet" href="../css/base.css">
@@ -24,6 +28,10 @@
     <link rel="stylesheet" href="../css/responsive.css">
     <link rel="icon" type="image/png"
         href="https://pub-196ffc8ef6544a1a83073be29e5a331f.r2.dev/imagenes/logos/logo_blanco.png">
+    <link rel="apple-touch-icon"
+        href="https://pub-196ffc8ef6544a1a83073be29e5a331f.r2.dev/imagenes/logos/logo_morado_oscuro.jpg">
+    <link rel="manifest" href="../manifest.webmanifest">
+    <meta name="theme-color" content="#0b0710">
 </head>
 
 <body>
@@ -60,6 +68,9 @@
                 <p>Esta web es una página informativa: no tienes que registrarte ni iniciar sesión para verla. Aun así,
                     como cualquier sitio, hace uso de almacenamiento en tu navegador (cookies y tecnologías similares).
                     Aquí te contamos cuáles son y para qué se usan.</p>
+                <p>Como solo empleamos cookies y tecnologías técnicas (necesarias para que la web funcione), no
+                    utilizamos un banner de consentimiento: la normativa no lo exige para este tipo de cookies. Si en el
+                    futuro incorporamos cookies de analítica o de publicidad, te pediremos el consentimiento previo.</p>
 
                 <h2>1. Qué son</h2>
                 <p>Una cookie es un pequeño archivo de texto que un sitio guarda en tu dispositivo al visitarlo.
@@ -95,6 +106,11 @@
                                 <td>De sesión a 30 días</td>
                             </tr>
                             <tr>
+                                <td>CARTO</td>
+                                <td>Servir las teselas del mapa interactivo de la sección de ubicaciones (funciona sobre datos de OpenStreetMap)</td>
+                                <td>De sesión a 30 días</td>
+                            </tr>
+                            <tr>
                                 <td>Monocromatics</td>
                                 <td>Guardar tus preferencias de navegación en la propia página</td>
                                 <td>Hasta que borres los datos del navegador</td>
@@ -105,20 +121,29 @@
 
                 <h3>2.2. Contenidos de terceros (solo al interactuar)</h3>
                 <p>Algunas zonas de la web cargan contenido servido por otras empresas: el mapa interactivo de la
-                    sección de ubicaciones y los enlaces a redes sociales o a plataformas de venta de entradas. Las
-                    tipografías se sirven desde este mismo sitio, así que no suponen una conexión a terceros.</p>
+                    sección de ubicaciones (que sirve las teselas del mapa a través de <strong>CARTO</strong>,
+                    <code>basemaps.cartocdn.com</code>, sobre datos de OpenStreetMap) y los enlaces a redes sociales
+                    o a plataformas de venta de entradas. Las tipografías se sirven desde este mismo sitio, así que no
+                    suponen una conexión a terceros.</p>
+                <p>El formulario de contacto se envía a través de <strong>Web3Forms</strong>, que a su vez carga
+                    <strong>hCaptcha</strong> para comprobar que el envío lo hace una persona y no un bot. Al cargarse
+                    ese captcha se establece una conexión con los servidores de hCaptcha, incluso antes de que envíes
+                    el formulario, con la única finalidad de proteger el buzón frente al spam.</p>
                 <p>Estos servicios pueden registrar tu dirección IP o instalar sus propias cookies <strong>cuando se
                         cargan o cuando tú interactúas con ellos</strong>. No son cookies que gestionemos nosotros, sino
                     sus responsables, y se rigen por sus propias políticas:</p>
                 <ul>
                     <li><a href="https://www.cloudflare.com/privacypolicy/" target="_blank"
-                            rel="noopener">Cloudflare</a></li>
-                    <li><a href="https://www.hcaptcha.com/privacy" target="_blank" rel="noopener">hCaptcha</a></li>
-                    <li><a href="https://www.instagram.com/legal/privacy/" target="_blank" rel="noopener">Instagram</a>
+                            rel="noopener noreferrer">Cloudflare</a></li>
+                    <li><a href="https://www.hcaptcha.com/privacy" target="_blank" rel="noopener noreferrer">hCaptcha</a></li>
+                    <li><a href="https://carto.com/privacy/" target="_blank" rel="noopener noreferrer">CARTO</a></li>
+                    <li><a href="https://osmfoundation.org/wiki/Privacy_Policy" target="_blank"
+                            rel="noopener noreferrer">OpenStreetMap</a></li>
+                    <li><a href="https://www.instagram.com/legal/privacy/" target="_blank" rel="noopener noreferrer">Instagram</a>
                     </li>
-                    <li><a href="https://www.tiktok.com/legal/privacy-policy" target="_blank" rel="noopener">TikTok</a>
+                    <li><a href="https://www.tiktok.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer">TikTok</a>
                     </li>
-                    <li><a href="https://x.com/es/privacy" target="_blank" rel="noopener">X (Twitter)</a></li>
+                    <li><a href="https://x.com/es/privacy" target="_blank" rel="noopener noreferrer">X (Twitter)</a></li>
                 </ul>
 
                 <h2>3. Qué NO usamos</h2>
@@ -141,7 +166,7 @@
                     <li><a href="https://support.apple.com/es-es/guide/safari/sfri11471/mac" target="_blank"
                             rel="noopener">Gestionar cookies en Safari</a></li>
                     <li><a href="https://support.microsoft.com/es-es/microsoft-edge/eliminar-las-cookies-en-microsoft-edge-63947406-40ac-c3b8-57b9-2a946a29ae09"
-                            target="_blank" rel="noopener">Gestionar cookies en Edge</a></li>
+                            target="_blank" rel="noopener noreferrer">Gestionar cookies en Edge</a></li>
                 </ul>-->
                 <p>Si navegas en modo privado o incógnito, las cookies de sesión se eliminan al cerrar la ventana.</p>
 
@@ -151,7 +176,7 @@
 
                 <h2>5. Más información y contacto</h2>
                 <p>Puedes consultar la guía de cookies de la Agencia Española de Protección de Datos en <a
-                        href="https://www.aepd.es" target="_blank" rel="noopener">www.aepd.es</a>. Para cualquier duda
+                        href="https://www.aepd.es" target="_blank" rel="noopener noreferrer">www.aepd.es</a>. Para cualquier duda
                     sobre este aviso, escríbenos a <a
                         href="mailto:monocromaticss@gmail.com">monocromaticss@gmail.com</a> o a través de la <a
                         href="contacto.html">página de contacto</a>.</p>
@@ -174,14 +199,14 @@
     <footer>
         <div class="footer-logo">
             <a href="../index.html">
-                <img src="../imagenes/logos/logo_morado_oscuro.jpg" alt="Monocromatics">
+                <img src="../imagenes/logos/logo_morado_oscuro.jpg" alt="Monocromatics" width="65" height="65" loading="lazy" decoding="async">
             </a>
         </div>
 
         <div class="footer-links">
-            <a href="https://x.com/monocromatics1" target="_blank" rel="noopener">X / Twitter</a>
-            <a href="https://www.instagram.com/monocromatics1/" target="_blank" rel="noopener">Instagram</a>
-            <a href="https://www.tiktok.com/@monocromatics1" target="_blank" rel="noopener">TikTok</a>
+            <a href="https://x.com/monocromatics1" target="_blank" rel="noopener noreferrer">X / Twitter</a>
+            <a href="https://www.instagram.com/monocromatics1/" target="_blank" rel="noopener noreferrer">Instagram</a>
+            <a href="https://www.tiktok.com/@monocromatics1" target="_blank" rel="noopener noreferrer">TikTok</a>
         </div>
 
         <div class="footer-legal">
@@ -194,7 +219,6 @@
         <p>© 2026 MONOCROMATICS</p>
     </footer>
 
-    <script src="../js/main.js"></script>
 </body>
 
 </html>

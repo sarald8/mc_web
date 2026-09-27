@@ -1,0 +1,38 @@
+# ==========================================================
+# CABECERAS HTTP (Cloudflare Pages)
+# El archivo debe llamarse EXACTAMENTE _headers y estar en la raíz
+# del sitio publicado. Cloudflare Pages lo aplica a todas las
+# respuestas que no vengan de la caché.
+# Docs: https://developers.cloudflare.com/pages/configuration/headers/
+# ==========================================================
+
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(), microphone=(), camera=(), payment=(), usb=(), magnetometer=(), gyroscope=(), interest-cohort=()
+  X-Frame-Options: SAMEORIGIN
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://unpkg.com https://web3forms.com https://newassets.hcaptcha.com https://js.hcaptcha.com; style-src 'self' 'unsafe-inline' https://unpkg.com; img-src 'self' data: https://pub-196ffc8ef6544a1a83073be29e5a331f.r2.dev https://basemaps.cartocdn.com https://*.basemaps.cartocdn.com https://*.tile.openstreetmap.org; font-src 'self'; connect-src 'self' https://api.web3forms.com https://*.hcaptcha.com; frame-src https://newassets.hcaptcha.com https://*.hcaptcha.com; frame-ancestors 'self'; base-uri 'self'; form-action 'self' https://api.web3forms.com; object-src 'none'
+
+# CSS y JS: sin caché larga para no servir versiones viejas tras un despliegue.
+/css/*
+  Cache-Control: public, max-age=3600, must-revalidate
+
+/js/*
+  Cache-Control: public, max-age=3600, must-revalidate
+
+# Imágenes y tipografías: pueden cachearse mucho tiempo (no cambian de nombre).
+/imagenes/*
+  Cache-Control: public, max-age=2592000
+
+/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Documentos: siempre revalidar para que un cambio de contenido se vea ya.
+/*.html
+  Cache-Control: public, max-age=0, must-revalidate
+
+/manifest.webmanifest
+  Content-Type: application/manifest+json
+
+/robots.txt
+  Cache-Control: public, max-age=3600

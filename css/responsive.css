@@ -55,6 +55,8 @@
         left: 0;
         width: 100%;
         padding: 20px 6% 25px;
+        /* En escritorio está oculto (header.css): aquí se vuelve a mostrar
+           y el desplegado se controla con la clase .active. */
         display: flex;
         flex-direction: column;
         gap: 0;
@@ -592,6 +594,46 @@
     .galeria-card {
     min-height: 150px;
     padding: 24px 20px;
+    }
+}
+
+/* ==========================================================
+   VISOR DE FOTO EN MÓVIL
+   Las flechas bajan de tamaño y se pegan a los bordes para no
+   comerse la imagen.
+========================================================== */
+
+@media (max-width: 640px) {
+    .visor-foto {
+        padding: 20px;
+    }
+
+    .visor-foto img {
+        max-width: 96%;
+        max-height: 68vh;
+    }
+
+    .visor-nav {
+        width: 42px;
+        height: 42px;
+        font-size: 18px;
+    }
+
+    .visor-prev {
+        left: 10px;
+    }
+
+    .visor-next {
+        right: 10px;
+    }
+
+    .visor-contador {
+        top: 76px;
+    }
+
+    .descargar-foto {
+        bottom: 16px;
+        padding: 11px 20px;
     }
 }
 
