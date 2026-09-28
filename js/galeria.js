@@ -676,6 +676,10 @@ if (!contenedor) {
         const grid = document.createElement("div");
         grid.className = "gallery-grid";
 
+        // Copia del valor actual: el clic se ejecuta mucho después, cuando
+        // indiceRelativo ya ha seguido sumando. Sin esto el índice se sale de rango.
+        const base = indiceRelativo;
+
         fiesta.fotos.forEach((foto, indice) => {
             const img = document.createElement("img");
 
@@ -684,7 +688,7 @@ if (!contenedor) {
             img.loading = "lazy";
             img.decoding = "async";
 
-            img.addEventListener("click", () => abrirFoto(indiceRelativo + indice));
+            img.addEventListener("click", () => abrirFoto(base + indice));
 
             grid.appendChild(img);
         });
@@ -750,6 +754,29 @@ function abrirFoto(indice) {
     descargar.download = "";
     descargar.className = "descargar-foto";
     descargar.textContent = "DESCARGAR";
+    descargar.target = "_blank";
+    descargar.rel = "noopener";
+
+    // `download` se ignora en enlaces a otro dominio (R2), así que intentamos bajar
+    // el archivo como blob; si R2 no permite CORS, se abre la foto en pestaña nueva.
+    descargar.addEventListener("click", async e => {
+        e.preventDefault();
+        const src = fotosVisibles[indiceActual];
+        try {
+            const resp = await fetch(src, { mode: "cors" });
+            if (!resp.ok) throw new Error(resp.status);
+            const url = URL.createObjectURL(await resp.blob());
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = decodeURIComponent(src.split("/").pop());
+            document.body.appendChild(a);
+            a.click();
+            a.remove();
+            setTimeout(() => URL.revokeObjectURL(url), 1000);
+        } catch (err) {
+            window.open(src, "_blank", "noopener");
+        }
+    });
 
     const contador = document.createElement("p");
     contador.className = "visor-contador";
@@ -845,4 +872,3 @@ function abrirFoto(indice) {
 
     visorAbierto = { cerrar: cerrarVisor };
 }
-
