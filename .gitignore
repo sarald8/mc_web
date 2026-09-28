@@ -4,15 +4,19 @@ imagenes/fiestas/
 # Archivos del sistema / editor
 .DS_Store
 Thumbs.db
-.vscode/*
+ehthumbs.db
 desktop.ini
+.vscode/*
 !.vscode/extensions.json
 estructuraweb.md
 
-generar_galeria copy.py
-js\galeria copy.js
-
-.captura-404-final.png
+# Copias de seguridad locales (se ignoran en cualquier carpeta).
+# OJO: en .gitignore las barras van SIEMPRE hacia delante (/), nunca \
+* copy.py
+* copy.js
+*copia*.py
+*copia*.js
+*-404-final.png
 # Por si en algún momento metes un .env con credenciales de R2/API
 .env
 .env.*
@@ -27,12 +31,34 @@ __pycache__/
 *.tmp
 *.temp
 *.log
+*.local.*
+
+# Scripts locales de QA (browser-automation); no son parte del sitio
+qa-*.mjs
+
+# Bases de datos locales de Miniflare/Wrangler (seguro extra sobre .wrangler/)
+*.sqlite
+*.sqlite-wal
+*.sqlite-shm
 
 # Fotos temporales para subir a Cloudflare R2
 fotos_para_subir/
 
 # Dependencias de Node (si instalas wrangler/npm localmente)
 node_modules/
+npm-debug.log*
+yarn-error.log*
+
+# Entornos virtuales de Python
+.venv/
+venv/
+*.egg-info/
 
 # Cache/estado local de Wrangler
 .wrangler/
+
+# ---------------------------------------------------------------------------
+# NOTA: _headers, _redirects, 404.html y generar_galeria.py SI se versionan
+# (Cloudflare Pages necesita los tres primeros; el script es tu herramienta).
+# generar_galeria.py se excluye de la publicacion via .assetsignore, no aqui.
+# ---------------------------------------------------------------------------
