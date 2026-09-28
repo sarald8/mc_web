@@ -598,8 +598,18 @@ def main():
     )
     args = parser.parse_args()
 
+    # El error mas habitual con diferencia: ejecutar el script desde otra carpeta
+    # (por ejemplo desde C:\Users\Usuario). Todo son rutas relativas, asi que hay
+    # que decir claramente DONDE se esta buscando y como arreglarlo.
     if not os.path.isdir(CARPETA_FOTOS):
-        print(f"No existe la carpeta: {CARPETA_FOTOS}")
+        print(f"ERROR: no encuentro '{CARPETA_FOTOS}/'.")
+        print(f"Ahora mismo estoy buscando en: {os.getcwd()}")
+        print()
+        print("Suele pasar por ejecutar el script desde otra carpeta. Situeate primero")
+        print("en la raiz del proyecto:")
+        print()
+        print("    cd E:\\0monocromatics")
+        print("    python generar_galeria.py --solo-carpeta NOMBRE --html")
         return 1
 
     # --- 1. Que carpetas hay que procesar ---------------------------------
@@ -609,13 +619,34 @@ def main():
     )
 
     if args.solo_carpeta:
-        if args.solo_carpeta not in carpetas:
-            print(f"ERROR: '{args.solo_carpeta}' no esta en {CARPETA_FOTOS}/.")
-            print("Carpetas disponibles:")
-            for nombre in carpetas:
-                print(f"  - {nombre}")
+        pedida = args.solo_carpeta
+
+        # Si han pasado una RUTA en vez de un nombre, nos quedamos con el ultimo
+        # trozo. Es un error facil de cometer y no hay motivo para no ser amable.
+        # (Pero no se admite acabar en '\\', que en Windows no distingue entre
+        # 'carpeta' y 'carpeta\', asi que hay que limpiarlo antes.)
+        ruta_limpia = os.path.normpath(pedida)
+        if os.sep in ruta_limpia or pedida != os.path.basename(pedida):
+            posible = os.path.basename(ruta_limpia)
+            if posible in carpetas:
+                print(f"NOTA: has pasado una ruta; uso el nombre '{posible}'.")
+                print(f"      La proxima vez basta con: --solo-carpeta {posible}")
+                print()
+                pedida = posible
+
+        if pedida not in carpetas:
+            print(f"ERROR: '{pedida}' no esta en {CARPETA_FOTOS}/.")
+            print(f"Ahora mismo estoy buscando en: {os.getcwd()}")
+            print()
+            if carpetas:
+                print("Carpetas disponibles (hay que copiar el nombre EXACTO):")
+                for nombre in carpetas:
+                    print(f"  - {nombre}")
+            else:
+                print(f"'{CARPETA_FOTOS}/' esta vacia: no hay ninguna carpeta dentro.")
             return 1
-        carpetas = [args.solo_carpeta]
+
+        carpetas = [pedida]
 
     if not carpetas:
         print(f"No hay ninguna carpeta dentro de {CARPETA_FOTOS}/.")
@@ -786,7 +817,6 @@ def main():
     if args.html:
         print()
         print("--- HTML ---")
-        apartados = apartados_en_disco()
         # Reparar ANTES de nada: si un apartado apunta a una fiesta que no existe
         # (o que ya no se llama asi), corregirlo primero evita que el resto de
         # comprobaciones tomen decisiones basadas en datos malos.

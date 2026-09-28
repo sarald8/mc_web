@@ -3,6 +3,30 @@ const R2_PUBLIC_URL = "https://pub-196ffc8ef6544a1a83073be29e5a331f.r2.dev";
 const fiestas = [
 
     {
+        nombre: "PEDRO LADROGA",
+        lugar: "Sala REM, Santiago",
+        carpeta: "PEDROLADROGA_rem_11_09_26",
+        fotos: [
+            "img (1).png",
+            "img (10).png",
+            "img (11).png",
+            "img (12).png",
+            "img (13).png",
+            "img (14).png",
+            "img (15).png",
+            "img (16).png",
+            "img (17).png",
+            "img (2).png",
+            "img (3).png",
+            "img (4).png",
+            "img (5).png",
+            "img (6).png",
+            "img (7).png",
+            "img (8).png",
+            "img (9).png",
+        ]
+    },
+    {
         nombre: "DSM",
         lugar: "Sala Doppler, Vigo",
         carpeta: "DOPPLER_dsm_14_05_26",
