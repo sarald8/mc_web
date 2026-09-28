@@ -7,8 +7,8 @@
 // Sale con codigo 1 si encuentra algo roto, para poder usarlo en CI.
 // ==========================================================
 
-import { readdirSync, readFileSync, statSync, existsSync } from "node:fs";
-import { join, dirname, resolve, relative } from "node:path";
+import { readdirSync, readFileSync, existsSync } from "node:fs";
+import { join, dirname, resolve, relative, isAbsolute } from "node:path";
 
 const RAIZ = process.cwd();
 
@@ -66,7 +66,12 @@ for (const archivo of archivos) {
         const sinQuery = limpio.split("#")[0].split("?")[0];
         if (!sinQuery || sinQuery.includes("${") || sinQuery.includes("+")) continue;
 
-        const destino = resolve(carpeta, sinQuery);
+        // Las rutas que empiezan por "/" son absolutas desde la raiz del sitio,
+        // no desde el archivo. Es el caso de los <link rel="canonical">, que a
+        // proposito se escriben asi para no depender del dominio.
+        const destino = sinQuery.startsWith("/")
+            ? resolve(RAIZ, sinQuery.slice(1))
+            : resolve(carpeta, sinQuery);
         comprobados++;
 
         if (existsSync(destino)) continue;
@@ -85,7 +90,6 @@ for (const archivo of archivos) {
                 join(carpeta, sinQuery + ".html")
             ];
             if (candidatos.some((c) => existsSync(c))) continue;
-
             advertidos.push({ archivo, valor: limpio });
             continue;
         }
@@ -100,7 +104,6 @@ for (const archivo of archivos) {
 }
 
 console.log(`\nComprobados ${comprobados} enlaces/recursos locales en ${archivos.length} archivos.\n`);
-
 if (advertidos.length) {
     console.log("AVISOS (rutas relativas sin extension; revisar si son intencionadas):");
     for (const { archivo, valor } of advertidos) {

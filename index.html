@@ -19,6 +19,11 @@
     <meta property="og:url" content="https://monocromatics.com/">
     <meta name="twitter:card" content="summary_large_image">
 
+    <!-- Canonical relativo: funciona ya, sin dominio, y no hay que tocarlo el día que
+         se compre uno. /index.html redirige a / con _redirects, así que el canónico
+         de la home es la raíz, no el archivo. -->
+    <link rel="canonical" href="/">
+
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/footer.css">
@@ -33,7 +38,6 @@
     <link rel="apple-touch-icon" href="https://pub-196ffc8ef6544a1a83073be29e5a331f.r2.dev/imagenes/logos/logo_morado_oscuro.jpg">
     <link rel="manifest" href="manifest.webmanifest">
     <meta name="theme-color" content="#0b0710">
-
     <!-- Datos estructurados: Google entiende "Monocromatics = organización musical en Galicia"
          y asocia las redes oficiales. Probar en: https://search.google.com/test/rich-results -->
     <script type="application/ld+json">

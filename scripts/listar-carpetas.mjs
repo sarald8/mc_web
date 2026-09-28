@@ -59,11 +59,12 @@ fiestas.forEach((fiesta, i) => {
 const siguiente = numeros.length ? Math.max(...numeros) + 1 : 1;
 
 console.log(`
-Pasos al anadir una fiesta nueva (punto 35 de estructuraweb.md):
+Pasos al anadir una fiesta nueva:
   1. Meter las fotos en fotos_para_subir/<carpeta-de-la-fiesta>/
-  2. Ejecutar:  python generar_galeria.py
-  3. Editar el nombre y el lugar de la fiesta nueva en js/galeria.js
-  4. Crear a mano el HTML:  paginas/galeria_apartado${siguiente}.html
-     (copiar uno existente y cambiar titulo, meta description y data-carpeta)
-  5. Anadir la tarjeta a mano en paginas/galeria.html y en sitemap.xml
+  2. Ejecutar:  python generar_galeria.py --solo-carpeta <carpeta-de-la-fiesta> --html
+  3. Revisar el nombre y el lugar de la fiesta en js/galeria.js y en galeria.html
+  4. Anadir la URL a sitemap.xml (lo unico que el script no genera)
+
+  El paso --html crea el galeria_apartadoN.html que falte y reescribe las
+  tarjetas de galeria.html. Los apartados que YA existen no se tocan nunca.
 `);

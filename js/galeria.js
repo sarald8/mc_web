@@ -611,14 +611,23 @@ if (!contenedor) {
 } else {
     // Si el contenedor tiene data-carpeta, solo mostramos esa fiesta.
     // Si no lo tiene, mostramos todas.
-    const carpetaSolicitada = contenedor.dataset.carpeta;
+    //
+    // OJO: a pesar del nombre del atributo, su valor puede ser la CARPETA
+    // (`DOPPLER_dsm_14_05_26`) o el NOMBRE visible (`DSM`). Se aceptan los dos
+    // a proposito: los apartados antiguos usaban el nombre y hubo un tiempo en
+    // que ambos valores no coincidian, lo que hacia que una tarjeta abriera las
+    // fotos de otra fiesta. Comparar contra los dos campos lo hace imposible.
+    const carpetaSolicitada = (contenedor.dataset.carpeta || "").trim().toLowerCase();
 
     const fiestasAMostrar = carpetaSolicitada
-        ? fiestas.filter(f => f.nombre.trim().toLowerCase() === carpetaSolicitada.trim().toLowerCase())
+        ? fiestas.filter(f =>
+            f.carpeta.trim().toLowerCase() === carpetaSolicitada ||
+            f.nombre.trim().toLowerCase() === carpetaSolicitada
+        )
         : fiestas;
 
     if (carpetaSolicitada && fiestasAMostrar.length === 0) {
-        console.warn(`No se encontró ninguna fiesta con nombre "${carpetaSolicitada}" en galeria.js`);
+        console.warn(`No se encontró ninguna fiesta con carpeta ni nombre "${carpetaSolicitada}" en galeria.js`);
     }
 
     // Lista plana de todas las fotos visibles en esta página, en el mismo orden

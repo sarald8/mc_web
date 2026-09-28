@@ -21,6 +21,12 @@
     <meta property="og:image:alt" content="Logo de Monocromatics">
     <meta property="og:url" content="https://monocromatics.com/paginas/aviso-legal.html">
     <meta name="twitter:card" content="summary_large_image">
+
+    <!-- Canonical relativo: deliberadamente sin https://dominio. Un canonical relativo
+         es válido (se resuelve contra la URL de la página) y así no hay que tocar
+         ninguna página el día que se compre el dominio. En Pages, esto hace que
+         /index.html y /paginas/x.html no compitan consigo mismos en Google. -->
+    <link rel="canonical" href="/paginas/aviso-legal.html">
     <link rel="stylesheet" href="../css/base.css">
     <link rel="stylesheet" href="../css/header.css">
     <link rel="stylesheet" href="../css/footer.css">
