@@ -11,14 +11,23 @@
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: geolocation=(), microphone=(), camera=(), payment=(), usb=(), magnetometer=(), gyroscope=(), interest-cohort=()
   X-Frame-Options: SAMEORIGIN
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://unpkg.com https://web3forms.com https://newassets.hcaptcha.com https://js.hcaptcha.com; style-src 'self' 'unsafe-inline' https://unpkg.com; img-src 'self' data: https://pub-196ffc8ef6544a1a83073be29e5a331f.r2.dev https://basemaps.cartocdn.com https://*.basemaps.cartocdn.com https://*.tile.openstreetmap.org; font-src 'self'; connect-src 'self' https://api.web3forms.com https://*.hcaptcha.com; frame-src https://newassets.hcaptcha.com https://*.hcaptcha.com; frame-ancestors 'self'; base-uri 'self'; form-action 'self' https://api.web3forms.com; object-src 'none'
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://web3forms.com https://newassets.hcaptcha.com https://js.hcaptcha.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://pub-196ffc8ef6544a1a83073be29e5a331f.r2.dev https://basemaps.cartocdn.com https://*.basemaps.cartocdn.com https://*.tile.openstreetmap.org; font-src 'self'; connect-src 'self' https://api.web3forms.com https://*.hcaptcha.com; frame-src https://newassets.hcaptcha.com https://*.hcaptcha.com; frame-ancestors 'self'; base-uri 'self'; form-action 'self' https://api.web3forms.com; object-src 'none'
 
-# CSS y JS: sin caché larga para no servir versiones viejas tras un despliegue.
+# CSS y JS: caché corta + revalidación obligatoria. Los archivos se enlazan sin
+# hash ni ?v=, así que si el navegador los guardara mucho tiempo podría mezclar
+# versiones viejas tras un despliegue. Con esto, a la hora como mucho vuelve a
+# preguntar al servidor (y Cloudflare Pages responde 304 si no cambió nada).
+# PLAN (pendiente, cuando haya dominio): renombrar a css/estilo.<hash>.css al
+# desplegar para poder subir max-age a 1 año sin riesgo.
 /css/*
   Cache-Control: public, max-age=3600, must-revalidate
 
 /js/*
   Cache-Control: public, max-age=3600, must-revalidate
+
+# Leaflet auto-hospedado: versión fija (1.9.4), se puede cachear indefinidamente.
+/vendor/*
+  Cache-Control: public, max-age=31536000, immutable
 
 # Imágenes y tipografías: pueden cachearse mucho tiempo (no cambian de nombre).
 /imagenes/*

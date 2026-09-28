@@ -52,7 +52,21 @@ document.addEventListener("DOMContentLoaded", () => {
             return response.text();
         })
         .then(html => {
-            container.innerHTML = html;
+            // <template> es inerte: su contenido NO se renderiza ni ejecuta nada
+            // al parsearse. Solo clonamos después el <section> esperado, así que
+            // aunque el archivo llegase manipulado (o se sirviera desde fuera)
+            // no se inyecta HTML arbitrario con innerHTML.
+            const template = document.createElement("template");
+            template.innerHTML = html;
+
+            const fragmento = template.content.querySelector("section.ubicaciones");
+
+            if (!fragmento) {
+                console.error("El fragmento de ubicaciones no contiene un <section class=\"ubicaciones\">.");
+                return;
+            }
+
+            container.appendChild(fragmento);
 
             if (typeof inicializarUbicaciones === "function") {
                 inicializarUbicaciones();

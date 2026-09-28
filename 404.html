@@ -19,7 +19,8 @@
     <meta property="og:image:width" content="714">
     <meta property="og:image:height" content="680">
     <meta property="og:image:alt" content="Logo de Monocromatics">
-    <meta property="og:url" content="https://monocromatics.com/404.html">
+    <!-- Sin og:url: la 404 se sirve en cualquier ruta (/loquesea), así que una URL
+         fija sería incorrecta. Además no se indexa (robots: noindex). -->
     <meta name="twitter:card" content="summary_large_image">
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/header.css">
@@ -30,13 +31,13 @@
         href="https://pub-196ffc8ef6544a1a83073be29e5a331f.r2.dev/imagenes/logos/logo_blanco.png">
     <link rel="apple-touch-icon"
         href="https://pub-196ffc8ef6544a1a83073be29e5a331f.r2.dev/imagenes/logos/logo_morado_oscuro.jpg">
-    <link rel="manifest" href="../manifest.webmanifest">
+    <link rel="manifest" href="/manifest.webmanifest">
     <meta name="theme-color" content="#0b0710">
 </head>
 
 <body>
     <header class="header-simple">
-        <a href="index.html" class="button">VOLVER</a>
+        <a href="/" class="button">VOLVER</a>
         <h1>ERROR 404</h1>
     </header>
 
@@ -55,14 +56,14 @@
                 </p>
 
                 <div class="error404-acciones">
-                    <a href="index.html" class="button">VOLVER AL INICIO</a>
-                    <a href="paginas/galeria.html" class="button button--secundario">VER GALERÍA</a>
+                    <a href="/" class="button">VOLVER AL INICIO</a>
+                    <a href="/paginas/galeria.html" class="button button--secundario">VER GALERÍA</a>
                 </div>
 
                 <nav class="error404-enlaces" aria-label="Secciones principales">
-                    <a href="index.html#fechas">Próximas fiestas</a>
-                    <a href="index.html#galeria">Galería</a>
-                    <a href="paginas/contacto.html">Contacto</a>
+                    <a href="/#fechas">Próximas fiestas</a>
+                    <a href="/#galeria">Galería</a>
+                    <a href="/paginas/contacto.html">Contacto</a>
                 </nav>
 
             </div>
@@ -72,8 +73,8 @@
 
     <footer>
         <div class="footer-logo">
-            <a href="index.html">
-                <img src="imagenes/logos/logo_morado_oscuro.jpg" alt="Monocromatics" width="65" height="65" loading="lazy" decoding="async">
+            <a href="/">
+                <img src="/imagenes/logos/logo_morado_oscuro.jpg" alt="Monocromatics" width="65" height="65" loading="lazy" decoding="async">
             </a>
         </div>
 
@@ -84,9 +85,9 @@
         </div>
 
         <div class="footer-legal">
-            <a href="paginas/aviso-legal.html">Aviso legal</a>
-            <a href="paginas/politica-privacidad.html">Política de privacidad</a>
-            <a href="paginas/aviso-cookies.html">Aviso de cookies</a>
+            <a href="/paginas/aviso-legal.html">Aviso legal</a>
+            <a href="/paginas/politica-privacidad.html">Política de privacidad</a>
+            <a href="/paginas/aviso-cookies.html">Aviso de cookies</a>
         </div>
 
         <p>GALICIA UNDER ZONE</p>

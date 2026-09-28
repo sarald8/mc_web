@@ -595,26 +595,41 @@ const fiestas = [
     },
 ];
 
+// Lista plana de todas las fotos visibles en esta página, en el mismo orden
+// en que se pintan. Es lo que usa el visor (abrirFoto) para ir a la
+// anterior/siguiente, incluso saltando de una fiesta a la siguiente.
+// Se declara ANTES del bloque de pintado porque éste la rellena.
+let fotosVisibles = [];
+
 const contenedor = document.getElementById("fiestas-galeria");
 
-// Si el contenedor tiene data-carpeta, solo mostramos esa fiesta.
-// Si no lo tiene, mostramos todas.
-const carpetaSolicitada = contenedor?.dataset.carpeta;
+// Guard: este script también puede cargarse en páginas sin la galería.
+// Sin el contenedor no hay nada que pintar, así que salimos sin romper
+// el resto de scripts (proxima_fiesta.js, artistas.js, etc.).
+if (!contenedor) {
+    console.warn("galeria.js: no existe #fiestas-galeria en esta página; no se pinta la galería.");
+} else {
+    // Si el contenedor tiene data-carpeta, solo mostramos esa fiesta.
+    // Si no lo tiene, mostramos todas.
+    const carpetaSolicitada = contenedor.dataset.carpeta;
 
-const fiestasAMostrar = carpetaSolicitada
-    ? fiestas.filter(f => f.nombre.trim().toLowerCase() === carpetaSolicitada.trim().toLowerCase())
-    : fiestas;
+    const fiestasAMostrar = carpetaSolicitada
+        ? fiestas.filter(f => f.nombre.trim().toLowerCase() === carpetaSolicitada.trim().toLowerCase())
+        : fiestas;
 
-if (carpetaSolicitada && fiestasAMostrar.length === 0) {
-    console.warn(`No se encontró ninguna fiesta con nombre "${carpetaSolicitada}" en galeria.js`);
-}
+    if (carpetaSolicitada && fiestasAMostrar.length === 0) {
+        console.warn(`No se encontró ninguna fiesta con nombre "${carpetaSolicitada}" en galeria.js`);
+    }
 
-// Lista plana de todas las fotos visibles en esta página, en el mismo orden
-// en que se pintan. Es lo que usa el visor para ir a la anterior/siguiente,
-// incluso saltando de una fiesta a la siguiente.
-const fotosVisibles = [];
+    // Lista plana de todas las fotos visibles en esta página, en el mismo orden
+    // en que se pintan. Es lo que usa el visor para ir a la anterior/siguiente,
+    // incluso saltando de una fiesta a la siguiente.
+    fotosVisibles = fiestasAMostrar.flatMap(fiesta =>
+        fiesta.fotos.map(foto => `${R2_PUBLIC_URL}/imagenes/fiestas/${fiesta.carpeta}/${foto}`)
+    );
 
-if (contenedor) {
+    let indiceRelativo = 0;
+
     fiestasAMostrar.forEach(fiesta => {
         const seccion = document.createElement("section");
         seccion.className = "galeria-fiesta";
@@ -628,7 +643,7 @@ if (contenedor) {
         const grid = document.createElement("div");
         grid.className = "gallery-grid";
 
-        fiesta.fotos.forEach(foto => {
+        fiesta.fotos.forEach((foto, indice) => {
             const img = document.createElement("img");
 
             img.src = `${R2_PUBLIC_URL}/imagenes/fiestas/${fiesta.carpeta}/${foto}`;
@@ -636,13 +651,12 @@ if (contenedor) {
             img.loading = "lazy";
             img.decoding = "async";
 
-            const indice = fotosVisibles.length;
-            fotosVisibles.push(img.src);
-
-            img.addEventListener("click", () => abrirFoto(indice));
+            img.addEventListener("click", () => abrirFoto(indiceRelativo + indice));
 
             grid.appendChild(img);
         });
+
+        indiceRelativo += fiesta.fotos.length;
 
         seccion.appendChild(titulo);
         seccion.appendChild(lugar);

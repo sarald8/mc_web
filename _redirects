@@ -1,0 +1,31 @@
+# ==========================================================
+# REDIRECCIONES (Cloudflare Pages)
+# El archivo debe llamarse EXACTAMENTE _redirects y estar en la raíz
+# del sitio publicado. Sintaxis:  origen  destino  [código]
+# Docs: https://developers.cloudflare.com/pages/configuration/redirects/
+# ==========================================================
+
+# --- Alias cortos para URLs que la gente escribe a mano -------------
+# (el destino real de cada uno ya existe; estas evitan el 404)
+/home                /                301
+/index.html          /                301
+/contacto            /paginas/contacto.html      301
+/galeria             /paginas/galeria.html       301
+/fotos               /paginas/galeria.html       301
+
+# --- Páginas legales sin extensión ----------------------------------
+/aviso-legal         /paginas/aviso-legal.html         301
+/privacidad          /paginas/politica-privacidad.html 301
+/politica-privacidad /paginas/politica-privacidad.html 301
+/cookies             /paginas/aviso-cookies.html       301
+
+# --- Atajos de secciones del index (anclas) -------------------------
+/fechas              /#fechas     301
+/artistas            /#artistas   301
+/ubicaciones         /#ubicaciones 301
+
+# --- PENDIENTE: cuando exista dominio propio ------------------------
+# Si algún día se compra un dominio (p. ej. monocromatics.com) y se
+# cambian rutas, añadir aquí las 301 desde las URLs antiguas para no
+# perder posicionamiento. Ejemplo:
+#   /paginas/galeria_apartado1.html  /paginas/galeria.html 301
