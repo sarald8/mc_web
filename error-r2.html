@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contenido no disponible · Monocromatics</title>
+    <meta name="robots" content="noindex, nofollow">
+    <!-- Pagina de error del bucket R2 (no es parte del sitio de Cloudflare Pages).
+         Se sube a R2 una sola vez y se configura como "Error page" en el bucket:
+             npx wrangler r2 object put monocromatics-fotos/403.html --file=error-r2.html --remote
+         En Cloudflare Pages, un 404 devuelve el archivo pedido; en R2, el bucket
+         responde con su pagina de error. Sin configurarla sale una respuesta XML
+         fea de XML; con ella, algo que se entiende. -->
+    <style>
+        :root {
+            color-scheme: dark;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            background:
+                radial-gradient(circle at 50% 0%, #2a1140 0%, transparent 65%),
+                #0b0710;
+            color: #f2eaf7;
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+            text-align: center;
+        }
+
+        main {
+            max-width: 32rem;
+        }
+
+        .eyebrow {
+            font-size: 0.75rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: #b98ee0;
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: clamp(1.6rem, 6vw, 2.6rem);
+            line-height: 1.15;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            color: #cbbcd8;
+            line-height: 1.6;
+        }
+
+        a.button {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.85rem 1.6rem;
+            border: 1px solid #b98ee0;
+            border-radius: 999px;
+            color: #f2eaf7;
+            text-decoration: none;
+            font-size: 0.85rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            transition: background-color 0.2s ease;
+        }
+
+        a.button:hover {
+            background-color: #b98ee0;
+            color: #0b0710;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <p class="eyebrow">Error 404 · Monocromatics</p>
+        <h1>Esta imagen no está aquí</h1>
+        <p>
+            El enlace apunta a un archivo que ya no existe en el servidor de fotos.
+            Puede que la fiesta se renombrara al volver a subir las fotos.
+        </p>
+        <a class="button" href="/">Volver a la web</a>
+    </main>
+</body>
+
+</html>

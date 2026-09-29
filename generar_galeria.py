@@ -34,9 +34,27 @@ CARPETA_FOTOS = "fotos_para_subir"
 ARCHIVO_JS = "js/galeria.js"
 CARPETA_PAGINAS = "paginas"
 ARCHIVO_GALERIA_HTML = os.path.join(CARPETA_PAGINAS, "galeria.html")
+ARCHIVO_SITEMAP = "sitemap.xml"
 BUCKET_R2 = "monocromatics-fotos"
 RUTA_R2 = "imagenes/fiestas"
 EXTENSIONES = (".jpg", ".jpeg", ".png", ".webp")
+
+# Nombres que el sistema operativo y el editor dejan sueltos y que NO deben
+# acabar en R2. Se ven en el explorador de Windows (sobre todo Thumbs.db, que
+# se genera solo al abrir la carpeta) y no son fotos de ninguna fiesta.
+ARCHIVOS_IGNORADOS = {"thumbs.db", "desktop.ini", ".ds_store"}
+
+
+def es_foto(ruta_completa):
+    '''True si el archivo es una foto que queremos subir.
+
+    Ademas de la extension, descarta basura de sistema que si no se subiria a R2
+    y quedaria ahi para siempre (el script no borra objetos de R2).
+    '''
+    if not ruta_completa.lower().endswith(EXTENSIONES):
+        return False
+    return os.path.basename(ruta_completa).lower() not in ARCHIVOS_IGNORADOS
+
 
 # URL publica del bucket R2 (dashboard -> R2 -> monocromatics-fotos -> Public access)
 R2_PUBLIC_URL = "https://pub-196ffc8ef6544a1a83073be29e5a331f.r2.dev"
@@ -220,6 +238,7 @@ PLANTILLA_APARTADO = '''<!DOCTYPE html>
 
     <!-- Canonical relativo (ver comentario en /paginas/aviso-legal.html) -->
     <link rel="canonical" href="/paginas/galeria_apartado{n}.html">
+    <link rel="preconnect" href="{r2}" crossorigin>
     <link rel="stylesheet" href="../css/base.css">
     <link rel="stylesheet" href="../css/header.css">
     <link rel="stylesheet" href="../css/footer.css">
@@ -573,6 +592,94 @@ def actualizar_tarjetas_galeria(fiestas_ordenadas, asignados, carpetas_nuevas):
     return True
 
 
+def actualizar_sitemap(fiestas_ordenadas, asignados):
+    '''Apunta el sitemap a los apartados que existen de verdad.
+
+    Un sitemap puede apuntar a TODAS las URLs del sitio. Si una entra y devuelve
+    404, Search Console la marca como error en lugar de ignorarla, asi que aqui
+    sobra: al anadir o quitar fiestas, este bloque de URLs se recalcula solo.
+
+    Respeta el dominio que ya hubiera escrito (`https://.../paginas/x.html`) y
+    solo cambia la parte final; el dia que se compre el dominio, un buscar y
+    reemplazar en sitemap.xml y listo. No toca las URLs que no son de apartados
+    (home, contacto, legales...).
+
+    Devuelve la lista de apartados que estan en el sitemap y ya no existen.
+    '''
+    if not os.path.isfile(ARCHIVO_SITEMAP):
+        print(f"  AVISO: no existe {ARCHIVO_SITEMAP}, no lo toco.")
+        return []
+
+    with open(ARCHIVO_SITEMAP, "r", encoding="utf-8") as archivo:
+        contenido = archivo.read()
+
+    # Los que el sitemap menciona y no corresponden a ninguna fiesta actual.
+    presentes = {int(m) for m in re.findall(r"galeria_apartado(\d+)\.html", contenido)}
+    validos = {asignados[fiesta["carpeta"]] for fiesta in fiestas_ordenadas}
+    huerfanos = sorted(presentes - validos)
+
+    # El dominio se lee de una URL de apartado ya escrita, para no tenerlo
+    # duplicado en dos sitios del proyecto. Sin dominio no podemos reconstruir
+    # las URLs, asi que se avisa y no se toca nada.
+    previa = re.search(r"<loc>(https?://[^<]*?)galeria_apartado\d+\.html</loc>", contenido)
+    if previa:
+        # Se corta en "/paginas" para quedarnos solo con el dominio: la carpeta
+        # forma parte de la ruta que escribimos despues.
+        dominio = re.sub(r"/[^/]*$", "", previa.group(1).rstrip("/"))
+    else:
+        otra = re.search(r"<loc>(https?://[^<]+)</loc>", contenido)
+        dominio = otra.group(1).rstrip("/") if otra else ""
+
+    if not dominio:
+        print(f"  AVISO: no encuentro ninguna URL en {ARCHIVO_SITEMAP}, no lo toco.")
+        return huerfanos
+
+    bloques = []
+    for fiesta in fiestas_ordenadas:
+        numero = asignados[fiesta["carpeta"]]
+        bloques.append(
+            "  <url>\n"
+            f"    <loc>{dominio}/paginas/galeria_apartado{numero}.html</loc>\n"
+            "    <changefreq>yearly</changefreq>\n"
+            "    <priority>0.5</priority>\n"
+            "  </url>"
+        )
+    bloque_nuevo = "\n".join(bloques)
+
+    # Cada <url> ocupa varias lineas, asi que hay que aceptar saltos de linea
+    # DENTRO del bloque: de ahi el non-greedy con DOTALL. El (\s*) de delante se
+    # come la linea en blanco o la indentacion que quede tras la eliminacion.
+    patron = re.compile(
+        r"\s*<url>\s*<loc>[^<]*?galeria_apartado\d+\.html</loc>.*?</url>",
+        re.DOTALL,
+    )
+
+    if patron.search(contenido):
+        contenido_nuevo = patron.sub(lambda _: "", contenido).replace(
+            "\n</urlset>", "\n" + bloque_nuevo + "\n</urlset>", 1
+        )
+    else:
+        # No hay ni un apartado en el sitemap: se anaden todos antes de </urlset>.
+        contenido_nuevo = contenido.replace(
+            "</urlset>", bloque_nuevo + "\n</urlset>", 1
+        )
+
+    if contenido_nuevo == contenido:
+        print(
+            f"  {ARCHIVO_SITEMAP} ya estaba correcto ({len(validos)} apartados), no lo toco."
+        )
+        return huerfanos
+
+    with open(ARCHIVO_SITEMAP, "w", encoding="utf-8") as archivo:
+        archivo.write(contenido_nuevo)
+
+    print(
+        f"  {ARCHIVO_SITEMAP}: {len(validos)} apartados enlazados "
+        f"(dominio {dominio})."
+    )
+    return huerfanos
+
+
 # ==========================================================
 # PROGRAMA PRINCIPAL
 # ==========================================================
@@ -664,7 +771,7 @@ def main():
 
         fotos = sorted(
             archivo for archivo in os.listdir(ruta)
-            if archivo.lower().endswith(EXTENSIONES)
+            if es_foto(os.path.join(ruta, archivo))
         )
 
         if not fotos:
@@ -748,6 +855,25 @@ def main():
         if previa["carpeta"] not in carpetas_procesadas:
             fiestas_actualizadas.append(previa)
 
+    # AVISO IMPORTANTE cuando se usa --solo-carpeta. Las fiestas que no se estan
+    # procesando se conservan leyendolas de `galeria.js`, y `galeria.js` solo las
+    # tiene si en su dia se ejecuto el script SIN --solo-carpeta. Si alguien anadio
+    # una fiesta (o un apartado) a mano y luego ejecuta el script con --solo-carpeta,
+    # su tarjeta puede desaparecer de galeria.html. Se avisa antes de tocar nada.
+    if args.solo_carpeta:
+        huerfanos = [
+            previa for previa in existentes
+            if previa["carpeta"] not in carpetas_procesadas
+            and previa["nombre"] not in {f["nombre"] for f in fiestas_actualizadas}
+        ]
+        if huerfanos:
+            print("AVISO: con --solo-carpeta, estas fiestas de galeria.js no se estan")
+            print("       procesando y por tanto NO se reescriben sus tarjetas:")
+            for fiesta in huerfanos:
+                print(f"         - {fiesta['nombre']} ({fiesta['carpeta']})")
+            print("       Si desaparece alguna tarjeta, ejecuta SIN --solo-carpeta.")
+            print()
+
     # --- 4b. Orden: lo dicta paginas/galeria.html -------------------------
     # Sin esto, ejecutar con --solo-carpeta reordenaria el array y las tarjetas
     # de la web saltarian de sitio (lo detectamos probandolo). El orden se lee
@@ -823,6 +949,13 @@ def main():
         reparar_apartados(fiestas_merge, asignados)
         generar_apartados_html(fiestas_merge, asignados, carpetas_nuevas)
         actualizar_tarjetas_galeria(fiestas_merge, asignados, carpetas_nuevas)
+        huerfanos = actualizar_sitemap(fiestas_merge, asignados)
+        for numero in huerfanos:
+            print(
+                f"  OJO: el sitemap apuntaba a paginas/galeria_apartado{numero}.html,\n"
+                f"       que ya no corresponde a ninguna fiesta. Quitala de la web si\n"
+                f"       sigue existiendo (este script no borra archivos)."
+            )
 
     # --- 7. Resumen --------------------------------------------------------
     print()

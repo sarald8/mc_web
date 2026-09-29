@@ -5,3 +5,10 @@ estructuraweb.md
 generar_galeria.py
 .gitignore
 .assetsignore
+
+# Pagina de error del bucket R2 (se sube a R2 con wrangler; no es una pagina
+# del sitio de Pages, asi que no debe publicarse aqui).
+error-r2.html
+
+# Scripts locales de QA (browser-automation), no son parte del sitio
+qa-*.mjs

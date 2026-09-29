@@ -24,6 +24,11 @@
          de la home es la raíz, no el archivo. -->
     <link rel="canonical" href="/">
 
+    <!-- El navegador abre la conexion al bucket de fotos (R2) mientras todavia
+         esta leyendo el HTML, en vez de esperar a que el JS pida la primera
+         imagen. Ahorra el saludo TLS en cada visita. -->
+    <link rel="preconnect" href="https://pub-196ffc8ef6544a1a83073be29e5a331f.r2.dev" crossorigin>
+
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/footer.css">

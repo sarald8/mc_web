@@ -1,7 +1,7 @@
 # ==========================================================
 # REDIRECCIONES (Cloudflare Pages)
-# El archivo debe llamarse EXACTAMENTE _redirects y estar en la raíz
-# del sitio publicado. Sintaxis:  origen  destino  [código]
+# El archivo debe llamarse EXACTAMENTE _redirects y estar en la raiz
+# del sitio publicado. Sintaxis:  origen  destino  [codigo]
 # Docs: https://developers.cloudflare.com/pages/configuration/redirects/
 # ==========================================================
 
@@ -13,7 +13,7 @@
 /galeria             /paginas/galeria.html       301
 /fotos               /paginas/galeria.html       301
 
-# --- Páginas legales sin extensión ----------------------------------
+# --- Paginas legales sin extension ----------------------------------
 /aviso-legal         /paginas/aviso-legal.html         301
 /privacidad          /paginas/politica-privacidad.html 301
 /politica-privacidad /paginas/politica-privacidad.html 301
@@ -24,8 +24,22 @@
 /artistas            /#artistas   301
 /ubicaciones         /#ubicaciones 301
 
+# --- Alias cortos de cada fiesta ------------------------------------
+# Existen para poder publicar en redes un enlace corto y ESTABLE
+# (p. ej. /fiestas/pedro-ladroga) sin depender del numero de
+# galeria_apartadoN.html, que cambia cuando el script reordena las tarjetas.
+# Si algun dia una fiesta se renumera, su alias sigue funcionando.
+/fiestas/pedro-ladroga   /paginas/galeria_apartado8.html  301
+/fiestas/dsm             /paginas/galeria_apartado1.html  301
+/fiestas/main-costa      /paginas/galeria_apartado2.html  301
+/fiestas/yung-brandy     /paginas/galeria_apartado3.html  301
+/fiestas/onlylocals      /paginas/galeria_apartado4.html  301
+/fiestas/superreservao   /paginas/galeria_apartado5.html  301
+/fiestas/vanitas         /paginas/galeria_apartado6.html  301
+/fiestas/variadas        /paginas/galeria_apartado7.html  301
+
 # --- PENDIENTE: cuando exista dominio propio ------------------------
-# Si algún día se compra un dominio (p. ej. monocromatics.com) y se
-# cambian rutas, añadir aquí las 301 desde las URLs antiguas para no
+# Si algun dia se compra un dominio (p. ej. monocromatics.com) y se
+# cambian rutas, anadir aqui las 301 desde las URLs antiguas para no
 # perder posicionamiento. Ejemplo:
 #   /paginas/galeria_apartado1.html  /paginas/galeria.html 301

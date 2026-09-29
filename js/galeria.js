@@ -715,6 +715,12 @@ if (!contenedor) {
             img.loading = "lazy";
             img.decoding = "async";
 
+            // Si una foto se borro de R2 alguna vez, deja de existir para siempre
+            // en esa ruta. Sin esto quedaba un hueco con el icono de imagen rota.
+            img.addEventListener("error", () => {
+                img.remove();
+            });
+
             img.addEventListener("click", () => abrirFoto(base + indice));
 
             grid.appendChild(img);

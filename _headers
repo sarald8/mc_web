@@ -11,7 +11,7 @@
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: geolocation=(), microphone=(), camera=(), payment=(), usb=(), magnetometer=(), gyroscope=(), interest-cohort=()
   X-Frame-Options: SAMEORIGIN
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://web3forms.com https://newassets.hcaptcha.com https://js.hcaptcha.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://pub-196ffc8ef6544a1a83073be29e5a331f.r2.dev https://basemaps.cartocdn.com https://*.basemaps.cartocdn.com https://*.tile.openstreetmap.org; font-src 'self'; connect-src 'self' https://api.web3forms.com https://*.hcaptcha.com; frame-src https://newassets.hcaptcha.com https://*.hcaptcha.com; frame-ancestors 'self'; base-uri 'self'; form-action 'self' https://api.web3forms.com; object-src 'none'
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://web3forms.com https://newassets.hcaptcha.com https://js.hcaptcha.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://pub-196ffc8ef6544a1a83073be29e5a331f.r2.dev https://*.tile.openstreetmap.org https://tile.openstreetmap.org; font-src 'self'; connect-src 'self' https://api.web3forms.com https://*.hcaptcha.com; frame-src https://newassets.hcaptcha.com https://*.hcaptcha.com; frame-ancestors 'self'; base-uri 'self'; form-action 'self' https://api.web3forms.com; object-src 'none'
 
 # CSS y JS: caché corta + revalidación obligatoria. Los archivos se enlazan sin
 # hash ni ?v=, así que si el navegador los guardara mucho tiempo podría mezclar
