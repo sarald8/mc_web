@@ -23,8 +23,12 @@ if (rookiesContainer) {
         const tarjeta = document.createElement("article");
         tarjeta.className = "artist-card";
 
-        const imageWrap = document.createElement("div");
+        const imageWrap = document.createElement("a");
         imageWrap.className = "artist-image";
+        imageWrap.href = `https://open.spotify.com/search/${encodeURIComponent(rookie.nombre)}`;
+        imageWrap.target = "_blank";
+        imageWrap.rel = "noopener noreferrer";
+        imageWrap.setAttribute("aria-label", `${rookie.nombre} en Spotify`);
 
         const img = document.createElement("img");
         img.src = rookie.imagen;

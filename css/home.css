@@ -443,9 +443,12 @@
 }
 
 .artist-image {
+    display: block;
     width: 100%;
     height: 360px;
     overflow: hidden;
+    line-height: 0;
+    text-decoration: none;
 }
 
 .artist-image img {
@@ -462,6 +465,10 @@
 
 .artist-card-content {
     padding: 22px;
+}
+
+.artist-card-content a {
+    text-decoration: none;
 }
 
 .artist-card-content h3 {
