@@ -141,9 +141,9 @@ function inicializarUbicaciones() {
     }).setView([42.9, -8.55], 8);
 
     L.tileLayer(
-        "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+        "https://basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png?key=cb1_3m00_1_1b3962c3a82510e00ca19739",
         {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
             maxZoom: 19
         }
     ).addTo(mapaMonocromatics);

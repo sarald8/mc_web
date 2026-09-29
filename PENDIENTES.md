@@ -21,23 +21,20 @@ Pasos, por orden:
    dominio final, así que este paso espera a tener dominio propio. Mientras tanto,
    la rotación sigue siendo lo más útil que se puede hacer hoy.
 3. Sustituir el valor en `paginas/contacto.html`:
-
-   ```html
    <input type="hidden" name="access_key" value="LA_CLAVE_NUEVA">
-   ```
 
 4. Opcional (más adelante): mover el envío a una Cloudflare Function que guarde la
    clave en una variable de entorno, para que no vuelva a estar en el HTML.
 
-## 2. CARTO (mapa de salas) — RESUELTO, no requiere acción
+## 2. CARTO (mapa de salas) — PENDIENTE, depende del dominio
 
-La clave de CARTO que estaba en `js/ubicaciones.js` **ya no se usa**: el mapa pasa
-por las teselas públicas de OpenStreetMap (`tile.openstreetmap.org`), que no
-necesitan clave. Por tanto:
+El mapa de `js/ubicaciones.js` usa las teselas de CARTO con una clave visible en
+el JS (`cb1_3m00_1_1b3962c3a82510e00ca19739`). Riesgo menor (es una clave de
+basemap público), pero conviene restringirla a vuestro dominio desde el panel de
+CARTO en cuanto exista ese dominio. No hay nada que rotar hoy.
 
-- No hay nada que rotar en el panel de CARTO.
-- Si algún día quieres volver a CARTO o usar MapTiler por rendimiento, la clave
-  nueva debe restringirse por dominio desde el primer día.
+Se probó a sustituirla por las teselas públicas de OpenStreetMap, que no piden
+clave, pero el mapa dejó de verse, así que se revirtió a CARTO.
 
 ## 3. Cloudflare R2 (fotos) — PENDIENTE, depende del dominio
 
@@ -45,19 +42,12 @@ El bucket `monocromatics-fotos` se sirve hoy por su URL de desarrollo
 (`pub-*.r2.dev`), que Cloudflare puede limitar o cerrar. Cuando exista dominio:
 
 1. Conectarlo al bucket:
-
-   ```
    npx wrangler r2 bucket domain add monocromatics-fotos --domain media.TUDOMINIO
-   ```
 
    Comprobado que hoy no hay ningún dominio conectado:
-
-   ```
    npx wrangler r2 bucket domain list monocromatics-fotos
-   ```
 
 2. Cambiar la URL en **un solo sitio** y regenerar el resto:
-
    - `generar_galeria.py`, constante `R2_PUBLIC_URL` (línea ~42): al reescribir
      `js/galeria.js` y los apartados nuevos, propaga el valor.
    - Buscar y reemplazar en los HTML: `og:image`, `favicon`,
@@ -69,10 +59,7 @@ El bucket `monocromatics-fotos` se sirve hoy por su URL de desarrollo
 
 3. La página de error del bucket (si no, R2 devuelve XML). Ya está subida como
    `403.html`; para volver a subirla tras un cambio:
-
-   ```
    npx wrangler r2 object put monocromatics-fotos/403.html --file=error-r2.html --remote --content-type="text/html; charset=utf-8"
-   ```
 
 ## 4. Buscadores — PENDIENTE, depende del dominio
 
