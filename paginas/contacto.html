@@ -73,7 +73,12 @@
 
                 <div class="contacto-formulario" id="formulario-contacto">
 
-                    <form id="form-contacto" action="https://api.web3forms.com/submit" method="POST">
+                    <!-- action/method se dejan para que el POST tenga un destino valido, pero
+                         onsubmit="return false" corta el envio nativo del navegador: el envio
+                         real lo hace el fetch del script de abajo (con captcha de por medio).
+                         Sin esto, con el JS caido o desactivado (o un bot que no lo ejecute)
+                         el formulario se enviaba de verdad y el captcha se saltaba solo. -->
+                    <form id="form-contacto" action="https://api.web3forms.com/submit" method="POST" onsubmit="return false">
                         <input type="hidden" name="access_key" value="fd1cee53-7603-45a6-bdf7-6fe80c56e205">
                         <input type="hidden" name="subject" value="Nuevo mensaje de contacto - Monocromatics">
                         <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
@@ -164,6 +169,8 @@
         });
 
         form.addEventListener('submit', async (e) => {
+            // El POST nativo ya lo corta el onsubmit="return false" del <form>;
+            // esto es la segunda red de seguridad por si ese atributo se quita.
             e.preventDefault();
 
             // Solo bloqueamos por captcha si este se ha cargado realmente.

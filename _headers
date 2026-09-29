@@ -4,6 +4,13 @@
 # del sitio publicado. Cloudflare Pages lo aplica a todas las
 # respuestas que no vengan de la caché.
 # Docs: https://developers.cloudflare.com/pages/configuration/headers/
+#
+# OJO: estas reglas SOLO cubren lo que sirve Pages. Las fotos viven en el
+# bucket de R2 (pub-*.r2.dev) y se sirven sin estas cabeceras: alli no hay
+# CSP, X-Frame-Options ni nosniff. No es explotable con imagenes, pero es
+# un origen con el que no se puede contar para cabeceras de seguridad.
+# Si algun dia importa, se pueden definir cabeceras propias en el bucket
+# (Cloudflare R2 -> Settings -> Headers) o servirlo tras el dominio propio.
 # ==========================================================
 
 /*
@@ -43,5 +50,10 @@
 /manifest.webmanifest
   Content-Type: application/manifest+json
 
-/robots.txt
+# Texto plano y XML de la raiz (robots.txt, sitemap.xml...): contenido que casi
+# nunca cambia pero conviene que no quede colgado en cache indefinidamente.
+/*.txt
+  Cache-Control: public, max-age=3600
+
+/*.xml
   Cache-Control: public, max-age=3600

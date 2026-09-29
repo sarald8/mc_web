@@ -5,7 +5,9 @@
 .galeria-apartados {
     position: relative;
     min-height: 70vh;
-    /* Hueco para el header fijo (no está en el flujo) */
+    /* Aire superior: el header de estas páginas es .header-simple, que SÍ está
+       en el flujo (position: static, ver header.css). El padding no reserva
+       hueco para nada fijo, solo separa el contenido del header. */
     padding: calc(var(--header-height) + 40px) 8% 130px;
     background:
         radial-gradient(circle at 85% 15%, rgba(155, 77, 202, 0.22), transparent 30%),
@@ -183,7 +185,8 @@
 
 .galeria-fiesta {
     position: relative;
-    /* Hueco para el header fijo (no está en el flujo) */
+    /* Aire superior (ver .galeria-apartados): el header de esta página no es
+       fijo, .header-simple está en el flujo. */
     padding: calc(var(--header-height) + 45px) 8% 125px;
     background:
         radial-gradient(circle at 90% 10%, rgba(155, 77, 202, 0.22), transparent 28%),
@@ -468,7 +471,9 @@ body.visor-abierto {
     color: #0b0710;
     transform: translateX(-50%) translateY(-3px);
     box-shadow: 0 10px 30px rgba(201, 140, 255, 0.3);
-}/* Indica que fiesta es la mas reciente (la primera tarjeta).
+}
+
+/* Indica que fiesta es la mas reciente (la primera tarjeta).
    Se marca con data-activo="true" en paginas/galeria.html.
    Al anadir una fiesta nueva, mover ese atributo a la primera tarjeta. */
 .galeria-card[data-activo="true"] {

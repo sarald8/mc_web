@@ -55,8 +55,9 @@
         left: 0;
         width: 100%;
         padding: 20px 6% 25px;
-        /* En escritorio está oculto (header.css): aquí se vuelve a mostrar
-           y el desplegado se controla con la clase .active. */
+        /* En escritorio está visible como navegación del header (header.css):
+           aquí se convierte en panel oculto y el desplegado se controla con
+           la clase .active. */
         display: flex;
         flex-direction: column;
         gap: 0;

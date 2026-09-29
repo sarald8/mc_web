@@ -1,4 +1,9 @@
 User-agent: *
 Allow: /
 
+# La pagina de confirmacion del formulario ya lleva <meta name="robots" content="noindex">
+# (paginas/gracias.html). El Disallow es la via fiable: el meta solo lo lee quien
+# carga la pagina, esto corta el rastreo antes.
+Disallow: /paginas/gracias.html
+
 Sitemap: https://monocromatics.com/sitemap.xml

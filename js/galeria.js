@@ -619,10 +619,8 @@ const fiestas = [
     },
 ];
 
-// Lista plana de todas las fotos visibles en esta página, en el mismo orden
-// en que se pintan. Es lo que usa el visor (abrirFoto) para ir a la
-// anterior/siguiente, incluso saltando de una fiesta a la siguiente.
-// Se declara ANTES del bloque de pintado porque éste la rellena.
+// Se declara ANTES del bloque de pintado porque éste la rellena (los detalles
+// del porqué y de cómo se usa están en el mismo comentario más abajo).
 let fotosVisibles = [];
 
 const contenedor = document.getElementById("fiestas-galeria");

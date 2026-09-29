@@ -50,6 +50,8 @@ if (artistasContainer) {
         const img = document.createElement("img");
         img.src = artista.imagen;
         img.alt = `${artista.nombre} - Monocromatics`;
+        img.loading = "lazy";
+        img.decoding = "async";
 
         imageWrap.appendChild(img);
 

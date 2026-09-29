@@ -170,6 +170,10 @@ nav a:hover {
    MENÚ MÓVIL
 ========================================================== */
 
+/* Estas MISMAS etiquetas son la navegación de la versión ordenador: en el header
+   de la home se ven siempre. En móvil responsive.css las convierte en panel
+   desplegable (con .active lo abre el botón hamburguesa).
+   OJO: por eso NO se puede poner aquí display:none. */
 .mobile-nav {
     display: flex;
 }

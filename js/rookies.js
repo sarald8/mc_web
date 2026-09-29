@@ -33,6 +33,8 @@ if (rookiesContainer) {
         const img = document.createElement("img");
         img.src = rookie.imagen;
         img.alt = `${rookie.nombre} - Monocromatics`;
+        img.loading = "lazy";
+        img.decoding = "async";
 
         imageWrap.appendChild(img);
 

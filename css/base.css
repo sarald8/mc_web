@@ -105,28 +105,16 @@ textarea {
     font-weight: 400;
 }
 
-/* ==========================================================
-   SEPARADORES NEÓN
-========================================================== */
+/* La línea separadora neón de las secciones vive SOLO en css/home.css
+   (.proxima-fiesta::before, .dates::before...). Antes estaba duplicada aquí:
+   como la home carga base.css + home.css, se aplicaba dos veces la misma regla.
+   .ubicaciones no está en home.css porque esta sección no es de la home
+   (la inyecta main.js), así que mantiene aquí su separador. */
 
-.proxima-fiesta,
-.dates,
-.about,
-.residents,
-.past-artists,
-.rookies,
-.gallery,
 .ubicaciones {
     position: relative;
 }
 
-.proxima-fiesta::before,
-.dates::before,
-.about::before,
-.residents::before,
-.past-artists::before,
-.rookies::before,
-.gallery::before,
 .ubicaciones::before {
     content: "";
     position: absolute;

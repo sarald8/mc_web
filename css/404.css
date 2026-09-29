@@ -3,7 +3,8 @@
 ========================================================== */
 
 /* Reset mínimo propio: esta página debe verse bien aunque base.css tarde
-   en aplicarse (su @import de Google Fonts bloquea el parseo) o falle. */
+   en aplicarse o falle. (Antes se decía que era por un @import de Google
+   Fonts; eso ya no existe: las fuentes son auto-hospedadas, ver base.css.) */
 .error404,
 .error404 * {
     margin: 0;
