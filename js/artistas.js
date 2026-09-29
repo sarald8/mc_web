@@ -40,8 +40,12 @@ if (artistasContainer) {
         const tarjeta = document.createElement("article");
         tarjeta.className = "artist-card";
 
-        const imageWrap = document.createElement("div");
+        const imageWrap = document.createElement("a");
         imageWrap.className = "artist-image";
+        imageWrap.href = `https://open.spotify.com/search/${encodeURIComponent(artista.nombre)}`;
+        imageWrap.target = "_blank";
+        imageWrap.rel = "noopener noreferrer";
+        imageWrap.setAttribute("aria-label", `${artista.nombre} en Spotify`);
 
         const img = document.createElement("img");
         img.src = artista.imagen;
