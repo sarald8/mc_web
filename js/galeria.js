@@ -627,6 +627,33 @@ let fotosVisibles = [];
 
 const contenedor = document.getElementById("fiestas-galeria");
 
+/* ==========================================================
+   AYUDANTES
+========================================================== */
+
+// Devuelve el archivo (no la URL) de una foto: "img (1).png".
+// El index.html de R2 sirve el objeto con su Content-Disposition original, así que
+// al abrirlo en una pestaña el móvil guarda un nombre que no es el de la foto o
+// directamente lo muestra en vez de descargarlo. Con `download` sí se respeta.
+function nombreArchivo(src) {
+    try {
+        return decodeURIComponent(src.split("/").pop()) || "foto-monocromatics.jpg";
+    } catch (err) {
+        return "foto-monocromatics.jpg";
+    }
+}
+
+// ¿La URL sirve para descargar por fetch (blob)? Solo si es del mismo origen que
+// R2_PUBLIC_URL. Así este archivo se puede reutilizar con otras rutas sin intentar
+// descargar como blob una imagen local (donde `download` ya funciona igual).
+function esUrlDescargable(src) {
+    try {
+        return new URL(src, window.location.href).origin === new URL(R2_PUBLIC_URL, window.location.href).origin;
+    } catch (err) {
+        return false;
+    }
+}
+
 // Guard: este script también puede cargarse en páginas sin la galería.
 // Sin el contenedor no hay nada que pintar, así que salimos sin romper
 // el resto de scripts (proxima_fiesta.js, artistas.js, etc.).
@@ -751,30 +778,77 @@ function abrirFoto(indice) {
     imagen.alt = "Foto Monocromatics";
 
     const descargar = document.createElement("a");
-    descargar.download = "";
     descargar.className = "descargar-foto";
     descargar.textContent = "DESCARGAR";
-    descargar.target = "_blank";
     descargar.rel = "noopener";
 
-    // `download` se ignora en enlaces a otro dominio (R2), así que intentamos bajar
-    // el archivo como blob; si R2 no permite CORS, se abre la foto en pestaña nueva.
+    // En R2 el enlace directo NO sirve: el atributo `download` se ignora entre
+    // dominios distintos, así que el móvil abría la foto en una pestaña en vez de
+    // bajarla. Y si el navegador no la sabe mostrar (algún .HEIC/.avif recién
+    // subido), la pestaña quedaba en blanco.
+    //
+    // Ahora la descarga se hace SIEMPRE con un blob: se baja la foto a memoria y
+    // se entrega con su nombre de archivo real (`download` sí se respeta en un
+    // blob del mismo origen). Solo si el fetch falla (sin red o R2 sin CORS) se
+    // vuelve al enlace directo de antes, así que nunca queda peor que antes.
+    //
+    // El "descargando…" no es cosmético: en móvil, con fotos de varios MB, entre
+    // el toque y el aviso del sistema pasaban segundos sin ninguna señal y parecía
+    // que el botón no funcionaba; se volvía a pulsar y se lanzaban descargas dobles.
     descargar.addEventListener("click", async e => {
         e.preventDefault();
+        e.stopPropagation();
+
+        if (descargar.dataset.ocupado === "1") return;
+
         const src = fotosVisibles[indiceActual];
-        try {
-            const resp = await fetch(src, { mode: "cors" });
-            if (!resp.ok) throw new Error(resp.status);
-            const url = URL.createObjectURL(await resp.blob());
+
+        // Fuera de R2 (rutas locales) el enlace directo con `download` ya es correcto.
+        if (!esUrlDescargable(src)) {
             const a = document.createElement("a");
-            a.href = url;
-            a.download = decodeURIComponent(src.split("/").pop());
+            a.href = src;
+            a.download = nombreArchivo(src);
             document.body.appendChild(a);
             a.click();
             a.remove();
-            setTimeout(() => URL.revokeObjectURL(url), 1000);
+            return;
+        }
+
+        const textoBoton = descargar.textContent;
+        descargar.dataset.ocupado = "1";
+        descargar.textContent = "DESCARGANDO…";
+
+        try {
+            const resp = await fetch(src, { mode: "cors" });
+            if (!resp.ok) throw new Error(resp.status);
+
+            const url = URL.createObjectURL(await resp.blob());
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = nombreArchivo(src);
+            document.body.appendChild(a);
+            a.click();
+            a.remove();
+
+            // 60s y no 1s: en móvil el navegador puede tardar en volcar el blob al
+            // disco y revocarlo antes de tiempo cancela la descarga a medias.
+            setTimeout(() => URL.revokeObjectURL(url), 60000);
         } catch (err) {
-            window.open(src, "_blank", "noopener");
+            console.warn("Descarga por blob no disponible, se abre la foto:", err);
+
+            // Sin `target` apuntamos a la misma pestaña: `window.open` con
+            // target="_blank" se considera pop-up y los móviles lo bloquean.
+            const a = document.createElement("a");
+            a.href = src;
+            a.download = nombreArchivo(src);
+            a.target = "_blank";
+            a.rel = "noopener";
+            document.body.appendChild(a);
+            a.click();
+            a.remove();
+        } finally {
+            descargar.dataset.ocupado = "0";
+            descargar.textContent = textoBoton;
         }
     });
 
@@ -785,7 +859,13 @@ function abrirFoto(indice) {
         const src = fotosVisibles[indiceActual];
 
         imagen.src = src;
+
+        // href/download solo se usan si el navegador ignora el preventDefault del
+        // clic (p. ej. con el botón central del ratón). La descarga real la hace el
+        // listener de arriba.
         descargar.href = src;
+        descargar.download = nombreArchivo(src);
+
         contador.textContent = `${indiceActual + 1} / ${fotosVisibles.length}`;
     }
 

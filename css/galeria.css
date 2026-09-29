@@ -447,6 +447,20 @@ body.visor-abierto {
         transform 0.3s ease,
         box-shadow 0.3s ease;
     box-shadow: 0 8px 25px rgba(155, 77, 202, 0.3);
+    /* Evita que al tocar "DESCARGAR" el móvil haga zoom o seleccione texto en
+       lugar de registrar el toque. */
+    touch-action: manipulation;
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    white-space: nowrap;
+}
+
+/* Mientras el blob se está bajando: así se ve que el toque ha entrado y no se
+   encadenan descargas dobles. */
+.descargar-foto[data-ocupado="1"] {
+    opacity: 0.75;
+    pointer-events: none;
 }
 
 .descargar-foto:hover {

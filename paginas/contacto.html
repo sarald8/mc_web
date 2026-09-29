@@ -140,9 +140,13 @@
         <p>© 2026 MONOCROMATICS</p>
     </footer>
     
+    <!-- Activa el menú hamburguesa del header. En la home lo carga index.html;
+         aquí hace falta este script o el botón aparece pero no hace nada. -->
+    <script src="../js/main.js" defer></script>
     <script src="https://web3forms.com/client/script.js" async defer></script>
     <script>
         const form = document.getElementById('form-contacto');
+        if (form) {
         const estado = document.getElementById('form-estado');
 
         // Si el script de Web3Forms no carga, el widget de hCaptcha nunca se
@@ -199,6 +203,7 @@
                 if (window.hcaptcha) hcaptcha.reset();
             }
         });
+        }
     </script>
 </body>
 </html>

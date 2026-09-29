@@ -480,7 +480,11 @@
 
     .descargar-foto {
         bottom: 20px;
-        padding: 12px 20px;
+        padding: 14px 26px;
+        /* En móvil :hover no existe, pero el navegador puede dejar "pegado" el
+           estilo de hover tras el toque y desplaza el botón 3px hacia arriba,
+           justo cuando el dedo va a volver a pulsarlo. */
+        transform: translateX(-50%);
     }
 
     /* CONTACTO */
@@ -633,7 +637,7 @@
 
     .descargar-foto {
         bottom: 16px;
-        padding: 11px 20px;
+        padding: 14px 24px;
     }
 }
 
