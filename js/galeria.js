@@ -584,39 +584,6 @@ const fiestas = [
             "IMG_3975.jpg",
         ]
     },
-    {
-        nombre: "VARIADAS",
-        lugar: "",
-        carpeta: "variadas",
-        fotos: [
-            "IMG_0.jpg",
-            "IMG_1.jpg",
-            "IMG_1304.jpg",
-            "IMG_1307.jpg",
-            "IMG_1309.jpg",
-            "IMG_1310.jpg",
-            "IMG_1311.jpg",
-            "IMG_1312.jpg",
-            "IMG_1315.jpg",
-            "IMG_1316.jpg",
-            "IMG_1317.jpg",
-            "IMG_1318.jpg",
-            "IMG_1320.jpg",
-            "IMG_1661.jpg",
-            "IMG_1662.jpg",
-            "IMG_1663.jpg",
-            "IMG_1664.jpg",
-            "IMG_1665.jpg",
-            "IMG_1666.jpg",
-            "IMG_1667.jpg",
-            "IMG_1668.jpg",
-            "IMG_1669.jpg",
-            "IMG_1670.jpg",
-            "IMG_1672.jpg",
-            "IMG_1673.jpg",
-            "IMG_3.jpg",
-        ]
-    },
 ];
 
 // Se declara ANTES del bloque de pintado porque éste la rellena (los detalles
