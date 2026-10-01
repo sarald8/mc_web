@@ -1,4 +1,9 @@
 {
+  "name": "monocromatics-web",
+  "private": true,
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
     "preview": "npx wrangler pages dev .",
     "check": "node scripts/check-enlaces.mjs",

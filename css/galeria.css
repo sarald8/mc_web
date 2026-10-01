@@ -247,6 +247,36 @@
     margin-bottom: 45px;
 }
 
+/* Aviso que se pinta cuando el apartado pide una fiesta que ya no existe
+   (data-carpeta sin coincidencia en galeria.js). Ocupa el ancho completo para
+   que nunca quede una página en blanco, manteniendo el fondo del apartado. */
+.galeria-vacia {
+    position: relative;
+    padding: calc(var(--header-height) + 45px) 8% 125px;
+    background:
+        radial-gradient(circle at 90% 10%, rgba(155, 77, 202, 0.22), transparent 28%),
+        radial-gradient(circle at 5% 90%, rgba(91, 37, 145, 0.16), transparent 30%),
+        linear-gradient(135deg, #130c1c 0%, #110b19 50%, #0e0915 100%);
+    color: #ffffff;
+    min-height: 60vh;
+}
+
+.galeria-vacia h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(32px, 5vw, 52px);
+    font-weight: 400;
+    line-height: 1.1;
+    margin-bottom: 20px;
+}
+
+.galeria-vacia p {
+    max-width: 520px;
+    color: #cfc7d6;
+    font-size: 14px;
+    line-height: 1.7;
+    margin-bottom: 35px;
+}
+
 /* ==========================================================
    CUADRÍCULA DE FOTOS
 ========================================================== */

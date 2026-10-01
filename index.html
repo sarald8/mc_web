@@ -44,7 +44,9 @@
     <link rel="manifest" href="manifest.webmanifest">
     <meta name="theme-color" content="#0b0710">
     <!-- Datos estructurados: Google entiende "Monocromatics = organización musical en Galicia"
-         y asocia las redes oficiales. Probar en: https://search.google.com/test/rich-results -->
+         y asocia las redes oficiales. Probar en: https://search.google.com/test/rich-results
+         Bloques de datos: el navegador no los ejecuta como script, así que la CSP
+         NO necesita 'unsafe-inline' para ellos (con <script src> local basta). -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -320,12 +322,18 @@
         <h2>GALERÍA</h2>
 
         <div class="gallery-grid">
-            <img src="https://pub-196ffc8ef6544a1a83073be29e5a331f.r2.dev/imagenes/fiestas/DOPPLER_dsm_14_05_26/IMG_4233.jpeg" alt="Monocromatics" width="6000" height="4000" loading="lazy" decoding="async">
-            <img src="https://pub-196ffc8ef6544a1a83073be29e5a331f.r2.dev/imagenes/fiestas/DOPPLER_main_costa_13_06_26/Monocromatics Doppler38.jpg" alt="Monocromatics" width="1920" height="1280" loading="lazy" decoding="async">
-            <img src="https://pub-196ffc8ef6544a1a83073be29e5a331f.r2.dev/imagenes/fiestas/MYCLUB_blinblin_yung_brandy_13_05_26/BLIBLINXMONOCROMO56.jpg" alt="Monocromatics" width="1920" height="1280" loading="lazy" decoding="async">
-            <img src="https://pub-196ffc8ef6544a1a83073be29e5a331f.r2.dev/imagenes/fiestas/MYCLUB_onlylocals_06_25/IMG_3460.jpg" alt="Monocromatics" width="5527" height="3700" loading="lazy" decoding="async">
-            <img src="https://pub-196ffc8ef6544a1a83073be29e5a331f.r2.dev/imagenes/fiestas/DOPPLER_main_costa_13_06_26/Monocromatics Doppler58.jpg" alt="Monocromatics" width="1920" height="1280" loading="lazy" decoding="async">
-            <img src="https://pub-196ffc8ef6544a1a83073be29e5a331f.r2.dev/imagenes/fiestas/VANITAS_02_10_25/IMG_3901.jpg" alt="Monocromatics" width="6024" height="4020" loading="lazy" decoding="async">
+            <!-- width/height son la relacion real 3:2 de las fotos, no los 6000px del
+                 original: el navegador reserva la caja correcta sin reservar una caja
+                 gigante. El CSS las recorta a una altura fija (object-fit: cover).
+                 El srcset se deja con las mismas variantes que el original (R2 aun no
+                 sirve miniaturas); cuando exista Cloudflare Images se sustituira por
+                 variantes de verdad (ver estructuraweb.md, punto E1/E2). -->
+            <img src="https://pub-196ffc8ef6544a1a83073be29e5a331f.r2.dev/imagenes/fiestas/DOPPLER_dsm_14_05_26/IMG_4233.jpeg" alt="Monocromatics" width="960" height="640" loading="lazy" decoding="async">
+            <img src="https://pub-196ffc8ef6544a1a83073be29e5a331f.r2.dev/imagenes/fiestas/DOPPLER_main_costa_13_06_26/Monocromatics Doppler38.jpg" alt="Monocromatics" width="960" height="640" loading="lazy" decoding="async">
+            <img src="https://pub-196ffc8ef6544a1a83073be29e5a331f.r2.dev/imagenes/fiestas/MYCLUB_blinblin_yung_brandy_13_05_26/BLIBLINXMONOCROMO56.jpg" alt="Monocromatics" width="960" height="640" loading="lazy" decoding="async">
+            <img src="https://pub-196ffc8ef6544a1a83073be29e5a331f.r2.dev/imagenes/fiestas/MYCLUB_onlylocals_06_25/IMG_3460.jpg" alt="Monocromatics" width="960" height="643" loading="lazy" decoding="async">
+            <img src="https://pub-196ffc8ef6544a1a83073be29e5a331f.r2.dev/imagenes/fiestas/DOPPLER_main_costa_13_06_26/Monocromatics Doppler58.jpg" alt="Monocromatics" width="960" height="640" loading="lazy" decoding="async">
+            <img src="https://pub-196ffc8ef6544a1a83073be29e5a331f.r2.dev/imagenes/fiestas/VANITAS_02_10_25/IMG_3901.jpg" alt="Monocromatics" width="960" height="640" loading="lazy" decoding="async">
         </div>
 
         <a href="paginas/galeria.html" class="button">VER TODAS LAS FOTOS</a>

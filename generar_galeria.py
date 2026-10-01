@@ -29,6 +29,7 @@ import re
 import shutil
 import subprocess
 import sys
+from datetime import date
 
 CARPETA_FOTOS = "fotos_para_subir"
 ARCHIVO_JS = "js/galeria.js"
@@ -462,8 +463,11 @@ def generar_apartados_html(fiestas_ordenadas, asignados, carpetas_nuevas):
         # Si la fiesta es nueva y le falta el apartado, se crea aqui mismo ya
         # sale un nombre y una descripcion decentes. Si es una fiesta antigua a
         # la que le faltaba el apartado, mejor crearla a mano con texto propio.
-        aviso = "  <-- era una fiesta ya existente: revisale el texto" \
-            if fiesta["carpeta"] not in carpetas_nuevas else ""
+        aviso = (
+            "  <-- es una fiesta ya existente: revisa el texto"
+            if fiesta["carpeta"] not in carpetas_nuevas
+            else ""
+        )
 
         print(f"  Creado paginas/{archivo} ({fiesta['nombre']}){aviso}")
         creados.append(archivo)
@@ -592,6 +596,21 @@ def actualizar_tarjetas_galeria(fiestas_ordenadas, asignados, carpetas_nuevas):
     return True
 
 
+def fecha_carpeta(carpeta):
+    '''Fecha de ultima modificacion de la carpeta de la fiesta, en formato ISO.
+
+    Es lo que se escribe como <lastmod> en el sitemap: no es perfecto (la marca
+    la pone el sistema de archivos, no la fecha del evento), pero es una senal
+    real y estable de "esto se ha tocado". Si la carpeta no existiera, se usa
+    la fecha de hoy para no dejar el campo vacio.
+    '''
+    ruta = os.path.join(CARPETA_FOTOS, carpeta)
+    try:
+        return date.fromtimestamp(os.path.getmtime(ruta)).isoformat()
+    except OSError:
+        return date.today().isoformat()
+
+
 def actualizar_sitemap(fiestas_ordenadas, asignados):
     '''Apunta el sitemap a los apartados que existen de verdad.
 
@@ -640,6 +659,7 @@ def actualizar_sitemap(fiestas_ordenadas, asignados):
         bloques.append(
             "  <url>\n"
             f"    <loc>{dominio}/paginas/galeria_apartado{numero}.html</loc>\n"
+            f"    <lastmod>{fecha_carpeta(fiesta['carpeta'])}</lastmod>\n"
             "    <changefreq>yearly</changefreq>\n"
             "    <priority>0.5</priority>\n"
             "  </url>"

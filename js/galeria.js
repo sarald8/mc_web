@@ -619,6 +619,31 @@ function esUrlDescargable(src) {
     }
 }
 
+// Aviso visible cuando el data-carpeta del apartado apunta a una fiesta que ya
+// no existe en galeria.js (por ejemplo, si se renombro la carpeta o se borro la
+// fiesta). Antes esto solo dejaba un console.warn y el visitante veia una pagina
+// en blanco sin saber por que. Ahora se pinta un mensaje con un enlace de vuelta.
+function mostrarFiestaNoDisponible() {
+    const aviso = document.createElement("section");
+    aviso.className = "galeria-vacia";
+
+    const titulo = document.createElement("h2");
+    titulo.textContent = "Esta fiesta ya no está disponible";
+
+    const texto = document.createElement("p");
+    texto.textContent = "Es posible que se haya renombrado o que sus fotos ya no estén publicadas. Puedes ver el resto de la galería aquí.";
+
+    const enlace = document.createElement("a");
+    enlace.className = "button";
+    enlace.href = "galeria.html";
+    enlace.textContent = "VER TODA LA GALERÍA";
+
+    aviso.appendChild(titulo);
+    aviso.appendChild(texto);
+    aviso.appendChild(enlace);
+    contenedor.appendChild(aviso);
+}
+
 // Guard: este script también puede cargarse en páginas sin la galería.
 // Sin el contenedor no hay nada que pintar, así que salimos sin romper
 // el resto de scripts (proxima_fiesta.js, artistas.js, etc.).
@@ -628,11 +653,11 @@ if (!contenedor) {
     // Si el contenedor tiene data-carpeta, solo mostramos esa fiesta.
     // Si no lo tiene, mostramos todas.
     //
-    // OJO: a pesar del nombre del atributo, su valor puede ser la CARPETA
-    // (`DOPPLER_dsm_14_05_26`) o el NOMBRE visible (`DSM`). Se aceptan los dos
-    // a proposito: los apartados antiguos usaban el nombre y hubo un tiempo en
-    // que ambos valores no coincidian, lo que hacia que una tarjeta abriera las
-    // fotos de otra fiesta. Comparar contra los dos campos lo hace imposible.
+    // El valor es SIEMPRE la CARPETA de la fiesta (`DOPPLER_dsm_14_05_26`), que es
+    // el identificador estable. Se sigue aceptando tambien el NOMBRE visible por
+    // las paginas antiguas que aun no se hayan regenerado, pero ya no deberia
+    // hacer falta: esa ambiguedad (comparar nombre y carpeta) fue la que provoco
+    // el bug de "una tarjeta abre las fotos de otra fiesta".
     const carpetaSolicitada = (contenedor.dataset.carpeta || "").trim().toLowerCase();
 
     const fiestasAMostrar = carpetaSolicitada
@@ -644,6 +669,7 @@ if (!contenedor) {
 
     if (carpetaSolicitada && fiestasAMostrar.length === 0) {
         console.warn(`No se encontró ninguna fiesta con carpeta ni nombre "${carpetaSolicitada}" en galeria.js`);
+        mostrarFiestaNoDisponible();
     }
 
     // Lista plana de todas las fotos visibles en esta página, en el mismo orden

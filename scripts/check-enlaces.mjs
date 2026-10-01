@@ -3,6 +3,10 @@
 // Revisa que todos los src/href LOCALES del sitio existan en disco.
 // (Punto 50 de estructuraweb.md)
 //
+// Solo mira HTML y CSS. En los .js los src/href del codigo son navegacion en
+// tiempo de ejecucion y se resuelven contra la pagina que carga el script, no
+// contra js/, asi que no se pueden comprobar aqui (ver comentario mas abajo).
+//
 // Uso:  npm run check
 // Sale con codigo 1 si encuentra algo roto, para poder usarlo en CI.
 // ==========================================================
@@ -54,6 +58,14 @@ let comprobados = 0;
 const archivos = listar(RAIZ).filter((f) => /\.(html|css|js)$/i.test(f));
 
 for (const archivo of archivos) {
+    // En los .js los src/href que aparecen en el codigo son navegacion en
+    // tiempo de ejecucion (window.location.href, elemento.href = ...) y se
+    // resuelven contra la pagina que carga el script, no contra la carpeta
+    // js/. Aqui no se pueden comprobar sin saber en que pagina corre cada
+    // script, asi que se ignoran: el resto de rutas del JS (las fotos de R2)
+    // son URLs absolutas y no se miran aqui de todos modos.
+    if (/\.js$/i.test(archivo)) continue;
+
     const contenido = readFileSync(archivo, "utf8");
     const carpeta = dirname(archivo);
 
