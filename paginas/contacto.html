@@ -80,11 +80,9 @@
                          onsubmit="return false" corta el envio nativo del navegador: el envio
                          real lo hace el fetch del script de abajo (con captcha de por medio).
                          Sin esto, con el JS caido o desactivado (o un bot que no lo ejecute)
-                         el formulario se enviaba de verdad y el captcha se saltaba solo.
-                         El destino es NUESTRO endpoint (/api/contacto, una Function de Pages),
-                         no Web3Forms: la access_key ya NO viaja en el HTML, la anade el
-                         servidor desde la variable de entorno WEB3FORMS_KEY. -->
-                    <form id="form-contacto" action="/api/contacto" method="POST" onsubmit="return false">
+                         el formulario se enviaba de verdad y el captcha se saltaba solo. -->
+                    <form id="form-contacto" action="https://api.web3forms.com/submit" method="POST" onsubmit="return false">
+                        <input type="hidden" name="access_key" value="fd1cee53-7603-45a6-bdf7-6fe80c56e205">
                         <input type="hidden" name="subject" value="Nuevo mensaje de contacto - Monocromatics">
                         <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
 

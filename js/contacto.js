@@ -1,9 +1,7 @@
 /* ==========================================================
    FORMULARIO DE CONTACTO
-   Envia el formulario a NUESTRO endpoint /api/contacto (una Function de
-   Cloudflare Pages), no directo a Web3Forms. La Function es la que anade la
-   access_key desde la variable de entorno WEB3FORMS_KEY, asi que la clave ya
-   no viaja en el HTML ni en este JS.
+   Envia el formulario a Web3Forms con fetch (con hCaptcha de por
+   medio) en vez de dejar que el navegador haga el POST nativo.
 
    Vive en un archivo aparte y no en un <script> en linea dentro de
    contacto.html para poder quitar 'unsafe-inline' de script-src en
@@ -39,6 +37,7 @@ if (form) {
             console.warn('hCaptcha no se ha cargado: se enviara el formulario sin validacion en cliente (Web3Forms lo valida en servidor).');
         }
     });
+
     form.addEventListener('submit', async (e) => {
         // El POST nativo ya lo corta el onsubmit="return false" del <form>;
         // esto es la segunda red de seguridad por si ese atributo se quita.
@@ -71,14 +70,6 @@ if (form) {
 
             if (res.ok && data.success) {
                 window.location.href = 'gracias.html';
-            } else if (res.status === 503) {
-                // El servidor no tiene la clave configurada. Es un fallo nuestro,
-                // no del usuario: mejor decirlo claro que un "algo ha fallado".
-                console.error('El endpoint de contacto no esta configurado:', data.message);
-                estado.textContent = 'El formulario no esta disponible ahora mismo. Escríbenos a monocromaticss@gmail.com';
-                estado.classList.add('error');
-                boton.disabled = false;
-                if (window.hcaptcha) hcaptcha.reset();
             } else {
                 throw new Error(data.message || `Error del servidor (${res.status})`);
             }

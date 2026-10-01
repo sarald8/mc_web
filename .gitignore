@@ -22,12 +22,6 @@ estructuraweb.md
 .env.*
 !.env.example
 
-# Variables de entorno locales de wrangler (Pages Functions). Contienen
-# secretos reales (p. ej. WEB3FORMS_KEY): NUNCA deben subir al repo.
-.dev.vars
-.dev.vars.*
-!.dev.vars.example
-
 # caches de python
 __pycache__/
 *.py[cod]
