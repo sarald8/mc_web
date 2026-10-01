@@ -12,3 +12,8 @@ error-r2.html
 
 # Scripts locales de QA (browser-automation), no son parte del sitio
 qa-*.mjs
+
+# OJO: la carpeta functions/ NO se ignora. Cloudflare Pages la lee para montar
+# los endpoints (/api/contacto) y NO la sirve como archivo estatico: el codigo
+# de la Function no llega nunca al navegador. Si se añadiera aqui, el endpoint
+# dejaria de existir.

@@ -10,25 +10,28 @@
 
 ## 1. Web3Forms (formulario de contacto) — PENDIENTE, importante
 
-Estado actual: la `access_key` viaja en el HTML de `paginas/contacto.html`, así que
-es pública. Cualquiera puede hacer POST a `api.web3forms.com/submit` con ella y
-gastar las 250 peticiones gratuitas o llenar el correo de spam.
+Estado actual (01/10/2026): la arquitectura ya es la buena. La clave **ya no**
+viaja en el HTML: la pone el servidor desde la variable `WEB3FORMS_KEY` de Pages
+(ver `functions/api/contacto.js`). Repositorio limpio, nada que esconder.
 
-No se arregla ocultándola: en front-end siempre es visible.
+**Lo que falta: ROTAR la clave.** La `WEB3FORMS_KEY` que hay puesta **es la misma
+clave que estuvo en el HTML**, así que sigue filtrada: quien la copiara puede
+seguir usándola. Además, esa clave **hoy da 403** al hacer POST directo a
+`api.web3forms.com/submit`, o sea que **el formulario no envía**.
 
 Pasos, por orden:
 
-1. Entrar en <https://web3forms.com> y **rotar la clave** (crear una nueva y
-   borrar la vieja). Esto ya reduce el daño: la que está en el repositorio y en el
-   historial de Git deja de servir.
-2. En el panel de Web3Forms, activar la **restricción por dominio**. Ojo: pide el
-   dominio final, así que este paso espera a tener dominio propio. Mientras tanto,
-   la rotación sigue siendo lo más útil que se puede hacer hoy.
-3. Sustituir el valor en `paginas/contacto.html`:
-   <input type="hidden" name="access_key" value="LA_CLAVE_NUEVA">
-
-4. (Más adelante) mover el envío a una Cloudflare Function que guarde la
-   clave en una variable de entorno, para que no vuelva a estar en el HTML.
+1. Entrar en <https://web3forms.com> y **crear una clave nueva** (y borrar la
+   vieja). Esto arregla las dos cosas: invalida las copias y desbloquea el 403.
+2. En Cloudflare Pages -> Settings -> Environment variables, cambiar el valor de
+   la secreta `WEB3FORMS_KEY` por el de la clave nueva. **No hay que tocar ningún
+   archivo.**
+3. Probar un envío real desde la web (cuando se decida; no se han mandado
+   correos de prueba).
+4. En el panel de Web3Forms, activar la **restricción por dominio**. Ojo: pide el
+   dominio final, así que este paso espera a tener dominio propio.
+5. Si se prueba en local: copiar `.dev.vars.example` a `.dev.vars` y poner la
+   clave ahí (`.dev.vars` está en `.gitignore`, no se versiona).
 
 ## 2. CARTO (mapa de salas) — PENDIENTE, depende del dominio
 
