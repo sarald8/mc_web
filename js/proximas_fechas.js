@@ -3,21 +3,21 @@ const proximasFechas = [
         dia: "31",
         mes: "OCT",
         ciudad: "Santiago",
-        hora: "23:59",
-        entradas: "https://www.enterticket.es/"
+        hora: "TK MAMI",
+        entradas: "https://www.enterticket.es/eventos/monocromatics-halloween-night-tk-mami-220979"
     },
     {
         dia: "XX",
         mes: "NOV",
         ciudad: "XXX",
-        hora: "23:59",
+        hora: "XXX",
         entradas: "https://www.enterticket.es/"
     },
     {
         dia: "XX",
         mes: "DIC",
         ciudad: "XXX",
-        hora: "23:59",
+        hora: "XXX",
         entradas: "https://www.enterticket.es/"
     }
 ];

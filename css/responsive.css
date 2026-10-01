@@ -553,7 +553,7 @@
     }
 
     .countdown-values span {
-        font-size: 6px;
+        font-size: 8px;
     }
 
     .date-item {
@@ -575,7 +575,7 @@
 
     .date-button {
         grid-column: 3;
-        font-size: 7px;
+        font-size: 8px;
         padding: 9px 12px;
     }
 

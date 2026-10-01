@@ -11,7 +11,7 @@ const proximaFiesta = {
     hora: "23:59",
     cartel: "imagenes/tkmamicartel.jpeg",
     cartelAlt: "Cartel de Monocromatics halloween 2026",
-    entradas: "https://www.enterticket.es/",
+    entradas: "https://www.enterticket.es/eventos/monocromatics-halloween-night-tk-mami-220979",
     fechaContador: "2026-10-31T23:59:00"
 };
 
