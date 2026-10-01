@@ -10,6 +10,18 @@
 
 const form = document.getElementById('form-contacto');
 
+// El correo no va escrito en el HTML (ver contacto.html): se monta aqui para
+// que un bot que lea el codigo fuente no encuentre un mailto: en claro. Es
+// ofuscacion, no seguridad: cualquier persona puede leerlo, solo se evita que
+// lo cosechen los rastreadores automaticos.
+const enlaceEmail = document.getElementById('contacto-email');
+
+if (enlaceEmail) {
+    const correo = `${enlaceEmail.dataset.usuario}@${enlaceEmail.dataset.dominio}`;
+    enlaceEmail.href = `mailto:${correo}`;
+    enlaceEmail.textContent = correo;
+}
+
 if (form) {
     const estado = document.getElementById('form-estado');
 

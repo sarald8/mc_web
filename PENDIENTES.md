@@ -1,8 +1,12 @@
 # Claves y cuentas externas
 
-Este archivo existe para que los pasos que **no** se pueden hacer desde el código no
-dependan de `estructuraweb.md` (que está en `.gitignore` y por tanto no se versiona).
-Aquí solo van sitios y pasos: **ninguna clave real**.
+> **Fuente de verdad:** la lista de trabajo y el detalle de cada pendiente viven en
+> `estructuraweb.md` (local, en `.gitignore`). Este archivo es solo el recordatorio
+> versionado de los sitios y pasos **externos** (paneles, claves, dominio), para que
+> no se pierdan si no se tiene `estructuraweb.md` a mano. **Ninguna clave real aquí.**
+>
+> Si algo se contradice, manda `estructuraweb.md`. Al cerrar un punto allí, actualiza
+> también aquí si toca.
 
 ## 1. Web3Forms (formulario de contacto) — PENDIENTE, importante
 
@@ -23,7 +27,7 @@ Pasos, por orden:
 3. Sustituir el valor en `paginas/contacto.html`:
    <input type="hidden" name="access_key" value="LA_CLAVE_NUEVA">
 
-4. Opcional (más adelante): mover el envío a una Cloudflare Function que guarde la
+4. (Más adelante) mover el envío a una Cloudflare Function que guarde la
    clave en una variable de entorno, para que no vuelva a estar en el HTML.
 
 ## 2. CARTO (mapa de salas) — PENDIENTE, depende del dominio

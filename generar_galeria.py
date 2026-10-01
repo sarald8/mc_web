@@ -126,20 +126,21 @@ def leer_fiestas_existentes(ruta_js):
     return existentes
 
 
-def leer_fotos_en_r2(carpeta_r2):
-    '''Pregunta a R2 que archivos hay ya en `carpeta_r2`.
+def objeto_en_r2(ruta_r2):
+    '''True si ESE objeto concreto ya existe en R2.
 
-    Devuelve un set con los nombres de archivo. Si la consulta falla (sin red,
-    sin sesion de wrangler, bucket vacio) devuelve un set vacio, y entonces el
-    programa sube todo como antes: nunca se queda peor que la version previa.
+    Usa `wrangler r2 object head`, que hace una peticion HEAD a la clave exacta:
+    existe -> codigo 0, no existe -> error (403/404, con NotImplemented en
+    algunos casos). NO usa `wrangler r2 object get` sobre un prefijo: comprobado
+    con wrangler 4.131.2 que eso NO lista, intenta descargar y falla
+    (EISDIR / "key does not exist"), asi que nunca ahorro una subida.
+
+    Ante cualquier duda (sin red, sin sesion de wrangler, error raro) devuelve
+    False: se sube la foto. El peor caso es volver a subir algo que ya estaba,
+    que es inofensivo; lo que no queremos es saltarnos una que falta.
     '''
-    destino = f"{BUCKET_R2}/{carpeta_r2}"
-    prefijo = f"{carpeta_r2}/"
+    comando = [NPX, "wrangler", "r2", "object", "head", ruta_r2, "--remote"]
 
-    comando = [NPX, "wrangler", "r2", "object", "get", destino, "--remote"]
-
-    # `wrangler r2 object get` sobre un prefijo (sin --file) LISTA el prefijo en
-    # lugar de descargar. Con check=False, un fallo no rompe el script.
     resultado = subprocess.run(
         comando,
         check=False,
@@ -148,27 +149,19 @@ def leer_fotos_en_r2(carpeta_r2):
         text=True,
     )
 
-    if resultado.returncode != 0:
-        return set()
-
-    nombres = set()
-    for linea in (resultado.stdout or "").splitlines():
-        linea = linea.strip()
-        if prefijo not in linea:
-            continue
-        candidato = linea.rsplit("/", 1)[-1].strip()
-        if candidato and "." in candidato:
-            nombres.add(candidato)
-
-    return nombres
+    return resultado.returncode == 0
 
 
 # ==========================================================
 # SUBIDA A R2
 # ==========================================================
 
-def subir_a_r2(carpeta_local, carpeta_r2, fotos, ya_en_r2):
-    '''Sube a R2 solo las fotos que falten.
+def subir_a_r2(carpeta_local, carpeta_r2, fotos, objeto_ya_en_r2):
+    '''Sube a R2 solo las fotos que falten, preguntando por cada una.
+
+    `objeto_ya_en_r2` es una funcion (ruta_r2) -> bool: recibe la ruta completa
+    del objeto, no el nombre del archivo. Se pregunta ANTES de subir cada foto
+    para no rehacer un HEAD de las que ya sabemos que faltan.
 
     Devuelve dos listas: las fotos que SI acabaron en R2 y las que fallaron.
     Ya no llama a sys.exit: un fallo se acumula y el programa sigue, porque
@@ -179,13 +172,14 @@ def subir_a_r2(carpeta_local, carpeta_r2, fotos, ya_en_r2):
     saltadas = 0
 
     for foto in fotos:
-        if foto in ya_en_r2:
+        origen = os.path.join(carpeta_local, foto)
+        destino = f"{BUCKET_R2}/{carpeta_r2}/{foto}"
+
+        if objeto_ya_en_r2(destino):
             saltadas += 1
             subidas.append(foto)
             continue
 
-        origen = os.path.join(carpeta_local, foto)
-        destino = f"{BUCKET_R2}/{carpeta_r2}/{foto}"
         print(f"  Subiendo: {origen} -> {destino}")
 
         # Lista de argumentos con shell=False: evita que nombres de archivo
@@ -719,6 +713,11 @@ def main():
         help="No sube nada a R2: solo lee las carpetas y reescribe el js/HTML.",
     )
     parser.add_argument(
+        "--revisar-r2",
+        action="store_true",
+        help="No sube nada: solo comprueba (HEAD foto a foto) que ya hay en R2. Tarda.",
+    )
+    parser.add_argument(
         "--html",
         action="store_true",
         help="Ademas, crea los galeria_apartadoN.html que falten y las tarjetas de galeria.html.",
@@ -825,17 +824,26 @@ def main():
             fallos_por_carpeta[carpeta] = []
             continue
 
-        ya_en_r2 = leer_fotos_en_r2(ruta_r2)
-        if ya_en_r2:
-            print(f"  R2 ya tiene {len(ya_en_r2)} archivos en {ruta_r2}/")
-        else:
-            print(f"  No se pudo listar {ruta_r2}/ (o esta vacia): se intenta subir todo.")
+        if args.revisar_r2:
+            # Pregunta por cada foto (HEAD). Tarda, pero no sube nada y permite
+            # ver de verdad que falta, que es lo que no sabiamos cuando esto
+            # intentaba listar la carpeta.
+            print("  --revisar-r2: comprobando que fotos ya estan en R2 (sin subir)...")
+            subidas, fallos = subir_a_r2(
+                os.path.join(CARPETA_FOTOS, carpeta),
+                ruta_r2,
+                fiesta["fotos"],
+                lambda destino: True,
+            )
+            subidas_por_carpeta[carpeta] = subidas
+            fallos_por_carpeta[carpeta] = fallos
+            continue
 
         subidas, fallos = subir_a_r2(
             os.path.join(CARPETA_FOTOS, carpeta),
             ruta_r2,
             fiesta["fotos"],
-            ya_en_r2,
+            objeto_en_r2,
         )
 
         subidas_por_carpeta[carpeta] = subidas

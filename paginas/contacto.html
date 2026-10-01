@@ -66,7 +66,10 @@
 
                     <a class="contacto-email">Clica aquí debajo para enviarnos un correo ↓</a>
                     <br>
-                    <a href="mailto:monocromaticss@gmail.com" class="contacto-email">monocromaticss@gmail.com</a>
+                    <!-- El correo NO se escribe en el HTML: se monta con JS (js/contacto.js)
+                         para que los bots que rastrean mailto: en claro no lo cosechen.
+                         Si el JS esta caido, el texto queda visible pero sin enlace. -->
+                    <a class="contacto-email" id="contacto-email" data-usuario="monocromaticss" data-dominio="gmail.com">monocromaticss [arroba] gmail.com</a>
                     <br>
                     <a class="contacto-email">O contáctanos por el formulario directamente</a>
                 </div>

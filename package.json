@@ -6,7 +6,7 @@
   },
   "scripts": {
     "preview": "npx wrangler pages dev .",
-    "check": "node scripts/check-enlaces.mjs",
+    "check": "node scripts/check-enlaces.mjs && node scripts/check-html.mjs",
     "carpetas": "node scripts/listar-carpetas.mjs"
   },
   "dependencies": {

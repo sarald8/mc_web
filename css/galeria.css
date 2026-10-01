@@ -517,7 +517,8 @@ body.visor-abierto {
     content: "ÚLTIMA FIESTA";
     display: block;
     margin-top: 0.5rem;
-    font-size: 0.62rem;
+    /* 0.6rem ~ 9,6px: por debajo de 9px no se lee bien en movil (estructuraweb.md, D1). */
+    font-size: 0.6rem;
     letter-spacing: 2px;
     color: #c98cff;
 }
